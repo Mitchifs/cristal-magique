@@ -1630,7 +1630,7 @@ bot.on("message", async message => {
 					}
 					else{
 						let random = Math.random()*100
-						joueurs[i].énergie-=2
+						joueurs[i].énergie-=1
 						if(random < 2){
 							await message.channel.send("**:information_source: Tu trouves 1 Carte d'accès NASA**")
 							joueurs[i].inventaire.push("Carte d'accès NASA")
