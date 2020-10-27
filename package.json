@@ -1,0 +1,22 @@
+{
+  "name": "cristal-magique",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mitchifs/cristal-magique.git"
+  },
+  "author": "Mitchifs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mitchifs/cristal-magique/issues"
+  },
+  "homepage": "https://github.com/Mitchifs/cristal-magique#readme",
+  "dependencies": {
+    "discord.js": "^12.4.1"
+  }
+}
