@@ -387,11 +387,6 @@ bot.on("ready", async () => {
 		status:"online"
 	})
 	.catch(console.error)
-	const serv = bot.guilds.cache.find(s => s.name === "INSA groupe G")
-	console.log(serv.name)
-	serv.members.fetch({time:10e3})
-	.then(nyeh => console.log("nyeh"))
-	.catch(console.error)
 	bot.generateInvite({
 		permissions:[
 		"MANAGE_GUILD",
