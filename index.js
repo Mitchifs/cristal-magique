@@ -1198,7 +1198,7 @@ bot.on("message", async message => {
 						équipable += "*,équiper bouclier 2* : Equiper le Bouclier en bois en Arme 2 | 1 :shield:\n"
 					}
 					if(quantitéObjet(joueurs[i].inventaire,"Casque de motard") > 0){
-						équipable += "*,équiper motard* : Equiper le Jean à la Tête | 1 :shield:\n"
+						équipable += "*,équiper motard* : Equiper le Casque de motard à la Tête | 1 :shield:\n"
 					}
 					if(quantitéObjet(joueurs[i].inventaire,"Jean") > 0){
 						équipable += "*,équiper jean* : Equiper le Jean aux Jambes | 1 :shield:\n"
@@ -1321,7 +1321,7 @@ bot.on("message", async message => {
 						message.channel.send(infos(membre))
 					}
 					if(/^jean*$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Jean") > 0){
-						joueurs[i].pieds = "Jean"
+						joueurs[i].jambes = "Jean"
 						await message.channel.send("**:information_source: Jean équipé aux Jambes !**")
 						message.channel.send(infos(membre))
 					}
