@@ -1462,8 +1462,7 @@ bot.on("message", async message => {
 					if(/^feu$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 4 && joueurs[i].intelligence >= 0 && joueurs[i].énergie >= 5){
 						joueurs[i].énergie-=5
 						joueurs[i].inventaire.push("Feu")
-						supprimerObjet(joueurs[i],"Pierre",6)
-						supprimerObjet(joueurs[i],"Bâton",3)
+						supprimerObjet(joueurs[i],"Bâton",4)
 						await ajoutXP(joueurs[i],message,5,XP_MAX)
 						await message.channel.send("**:information_source: Feu crafté !**")
 						message.channel.send(infos(membre))
