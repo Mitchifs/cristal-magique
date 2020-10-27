@@ -1336,43 +1336,43 @@ bot.on("message", async message => {
 					let connus = ""
 
 					if(joueurs[i].intelligence >= 0){
-						connus += "1 Corde <= 3 Herbe fibreuse\n"
+						connus += "1 **Corde** <= 3 Herbe fibreuse\n"
 					}
 					if(joueurs[i].intelligence >= 0){
-						connus += "1 Feu <= 4 Bâton + 5 :zap:\n"
+						connus += "1 **Feu** <= 4 Bâton + 5 :zap:\n"
 					}
 					if(joueurs[i].intelligence >= 0){
-						connus += "1 Viande de chevreuil cuite <= 1 Viande de chevreuil crue + *Feu*\n"
+						connus += "1 **Viande de chevreuil cuite** <= 1 Viande de chevreuil crue + *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "1 Hache <= 1 Pierre + 1 Bâton + 1 Corde\n"
+						connus += "1 **Hache** <= 1 Pierre + 1 Bâton + 1 Corde\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "1 Pioche <= 1 Pierre + 1 Bâton + 1 Corde\n"
+						connus += "1 **Pioche** <= 1 Pierre + 1 Bâton + 1 Corde\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "1 Pommade soignante naturelle <= 1 Sève + 1 Plante médicinale + *Feu*\n"
+						connus += "1 **Pommade soignante naturelle** <= 1 Sève + 1 Plante médicinale + *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "1 Bouclier en bois <= 1 Bûche + 2 Bâton + 1 Corde\n"
+						connus += "1 **Bouclier en bois** <= 1 Bûche + 2 Bâton + 1 Corde\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "Barque <= 4 Bûche + 2 Corde + 2 :zap:\n"
+						connus += "1 **Barque** <= 4 Bûche + 2 Corde + 2 :zap:\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "Plastique <= 1 Bouteille en plastique + *Feu*\n"
+						connus += "1 **Plastique** <= 1 Bouteille en plastique + *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 2){
-						connus += "Feu de compétition <= 2 Bûche + *Feu*\n"
+						connus += "1 Feu de compétition <= 2 Bûche + *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 2){
-						connus += "Lingot de fer <= 1 Fer brut + *Feu de compétition*\n"
+						connus += "1 Lingot de fer <= 1 Fer brut + *Feu de compétition*\n"
 					}
 					if(joueurs[i].intelligence >= 2){
-						connus += "Lingot d'or <= 1 Or brut + *Feu de compétition*\n"
+						connus += "1 Lingot d'or <= 1 Or brut + *Feu de compétition*\n"
 					}
 					if(joueurs[i].intelligence >= 2){
-						connus += "Epée en fer <= 1 Lingot de fer + 1 Bâton + 1 Corde\n"
+						connus += "1 Epée en fer <= 1 Lingot de fer + 1 Bâton + 1 Corde\n"
 					}
 
 
