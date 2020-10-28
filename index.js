@@ -87,6 +87,16 @@ const énergieMaximum = array => {
 	return énergieMax
 }
 
+const ajoutVie = (array,vie) => {
+	array.vie+=vie
+	if(array.vie > vieMaximum(array)) array.vie = vieMaximum(array)
+}
+
+const ajoutEnergie = (array,énergie) => {
+	array.énergie+=énergie
+	if(array.énergie > énergieMaximum(array)) array.énergie = énergieMaximum(array)
+}
+
 const ajoutXP = async (array,message,xp,XP_MAX) => {
 	array.xp+=xp
 	while(array.xp >= XP_MAX){
@@ -1576,52 +1586,50 @@ bot.on("message", async message => {
 					let objet = message.content.match(/(?<=^.consommer\s+)[^\d]+$/)[0].trim()
 					if(/^myrtille$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Myrtille") > 0){
 						supprimerObjet(joueurs[i],"Myrtille",1)
-						joueurs[i].énergie+=3
-						joueurs[i].vie++
+						ajoutEnergie(joueurs[i],3)
+						ajoutVie(joueurs[i],1)
 						await message.channel.send("**:information_source: Myrtille mangée !**")
 						message.channel.send(infos(membre))
 					}
 					if(/^barre$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Barre chocolatée") > 0){
 						supprimerObjet(joueurs[i],"Barre chocolatée",1)
-						joueurs[i].énergie+=5
+						ajoutEnergie(joueurs[i],5)
 						await message.channel.send("**:information_source: Barre chocolatée mangée !**")
 						message.channel.send(infos(membre))
 					}
 					if(/^saucisson$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Saucisson") > 0){
 						supprimerObjet(joueurs[i],"Saucisson",1)
-						joueurs[i].énergie+=6
-						joueurs[i].vie+=1
+						ajoutEnergie(joueurs[i],6)
+						ajoutVie(joueurs[i],1)
 						await message.channel.send("**:information_source: Saucisson mangé !**")
 						message.channel.send(infos(membre))
 					}
 					if(/^baguette$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Baguette de pain") > 0){
 						supprimerObjet(joueurs[i],"Baguette de pain",1)
-						joueurs[i].énergie+=7
-						joueurs[i].vie+=2
+						ajoutEnergie(joueurs[i],7)
+						ajoutVie(joueurs[i],2)
 						await message.channel.send("**:information_source: Baguette de pain mangée !**")
 						message.channel.send(infos(membre))
 					}
 					if(/^chevreuil$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Viande de chevreuil cuite") > 0){
 						supprimerObjet(joueurs[i],"Viande de chevreuil cuite",1)
-						joueurs[i].énergie+=8
-						joueurs[i].vie+=3
+						ajoutEnergie(joueurs[i],8)
+						ajoutVie(joueurs[i],3)
 						await message.channel.send("**:information_source: Viande de chevreuil cuite mangée !**")
 						message.channel.send(infos(membre))
 					}
 					if(/^pommade$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Pommade soignante naturelle") > 0){
 						supprimerObjet(joueurs[i],"Pommade soignante naturelle",1)
-						joueurs[i].vie+=5
+						ajoutVie(joueurs[i],5)
 						await message.channel.send("**:information_source: Pommade appliquée !**")
 						message.channel.send(infos(membre))
 					}
 					if(/^seringue$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Seringue médicale") > 0){
 						supprimerObjet(joueurs[i],"Seringue médicale",1)
-						joueurs[i].vie+=7
+						ajoutVie(joueurs[i],7)
 						await message.channel.send("**:information_source: Seringue médicale injectée !**")
 						message.channel.send(infos(membre))
 					}
-					if(joueurs[i].vie > vieMaximum(joueurs[i])) joueurs[i].vie = vieMaximum(joueurs[i])
-					if(joueurs[i].énergie > énergieMaximum(joueurs[i])) joueurs[i].énergie = énergieMaximum(joueurs[i])
 				}
 
 				else if(/^.fouiller$/i.test(message.content) && map[joueurs[i].x][joueurs[i].y] === "Ville"){
