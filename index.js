@@ -1182,7 +1182,7 @@ bot.on("message", async message => {
 					if(équipable === ""){
 						équipable = "*rien*"
 					}
-					message.channel.send(infos(membre,`**Objets équipables :**\n${équipable}`))
+					message.channel.send(infos(membre,`**:information_source: Objets équipables :**\n${équipable}`))
 				}
 
 				else if(/^.[ée]quiper\s+[^\d]+\s*\d*$/i.test(message.content)){
@@ -1377,7 +1377,7 @@ bot.on("message", async message => {
 					if(craftable === ""){
 						craftable+="*rien*"
 					}
-					message.channel.send(infos(membre,`**Crafts connus :**\n${connus}\n**Crafts faisables :**\n${craftable}`))
+					message.channel.send(infos(membre,`**:information_source: Crafts connus :**\n${connus}\n**:information_source: Crafts faisables :**\n${craftable}`))
 				}
 
 				else if(/^.craft\s+[^\d]+$/i.test(message.content)){
@@ -1487,7 +1487,7 @@ bot.on("message", async message => {
 					if(consommable === ""){
 						consommable = "*rien*"
 					}
-					message.channel.send(infos(membre,`**Objets consommables :**\n${consommable}`))
+					message.channel.send(infos(membre,`**:information_source: Objets consommables :**\n${consommable}`))
 				}
 
 				else if(/^.consommer\s+[^\d]+$/i.test(message.content)){
