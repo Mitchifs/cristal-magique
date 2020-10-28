@@ -1637,7 +1637,7 @@ bot.on("message", async message => {
 		}
 	}
 	
-	if(Math.floor(Math.random()*20)+1 === 1){
+	if(Math.floor(Math.random()*20)+1 === 1 && !partieLancee){
 		message.channel.send(anecdote[Math.floor(Math.random()*anecdote.length)])
 	}
 })
