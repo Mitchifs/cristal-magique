@@ -1406,7 +1406,7 @@ bot.on("message", async message => {
 						supprimerObjet(joueurs[i],"Corde",1)
 						message.channel.send(infos(membre,"**:information_source: Pioche craftée !**" + ajoutXP(joueurs[i],8,XP_MAX)))
 					}
-					if(/^corde$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Herbe fibreuse") >= 3 && joueurs[i].intelligence >= 1){
+					if(/^corde$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Herbe fibreuse") >= 3 && joueurs[i].intelligence >= 0){
 						joueurs[i].inventaire.push("Corde")
 						supprimerObjet(joueurs[i],"Herbe fibreuse",3)
 						message.channel.send(infos(membre,"**:information_source: Corde craftée !**" + ajoutXP(joueurs[i],4,XP_MAX)))
