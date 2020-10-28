@@ -97,7 +97,7 @@ const ajoutEnergie = (array,énergie) => {
 	if(array.énergie > énergieMaximum(array)) array.énergie = énergieMaximum(array)
 }
 
-const ajoutXP = async (array,message,xp,XP_MAX) => {
+const ajoutXP = (array,xp,XP_MAX) => {
 	array.xp+=xp
 	while(array.xp >= XP_MAX){
 		array.niveau++
@@ -105,9 +105,9 @@ const ajoutXP = async (array,message,xp,XP_MAX) => {
 		array.xp -= XP_MAX
 		array.vie = vieMaximum(array)
 		array.énergie = énergieMaximum(array)
-		await message.channel.send("**:information_source: Niveau supérieur !**")
+		return "\n**:information_source: Niveau supérieur !**"
 	}
-	return
+	return ""
 }
 
 const supprimerObjet = (array,objet,quantité) => {
@@ -1048,20 +1048,17 @@ bot.on("message", async message => {
 
 				else if(/^.b[aâ]ton$/i.test(message.content) && map[joueurs[i].x][joueurs[i].y] === "Forêt"){
 					joueurs[i].inventaire.push("Bâton")
-					await ajoutXP(joueurs[i],message,1,XP_MAX)
-					await message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Bâton**"))
+					await message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Bâton**" + ajoutXP(joueurs[i],1,XP_MAX)))
 				}
 
 				else if(/^.pierre$/i.test(message.content) && (map[joueurs[i].x][joueurs[i].y] === "Montagne" || map[joueurs[i].x][joueurs[i].y] === "Mine")){
 					joueurs[i].inventaire.push("Pierre")
-					await ajoutXP(joueurs[i],message,1,XP_MAX)
-					await message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Pierre**"))
+					await message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Pierre**" + ajoutXP(joueurs[i],1,XP_MAX)))
 				}
 
 				else if(/^.herbe$/i.test(message.content) && map[joueurs[i].x][joueurs[i].y] === "Plaine"){
 					joueurs[i].inventaire.push("Herbe fibreuse")
-					await message.channel.send("**:information_source: Tu ramasses 1 Herbe fibreuse**")
-					await ajoutXP(joueurs[i],message,1,XP_MAX)
+					await message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Herbe fibreuse**" + ajoutXP(joueurs[i],1,XP_MAX)))
 				}
 
 				else if(/^.couper$/i.test(message.content) && quantitéObjet(joueurs[i].inventaire,"Hache") > 0 && map[joueurs[i].x][joueurs[i].y] === "Forêt"){
