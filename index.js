@@ -45,6 +45,7 @@ const armure = array => {
 	let armure = 0
 	if(array.arme1 === "Bouclier en bois" || array.arme2 === "Bouclier en bois") armure++
 	if(array.tête === "Casque de motard") armure++
+	if(array.torse === "T-shirt ZEVENT") armure++
 	if(array.jambes === "Jean") armure++
 	if(array.pieds === "Paire de baskets") armure++
 	return armure
@@ -232,7 +233,12 @@ const infos = (membre,event) => {
 		"Baguette de pain",
 		"Saucisson",
 		"Verre",
-		"Seringue médicale"
+		"Seringue médicale",
+		"Epée en fer",
+		"Circuit électronique",
+		"T-shirt ZEVENT",
+		"Cristal magique",
+		"Pile"
 	]
 	joueurs[i].inventaire.sort()
 	for(let j = 0 ; j < objets.length ; j++){
@@ -1173,6 +1179,9 @@ bot.on("message", async message => {
 					if(quantitéObjet(joueurs[i].inventaire,"Casque de motard") > 0){
 						équipable += "*,équiper motard* : Equiper le Casque de motard à la Tête | 1 :shield:\n"
 					}
+					if(quantitéObjet(joueurs[i].inventaire,"T-shirt ZEVENT") > 0){
+						équipable += "*,équiper tshirt* : Equiper le T-shirt ZEVENT au Torse | 1 :shield:\n"
+					}
 					if(quantitéObjet(joueurs[i].inventaire,"Jean") > 0){
 						équipable += "*,équiper jean* : Equiper le Jean aux Jambes | 1 :shield:\n"
 					}
@@ -1274,6 +1283,10 @@ bot.on("message", async message => {
 					}
 					if(/^motard*$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Casque de motard") > 0){
 						joueurs[i].tête = "Casque de motard"
+						message.channel.send(infos(membre,"**:information_source: Casque de motard équipé à la Tête !**"))
+					}
+					if(/^tshirt*$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"T-shirt ZEVENT") > 0){
+						joueurs[i].torse = "T-shirt ZEVENT"
 						message.channel.send(infos(membre,"**:information_source: Casque de motard équipé à la Tête !**"))
 					}
 					if(/^jean*$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Jean") > 0){
@@ -1544,46 +1557,61 @@ bot.on("message", async message => {
 							joueurs[i].inventaire.push("Carte d'accès NASA")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Carte d'accès NASA**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 6){
+						else if(random < 4){
 							joueurs[i].inventaire.push("Paire de baskets")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Paire de baskets**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 13){
+						else if(random < 15){
 							joueurs[i].inventaire.push("Bouteille en plastique")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Bouteille en plastique**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 18){
+						else if(random < 17){
 							joueurs[i].inventaire.push("Rateau stratégique")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Rateau stratégique**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 25){
+						else if(random < 20){
 							joueurs[i].inventaire.push("Barre chocolatée")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Barre chocolatée**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 30){
+						else if(random < 22){
 							joueurs[i].inventaire.push("Jean")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Jean**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 35){
+						else if(random < 24){
 							joueurs[i].inventaire.push("Casque de motard")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Casque de motard**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 37){
+						else if(random < 27){
 							joueurs[i].inventaire.push("Baguette de pain")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Baguette de pain**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 40){
+						else if(random < 30){
 							joueurs[i].inventaire.push("Saucisson")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Saucisson**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 50){
+						else if(random < 40){
 							joueurs[i].inventaire.push("Verre")
-							joueurs[i].inventaire.push("Verre")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 2 Verre**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Verre**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
-						else if(random < 60){
+						else if(random < 42){
 							joueurs[i].inventaire.push("Seringue médicale")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Seringue médicale**" + ajoutXP(joueurs[i],2,XP_MAX)))
+						}
+						else if(random < 44){
+							joueurs[i].inventaire.push("Circuit électronique")
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Circuit électronique**" + ajoutXP(joueurs[i],2,XP_MAX)))
+						}
+						else if(random < 46){
+							joueurs[i].inventaire.push("T-shirt ZEVENT")
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 T-shirt ZEVENT**" + ajoutXP(joueurs[i],2,XP_MAX)))
+						}
+						else if(random < 48){
+							joueurs[i].inventaire.push("Cristal magique")
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Cristal magique**" + ajoutXP(joueurs[i],2,XP_MAX)))
+						}
+						else if(random < 50){
+							joueurs[i].inventaire.push("Pile")
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Pile**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
 						else{
 							message.channel.send(infos(membre,"**:information_source: Tu ne trouves malheureusement rien**"))
