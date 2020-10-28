@@ -869,7 +869,7 @@ bot.on("message", async message => {
 							}
 							else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 						}
-						else message.channel.send(infos(membre,"**:information_source: Tu ne peux pas marcher sur un lac !"))
+						else message.channel.send(infos(membre,"**:information_source: Tu ne peux pas marcher sur un lac !**"))
 					}
 					else if(map[bas][joueurs[i].y] === "Montagne" || map[bas][joueurs[i].y] === "Mine"){
 						if(joueurs[i].énergie >=3){
