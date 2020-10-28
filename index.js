@@ -1377,7 +1377,7 @@ bot.on("message", async message => {
 					if(craftable === ""){
 						craftable+="*rien*"
 					}
-					message.channel.send(infos(membre,`**Crafts connus :**\n${connus}\n\n**Crafts faisables :**\n${craftable}`))
+					message.channel.send(infos(membre,`**Crafts connus :**\n${connus}\n**Crafts faisables :**\n${craftable}`))
 				}
 
 				else if(/^.craft\s+[^\d]+$/i.test(message.content)){
