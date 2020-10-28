@@ -1182,11 +1182,7 @@ bot.on("message", async message => {
 					if(équipable === ""){
 						équipable = "*rien*"
 					}
-					const embed = new Discord.MessageEmbed()
-					.setTitle("Objets équipables :")
-					.setDescription(équipable)
-					.setColor("#abf6a5")
-					message.channel.send(embed)
+					message.channel.send(infos(membre,`**Objets équipables :**\n${équipable}`))
 				}
 
 				else if(/^.[ée]quiper\s+[^\d]+\s*\d*$/i.test(message.content)){
@@ -1381,13 +1377,7 @@ bot.on("message", async message => {
 					if(craftable === ""){
 						craftable+="*rien*"
 					}
-					const embed = new Discord.MessageEmbed()
-					.setTitle("Crafts :")
-					.addField("Crafts connus :",connus)
-					.addField("Crafts faisables :",craftable)
-					//.setDescription(`**Crafts connus :**\n${connus}\n**Crafts faisables** :\n${craftable}`)
-					.setColor("#abf6a5")
-					message.channel.send(embed)
+					message.channel.send(infos(membre,`**Crafts connus :**\n${connus}\n\n**Crafts faisables :**\n${craftable}`))
 				}
 
 				else if(/^.craft\s+[^\d]+$/i.test(message.content)){
@@ -1497,11 +1487,7 @@ bot.on("message", async message => {
 					if(consommable === ""){
 						consommable = "*rien*"
 					}
-					const embed = new Discord.MessageEmbed()
-					.setTitle("Objets consommables :")
-					.setDescription(consommable)
-					.setColor("#abf6a5")
-					message.channel.send(embed)
+					message.channel.send(infos(membre,`**Objets consommables :**\n${consommable}`))
 				}
 
 				else if(/^.consommer\s+[^\d]+$/i.test(message.content)){
