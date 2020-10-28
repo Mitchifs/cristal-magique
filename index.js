@@ -827,11 +827,9 @@ bot.on("message", async message => {
 								joueurs[i].énergie-=1
 								message.channel.send(infos(membre))
 							}
-							else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+							else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 						}
-						else{
-							message.channel.send("**:information_source: Tu ne peux pas marcher sur un lac !**")
-						}
+						else message.channel.send(infos(membre,"**:information_source: Tu ne peux pas marcher sur un lac !**"))
 					}
 					else if(map[haut][joueurs[i].y] === "Montagne" || map[haut][joueurs[i].y] === "Mine"){
 						if(joueurs[i].énergie >=3){
@@ -840,7 +838,7 @@ bot.on("message", async message => {
 							joueurs[i].énergie-=3
 							message.channel.send(infos(membre))
 						}
-						else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else if(map[haut][joueurs[i].y] === "Forêt"){
 						if(joueurs[i].énergie >= 2){
@@ -849,7 +847,7 @@ bot.on("message", async message => {
 							joueurs[i].énergie-=2
 							message.channel.send(infos(membre))
 						}
-						else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else if(joueurs[i].énergie >= 1){
 						joueurs[i].x--
@@ -857,9 +855,7 @@ bot.on("message", async message => {
 						joueurs[i].énergie-=1
 						message.channel.send(infos(membre))
 					}
-					else{
-						message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
-					}
+					else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 				}
 
 				else if(/^.sud$/.test(message.content)){
@@ -871,11 +867,9 @@ bot.on("message", async message => {
 								joueurs[i].énergie-=1
 								message.channel.send(infos(membre))
 							}
-							else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+							else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 						}
-						else{
-							message.channel.send("**:information_source: Tu ne peux pas marcher sur un lac !**")
-						}
+						else message.channel.send(infos(membre,"**:information_source: Tu ne peux pas marcher sur un lac !"))
 					}
 					else if(map[bas][joueurs[i].y] === "Montagne" || map[bas][joueurs[i].y] === "Mine"){
 						if(joueurs[i].énergie >=3){
@@ -884,7 +878,7 @@ bot.on("message", async message => {
 							joueurs[i].énergie-=3
 							message.channel.send(infos(membre))
 						}
-						else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else if(map[bas][joueurs[i].y] === "Forêt"){
 						if(joueurs[i].énergie >= 2){
@@ -893,7 +887,7 @@ bot.on("message", async message => {
 							joueurs[i].énergie-=2
 							message.channel.send(infos(membre))
 						}
-						else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else if(joueurs[i].énergie >= 1){
 						joueurs[i].x++
@@ -901,9 +895,7 @@ bot.on("message", async message => {
 						joueurs[i].énergie-=1
 						message.channel.send(infos(membre))
 					}
-					else{
-						message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
-					}
+					else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 				}
 
 				else if(/^.est$/.test(message.content)){
@@ -915,11 +907,9 @@ bot.on("message", async message => {
 								joueurs[i].énergie-=1
 								message.channel.send(infos(membre))
 							}
-							else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+							else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 						}
-						else{
-							message.channel.send("**:information_source: Tu ne peux pas marcher sur un lac !**")
-						}
+						else message.channel.send(infos(membre,"**:information_source: Tu ne peux pas marcher sur un lac !**"))
 					}
 					else if(map[joueurs[i].x][droite] === "Montagne" || map[joueurs[i].x][droite] === "Mine"){
 						if(joueurs[i].énergie >=3){
@@ -928,7 +918,7 @@ bot.on("message", async message => {
 							joueurs[i].énergie-=3
 							message.channel.send(infos(membre))
 						}
-						else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else if(map[joueurs[i].x][droite] === "Forêt"){
 						if(joueurs[i].énergie >= 2){
@@ -937,7 +927,7 @@ bot.on("message", async message => {
 							joueurs[i].énergie-=2
 							message.channel.send(infos(membre))
 						}
-						else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else if(joueurs[i].énergie >= 1){
 						joueurs[i].y++
@@ -945,9 +935,7 @@ bot.on("message", async message => {
 						joueurs[i].énergie-=1
 						message.channel.send(infos(membre))
 					}
-					else{
-						message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
-					}
+					else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 				}
 
 				else if(/^.ouest$/.test(message.content)){
@@ -959,11 +947,9 @@ bot.on("message", async message => {
 								joueurs[i].énergie-=1
 								message.channel.send(infos(membre))
 							}
-							else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+							else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 						}
-						else{
-							message.channel.send("**:information_source: Tu ne peux pas marcher sur un lac !**")
-						}
+						else message.channel.send(infos(membre,"**:information_source: Tu ne peux pas marcher sur un lac !**"))
 					}
 					else if(map[joueurs[i].x][gauche] === "Montagne" || map[joueurs[i].x][gauche] === "Mine"){
 						if(joueurs[i].énergie >=3){
@@ -972,7 +958,7 @@ bot.on("message", async message => {
 							joueurs[i].énergie-=3
 							message.channel.send(infos(membre))
 						}
-						else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else if(map[joueurs[i].x][gauche] === "Forêt"){
 						if(joueurs[i].énergie >= 2){
@@ -981,7 +967,7 @@ bot.on("message", async message => {
 							joueurs[i].énergie-=2
 							message.channel.send(infos(membre))
 						}
-						else message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else if(joueurs[i].énergie >= 1){
 						joueurs[i].y--
@@ -989,9 +975,7 @@ bot.on("message", async message => {
 						joueurs[i].énergie-=1
 						message.channel.send(infos(membre))
 					}
-					else{
-						message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
-					}
+					else message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 				}
 
 				else if(/^.énergie$/.test(message.content)){
@@ -1033,7 +1017,7 @@ bot.on("message", async message => {
 							map[xArrivée][yArrivée] = "Plaine"
 							joueurs[i].x = xArrivée
 							joueurs[i].y = yArrivée
-							await message.channel.send(infos(membre,"**:information_source: En traversant la faille tu te retrouves téléporté à son autre bout qui se situe autre part dans la zone de jeu. Le portail ayant subi une grosse instabilité, il se referme juste après ton passage.**"))
+							message.channel.send(infos(membre,"**:information_source: En traversant la faille tu te retrouves téléporté à son autre bout qui se situe autre part dans la zone de jeu. Le portail ayant subi une grosse instabilité, il se referme juste après ton passage.**"))
 						}
 					}
 				}
@@ -1048,68 +1032,63 @@ bot.on("message", async message => {
 
 				else if(/^.b[aâ]ton$/i.test(message.content) && map[joueurs[i].x][joueurs[i].y] === "Forêt"){
 					joueurs[i].inventaire.push("Bâton")
-					await message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Bâton**" + ajoutXP(joueurs[i],1,XP_MAX)))
+					message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Bâton**" + ajoutXP(joueurs[i],1,XP_MAX)))
 				}
 
 				else if(/^.pierre$/i.test(message.content) && (map[joueurs[i].x][joueurs[i].y] === "Montagne" || map[joueurs[i].x][joueurs[i].y] === "Mine")){
 					joueurs[i].inventaire.push("Pierre")
-					await message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Pierre**" + ajoutXP(joueurs[i],1,XP_MAX)))
+					message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Pierre**" + ajoutXP(joueurs[i],1,XP_MAX)))
 				}
 
 				else if(/^.herbe$/i.test(message.content) && map[joueurs[i].x][joueurs[i].y] === "Plaine"){
 					joueurs[i].inventaire.push("Herbe fibreuse")
-					await message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Herbe fibreuse**" + ajoutXP(joueurs[i],1,XP_MAX)))
+					message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Herbe fibreuse**" + ajoutXP(joueurs[i],1,XP_MAX)))
 				}
 
 				else if(/^.couper$/i.test(message.content) && quantitéObjet(joueurs[i].inventaire,"Hache") > 0 && map[joueurs[i].x][joueurs[i].y] === "Forêt"){
 					if(joueurs[i].énergie < 2){
-						message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else{
-						await message.channel.send("**:information_source: Tu récoltes 2 Bûche et 1 Sève**")
 						joueurs[i].inventaire.push("Bûche")
 						joueurs[i].inventaire.push("Bûche")
 						joueurs[i].inventaire.push("Sève")
 						joueurs[i].énergie-=2
-						await ajoutXP(joueurs[i],message,5,XP_MAX)
+						message.channel.send(infos(membre,"**:information_source: Tu récoltes 2 Bûche et 1 Sève**" + ajoutXP(joueurs[i],5,XP_MAX)))
 					}
 				}
 
 				else if(/^.miner$/i.test(message.content) && quantitéObjet(joueurs[i].inventaire,"Pioche") > 0 && map[joueurs[i].x][joueurs[i].y] === "Mine"){
 					if(joueurs[i].énergie < 2){
-						message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else{
 						const random = Math.random()*10
 						if(random < 1){
-							await message.channel.send("**:information_source: Tu récoltes 1 Diamant**")
 							joueurs[i].inventaire.push("Diamant")
 							joueurs[i].énergie-=2
-							await ajoutXP(joueurs[i],message,20,XP_MAX)
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Diamant**" + ajoutXP(joueurs[i],20,XP_MAX)))
 						}
 						else if(random < 4){
-							await message.channel.send("**:information_source: Tu récoltes 1 Or brut**")
 							joueurs[i].inventaire.push("Or brut")
 							joueurs[i].énergie-=2
-							await ajoutXP(joueurs[i],message,9,XP_MAX)
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Or brut**" + ajoutXP(joueurs[i],9,XP_MAX)))
 						}
 						else{
-							await message.channel.send("**:information_source: Tu récoltes 1 Fer brut**")
 							joueurs[i].inventaire.push("Fer brut")
 							joueurs[i].énergie-=2
-							await ajoutXP(joueurs[i],message,6,XP_MAX)
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Fer brut**" + ajoutXP(joueurs[i],6,XP_MAX)))
 						}
 					}
 				}
 
 				else if(/^.chasser$/i.test(message.content) && (map[joueurs[i].x][joueurs[i].y] === "Plaine" || map[joueurs[i].x][joueurs[i].y] === "Forêt")){
 					if(joueurs[i].énergie < 2){
-						message.channel.send("**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**")
+						message.channel.send(infos(membre,"**:information_source: Tu n'as pas assez d'énergie, mange un truc ou attends un peu ! (+1/30s)**"))
 					}
 					else{
 						const random = Math.random()*20
 						if(random < 3){
-							await message.channel.send("**:information_source: Tu réussis à chasser un cheuvreuil ! En le dépeçant, tu obtiens 4 Cuir et 2 Viande de chevreuil crue**")
 							joueurs[i].inventaire.push("Cuir")
 							joueurs[i].inventaire.push("Cuir")
 							joueurs[i].inventaire.push("Cuir")
@@ -1117,19 +1096,17 @@ bot.on("message", async message => {
 							joueurs[i].inventaire.push("Viande de chevreuil crue")
 							joueurs[i].inventaire.push("Viande de chevreuil crue")
 							joueurs[i].énergie-=2
-							await ajoutXP(joueurs[i],message,20,XP_MAX)
+							message.channel.send(infos(membre,"**:information_source: Tu réussis à chasser un cheuvreuil ! En le dépeçant, tu obtiens 4 Cuir et 2 Viande de chevreuil crue**" + ajoutXP(joueurs[i],20,XP_MAX)))
 						}
 						else if(random < 6){
-							await message.channel.send("**:information_source: Tu récoltes 1 Myrtille**")
 							joueurs[i].inventaire.push("Myrtille")
 							joueurs[i].énergie-=2
-							await ajoutXP(joueurs[i],message,7,XP_MAX)
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Myrtille**" + ajoutXP(joueurs[i],7,XP_MAX)))
 						}
 						else if(random < 9){
-							await message.channel.send("**:information_source: Tu récoltes 1 Plante médicinale**")
 							joueurs[i].inventaire.push("Plante médicinale")
 							joueurs[i].énergie-=2
-							await ajoutXP(joueurs[i],message,9,XP_MAX)
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Plante médicinale**" + ajoutXP(joueurs[i],9,XP_MAX)))
 						}
 						else if(random < 13){
 							joueurs[i].vie-=vieEnlevée(joueurs[i],5)
@@ -1139,12 +1116,12 @@ bot.on("message", async message => {
 								joueurs.splice(i,1)
 							}
 							else{
-								await message.channel.send(`**:information_source: Tu tombes sur un ours bien plus fort que toi qui t'enlève ${vieEnlevée(joueurs[i],5)} :heart:**`)
+								message.channel.send(infos(membre,`**:information_source: Tu tombes sur un ours bien plus fort que toi qui t'enlève ${vieEnlevée(joueurs[i],5)} :heart:**`))
 							}
 						}
 						else{
-							await message.channel.send("**:information_source: Tu ne trouves malheureusement rien**")
 							joueurs[i].énergie-=2
+							message.channel.send(infos(membre,"**:information_source: Tu ne trouves malheureusement rien**"))
 						}
 					}
 				}
@@ -1152,22 +1129,19 @@ bot.on("message", async message => {
 				else if(/^.force$/i.test(message.content) && joueurs[i].points > 0){
 					joueurs[i].points--
 					joueurs[i].force++
-					await message.channel.send("**:information_source: 1 point ajouté dans la force !**")
-					message.channel.send(infos(membre))
+					message.channel.send(infos(membre,"**:information_source: 1 point ajouté dans la force !**"))
 				}
 
 				else if(/^.agilit[ée]$/i.test(message.content) && joueurs[i].points > 0){
 					joueurs[i].points--
 					joueurs[i].agilité++
-					await message.channel.send("**:information_source: 1 point ajouté dans l'agilité !**")
-					message.channel.send(infos(membre))
+					message.channel.send(infos(membre,"**:information_source: 1 point ajouté dans l'agilité !**"))
 				}
 
 				else if(/^.intelligence$/i.test(message.content) && joueurs[i].points > 0){
 					joueurs[i].points--
 					joueurs[i].intelligence++
-					await message.channel.send("**:information_source: 1 point ajouté dans l'intelligence !**")
-					message.channel.send(infos(membre))
+					message.channel.send(infos(membre,"**:information_source: 1 point ajouté dans l'intelligence !**"))
 				}
 
 				else if(/^.[ée]quiper$/i.test(message.content)){
@@ -1227,7 +1201,7 @@ bot.on("message", async message => {
 					if(/^épée$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Epée en fer") > 0){
 						if(place === 1){
 							joueurs[i].arme1 = "Epée en fer"
-							await message.channel.send("**:information_source: Epée en fer équipée en Arme 1 !**")
+							message.channel.send(infos(membre,"**:information_source: Epée en fer équipée en Arme 1 !**"))
 						}
 						else if(place === 2){
 							joueurs[i].arme2 = "Epée en fer"
