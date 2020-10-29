@@ -1308,90 +1308,54 @@ bot.on("message", async message => {
 						else connus += "*,craft corde* : Crafter une Corde | -3 Herbe fibreuse\n"
 					}
 					if(joueurs[i].intelligence >= 0){
-						connus += "*,craft feu* : Crafter un Feu | -4 Bâton, -5 :zap:\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Bâton") >= 4 && joueurs[i].énergie >= 5) connus += "***,craft feu* : Crafter un Feu | -4 Bâton, -5 :zap:**\n"
+						else connus += "*,craft feu* : Crafter un Feu | -4 Bâton, -5 :zap:\n"
 					}
 					if(joueurs[i].intelligence >= 0){
-						connus += "*,craft chevreuil* : Crafter une Viande de chevreuil cuite | -1 Viande de chevreuil crue | *Feu*\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Viande de chevreuil crue") >= 1) connus += "***,craft chevreuil* : Crafter une Viande de chevreuil cuite | -1 Viande de chevreuil crue | *Feu***\n"
+						else connus += "*,craft chevreuil* : Crafter une Viande de chevreuil cuite | -1 Viande de chevreuil crue | *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "*,craft hache* : Crafter une Hache | -1 Pierre, -1 Bâton, -1 Corde\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Pierre") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0) "***,craft hache* : Crafter une Hache | -1 Pierre, -1 Bâton, -1 Corde**\n"
+						else connus += "*,craft hache* : Crafter une Hache | -1 Pierre, -1 Bâton, -1 Corde\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "*,craft pioche* : Crafter une Pioche | -1 Pierre, -1 Bâton, -1 Corde\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Pierre") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0) connus += "***,craft pioche* : Crafter une Pioche | -1 Pierre, -1 Bâton, -1 Corde**\n"
+						else connus += "*,craft pioche* : Crafter une Pioche | -1 Pierre, -1 Bâton, -1 Corde\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "*,craft pommade* : Crafter une Pommade soignante naturelle | -1 Sève, -1 Plante médicinale | *Feu*\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Sève") >= 1 && quantitéObjet(joueurs[i].inventaire,"Plante médicinale") >= 1) connus += "***,craft pommade* : Crafter une Pommade soignante naturelle | -1 Sève, -1 Plante médicinale | *Feu***\n"
+						else connus += "*,craft pommade* : Crafter une Pommade soignante naturelle | -1 Sève, -1 Plante médicinale | *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "*,craft bouclier* : Crafter un Bouclier en bois | -1 Bûche, -2 Bâton, -1 Corde\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Bûche") >= 1 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 2) connus += "***,craft bouclier* : Crafter un Bouclier en bois | -1 Bûche, -2 Bâton, -1 Corde**\n"
+						else connus += "*,craft bouclier* : Crafter un Bouclier en bois | -1 Bûche, -2 Bâton, -1 Corde\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "*,craft barque* : Crafter une Barque | -4 Bûche, -2 Corde, -2 :zap:\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Bûche") >= 4 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 2 && joueurs[i].énergie >= 2) connus += "***,craft barque* : Crafter une Barque | -4 Bûche, -2 Corde, -2 :zap:**\n"
+						else connus += "*,craft barque* : Crafter une Barque | -4 Bûche, -2 Corde, -2 :zap:\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						connus += "*,craft plastique* : Crafter un Plastique | -1 Bouteille en plastique | *Feu*\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Bouteille en plastique") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1) connus += "***,craft plastique* : Crafter un Plastique | -1 Bouteille en plastique | *Feu***\n"
+						else connus += "*,craft plastique* : Crafter un Plastique | -1 Bouteille en plastique | *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 2){
-						connus += "*,craft feu de compet* : Crafter un Feu de compétition | -2 Bûche | *Feu*\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bûche") >= 2) connus += "***,craft feu de compet* : Crafter un Feu de compétition | -2 Bûche | *Feu***\n"
+						else connus += "*,craft feu de compet* : Crafter un Feu de compétition | -2 Bûche | *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 2){
-						connus += "*,craft fer* : Crafter un Lingot de fer | -1 Fer brut | *Feu de compétition*\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Fer brut") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu de compétition") >= 1) connus += "***,craft fer* : Crafter un Lingot de fer | -1 Fer brut | *Feu de compétition***\n"
+						else connus += "*,craft fer* : Crafter un Lingot de fer | -1 Fer brut | *Feu de compétition*\n"
 					}
 					if(joueurs[i].intelligence >= 2){
-						connus += "*,craft or* : Crafter un Lingot d'or | -1 Or brut | *Feu de compétition*\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Or brut") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu de compétition") >= 1) connus += "***,craft or* : Crafter un Lingot d'or | -1 Or brut | *Feu de compétition***\n"
+						else connus += "*,craft or* : Crafter un Lingot d'or | -1 Or brut | *Feu de compétition*\n"
 					}
 					if(joueurs[i].intelligence >= 2){
-						connus += "*,craft épée* : Crafter une Epée en fer | -1 Lingot de fer, -1 Bâton, -1 Corde\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Lingot de fer") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 1 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 1) connus += "***,craft épée* : Crafter une Epée en fer | -1 Lingot de fer, -1 Bâton, -1 Corde**\n"
+						else connus += "*,craft épée* : Crafter une Epée en fer | -1 Lingot de fer, -1 Bâton, -1 Corde\n"
 					}
 
-
-					let craftable = ""
-
-
-
-					if(joueurs[i].intelligence >= 0 && quantitéObjet(joueurs[i].inventaire,"Herbe fibreuse") >= 3){
-						craftable += "*,craft corde* : Crafter une Corde | -3 Herbe fibreuse\n"
-					}
-					if(joueurs[i].intelligence >= 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 4 && joueurs[i].énergie >= 5){
-						craftable += "*,craft feu* : Crafter un Feu | -4 Bâton, -5 :zap:\n"
-					}
-					if(joueurs[i].intelligence >= 0 && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Viande de chevreuil crue") >= 1){
-						craftable += "*,craft chevreuil* : Crafter une Viande de chevreuil cuite | -1 Viande de chevreuil crue | *Feu*\n"
-					}
-					if(joueurs[i].intelligence >= 1 && quantitéObjet(joueurs[i].inventaire,"Pierre") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0){
-						craftable += "*,craft hache* : Crafter une Hache | -1 Pierre, -1 Bâton, -1 Corde\n"
-					}
-					if(joueurs[i].intelligence >= 1 && quantitéObjet(joueurs[i].inventaire,"Pierre") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0){
-						craftable += "*,craft pioche* : Crafter une Pioche | -1 Pierre, -1 Bâton, -1 Corde\n"
-					}
-					if(joueurs[i].intelligence >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Sève") >= 1 && quantitéObjet(joueurs[i].inventaire,"Plante médicinale") >= 1){
-						craftable += "*,craft pommade* : Crafter une Pommade soignante naturelle | -1 Sève, -1 Plante médicinale | *Feu*\n"
-					}
-					if(joueurs[i].intelligence >= 1 && quantitéObjet(joueurs[i].inventaire,"Bûche") >= 1 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 2){
-						craftable += "*,craft bouclier* : Crafter un Bouclier en bois | -1 Bûche, -2 Bâton, -1 Corde\n"
-					}
-					if(joueurs[i].intelligence >= 1 && quantitéObjet(joueurs[i].inventaire,"Bûche") >= 4 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 2 && joueurs[i].énergie >= 2){
-						craftable += "*,craft barque* : Crafter une Barque | -4 Bûche, -2 Corde, -2 :zap:\n"
-					}
-					if(joueurs[i].intelligence >= 1 && quantitéObjet(joueurs[i].inventaire,"Bouteille en plastique") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1){
-						craftable += "*,craft plastique* : Crafter un Plastique | -1 Bouteille en plastique | *Feu*\n"
-					}
-					if(joueurs[i].intelligence >= 2 && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bûche") >= 2){
-						craftable += "*,craft feu de compet* : Crafter un Feu de compétition | -2 Bûche | *Feu*\n"
-					}
-					if(joueurs[i].intelligence >= 2 && quantitéObjet(joueurs[i].inventaire,"Fer brut") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu de compétition") >= 1){
-						craftable += "*,craft fer* : Crafter un Lingot de fer | -1 Fer brut | *Feu de compétition*\n"
-					}
-					if(joueurs[i].intelligence >= 2 && quantitéObjet(joueurs[i].inventaire,"Or brut") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu de compétition") >= 1){
-						craftable += "*,craft or* : Crafter un Lingot d'or | -1 Or brut | *Feu de compétition*\n"
-					}
-					if(joueurs[i].intelligence >= 2 && quantitéObjet(joueurs[i].inventaire,"Lingot de fer") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 1 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 1){
-						craftable += "*,craft épée* : Crafter une Epée en fer | -1 Lingot de fer, -1 Bâton, -1 Corde\n"
-					}
-
-					if(craftable === ""){
-						craftable+="*rien*"
-					}
 					message.channel.send(infos(membre,`**:information_source: Crafts connus (faisables en gras) :**\n${connus}`))
 				}
 
