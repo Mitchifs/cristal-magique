@@ -100,7 +100,9 @@ const ajoutEnergie = (array,énergie) => {
 	if(array.énergie > énergieMaximum(array)) array.énergie = énergieMaximum(array)
 }
 
-const ajoutXP = (array,xp,XP_MAX) => {
+const ajoutXP = (array,xp) => {
+	let msg = ""
+	let XP_MAX = 5*2**array.niveau
 	array.xp+=xp
 	while(array.xp >= XP_MAX){
 		array.niveau++
@@ -108,9 +110,10 @@ const ajoutXP = (array,xp,XP_MAX) => {
 		array.xp -= XP_MAX
 		array.vie = vieMaximum(array)
 		array.énergie = énergieMaximum(array)
-		return "\n**:information_source: Niveau supérieur !**"
+		msg += "\n**:information_source: Niveau supérieur !**"
+		XP_MAX = 5*2**array.niveau
 	}
-	return ""
+	return msg
 }
 
 const supprimerObjet = (array,objet,quantité) => {
@@ -1041,17 +1044,17 @@ bot.on("message", async message => {
 
 				else if(/^.b[aâ]ton$/i.test(message.content) && map[joueurs[i].x][joueurs[i].y] === "Forêt"){
 					joueurs[i].inventaire.push("Bâton")
-					message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Bâton**" + ajoutXP(joueurs[i],1,XP_MAX)))
+					message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Bâton**" + ajoutXP(joueurs[i],1)))
 				}
 
 				else if(/^.pierre$/i.test(message.content) && (map[joueurs[i].x][joueurs[i].y] === "Montagne" || map[joueurs[i].x][joueurs[i].y] === "Mine")){
 					joueurs[i].inventaire.push("Pierre")
-					message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Pierre**" + ajoutXP(joueurs[i],1,XP_MAX)))
+					message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Pierre**" + ajoutXP(joueurs[i],1)))
 				}
 
 				else if(/^.herbe$/i.test(message.content) && map[joueurs[i].x][joueurs[i].y] === "Plaine"){
 					joueurs[i].inventaire.push("Herbe fibreuse")
-					message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Herbe fibreuse**" + ajoutXP(joueurs[i],1,XP_MAX)))
+					message.channel.send(infos(membre,"**:information_source: Tu ramasses 1 Herbe fibreuse**" + ajoutXP(joueurs[i],1)))
 				}
 
 				else if(/^.couper$/i.test(message.content) && quantitéObjet(joueurs[i].inventaire,"Hache") > 0 && map[joueurs[i].x][joueurs[i].y] === "Forêt"){
@@ -1063,7 +1066,7 @@ bot.on("message", async message => {
 						joueurs[i].inventaire.push("Bûche")
 						joueurs[i].inventaire.push("Sève")
 						joueurs[i].énergie-=2
-						message.channel.send(infos(membre,"**:information_source: Tu récoltes 2 Bûche et 1 Sève**" + ajoutXP(joueurs[i],5,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Tu récoltes 2 Bûche et 1 Sève**" + ajoutXP(joueurs[i],5)))
 					}
 				}
 
@@ -1076,17 +1079,17 @@ bot.on("message", async message => {
 						if(random < 1){
 							joueurs[i].inventaire.push("Diamant")
 							joueurs[i].énergie-=2
-							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Diamant**" + ajoutXP(joueurs[i],20,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Diamant**" + ajoutXP(joueurs[i],20)))
 						}
 						else if(random < 4){
 							joueurs[i].inventaire.push("Or brut")
 							joueurs[i].énergie-=2
-							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Or brut**" + ajoutXP(joueurs[i],9,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Or brut**" + ajoutXP(joueurs[i],9)))
 						}
 						else{
 							joueurs[i].inventaire.push("Fer brut")
 							joueurs[i].énergie-=2
-							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Fer brut**" + ajoutXP(joueurs[i],6,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Fer brut**" + ajoutXP(joueurs[i],6)))
 						}
 					}
 				}
@@ -1105,17 +1108,17 @@ bot.on("message", async message => {
 							joueurs[i].inventaire.push("Viande de chevreuil crue")
 							joueurs[i].inventaire.push("Viande de chevreuil crue")
 							joueurs[i].énergie-=2
-							message.channel.send(infos(membre,"**:information_source: Tu réussis à chasser un cheuvreuil ! En le dépeçant, tu obtiens 4 Cuir et 2 Viande de chevreuil crue**" + ajoutXP(joueurs[i],20,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu réussis à chasser un cheuvreuil ! En le dépeçant, tu obtiens 4 Cuir et 2 Viande de chevreuil crue**" + ajoutXP(joueurs[i],20)))
 						}
 						else if(random < 6){
 							joueurs[i].inventaire.push("Myrtille")
 							joueurs[i].énergie-=2
-							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Myrtille**" + ajoutXP(joueurs[i],7,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Myrtille**" + ajoutXP(joueurs[i],7)))
 						}
 						else if(random < 9){
 							joueurs[i].inventaire.push("Plante médicinale")
 							joueurs[i].énergie-=2
-							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Plante médicinale**" + ajoutXP(joueurs[i],9,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu récoltes 1 Plante médicinale**" + ajoutXP(joueurs[i],9)))
 						}
 						else if(random < 13){
 							joueurs[i].vie-=vieEnlevée(joueurs[i],5)
@@ -1398,83 +1401,83 @@ bot.on("message", async message => {
 						supprimerObjet(joueurs[i],"Pierre",1)
 						supprimerObjet(joueurs[i],"Bâton",1)
 						supprimerObjet(joueurs[i],"Corde",1)
-						message.channel.send(infos(membre,"**:information_source: Hache craftée !**" + ajoutXP(joueurs[i],8,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Hache craftée !**" + ajoutXP(joueurs[i],8)))
 					}
 					else if(/^pioche$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Pierre") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0 && joueurs[i].intelligence >= 1){
 						joueurs[i].inventaire.push("Pioche")
 						supprimerObjet(joueurs[i],"Pierre",1)
 						supprimerObjet(joueurs[i],"Bâton",1)
 						supprimerObjet(joueurs[i],"Corde",1)
-						message.channel.send(infos(membre,"**:information_source: Pioche craftée !**" + ajoutXP(joueurs[i],8,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Pioche craftée !**" + ajoutXP(joueurs[i],8)))
 					}
 					else if(/^corde$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Herbe fibreuse") >= 3 && joueurs[i].intelligence >= 0){
 						joueurs[i].inventaire.push("Corde")
 						supprimerObjet(joueurs[i],"Herbe fibreuse",3)
-						message.channel.send(infos(membre,"**:information_source: Corde craftée !**" + ajoutXP(joueurs[i],4,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Corde craftée !**" + ajoutXP(joueurs[i],4)))
 					}
 					else if(/^feu$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 4 && joueurs[i].intelligence >= 0 && joueurs[i].énergie >= 5){
 						joueurs[i].énergie-=5
 						joueurs[i].inventaire.push("Feu")
 						supprimerObjet(joueurs[i],"Bâton",4)
-						message.channel.send(infos(membre,"**:information_source: Feu crafté !**" + ajoutXP(joueurs[i],5,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Feu crafté !**" + ajoutXP(joueurs[i],5)))
 					}
 					else if((/^feu de comp[ée]t$/i.test(objet) || /^feu de comp[ée]tition$/i.test(objet)) && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bûche") >= 2 && joueurs[i].intelligence >= 1){
 						joueurs[i].inventaire.push("Feu de compétition")
 						supprimerObjet(joueurs[i],"Bûche",2)
-						message.channel.send(infos(membre,"**:information_source: Feu de compétition crafté !**" + ajoutXP(joueurs[i],7,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Feu de compétition crafté !**" + ajoutXP(joueurs[i],7)))
 					}
 					else if(/^fer$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Fer brut") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu de compétition") >= 1 && joueurs[i].intelligence >= 2){
 						joueurs[i].inventaire.push("Lingot de fer")
 						supprimerObjet(joueurs[i],"Fer brut",1)
-						message.channel.send(infos(membre,"**:information_source: Lingot de fer crafté !**" + ajoutXP(joueurs[i],10,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Lingot de fer crafté !**" + ajoutXP(joueurs[i],10)))
 					}
 					else if(/^or$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Or brut") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu de compétition") >= 1 && joueurs[i].intelligence >= 2){
 						joueurs[i].inventaire.push("Lingot d'or")
 						supprimerObjet(joueurs[i],"Or brut",1)
-						message.channel.send(infos(membre,"**:information_source: Lingot d'or crafté !**" + ajoutXP(joueurs[i],10,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Lingot d'or crafté !**" + ajoutXP(joueurs[i],10)))
 					}
 					else if(/^pommade$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Sève") >= 1 && quantitéObjet(joueurs[i].inventaire,"Plante médicinale") >= 1 && joueurs[i].intelligence >= 1){
 						joueurs[i].inventaire.push("Pommade soignante naturelle")
 						supprimerObjet(joueurs[i],"Sève",1)
 						supprimerObjet(joueurs[i],"Plante médicinale",1)
-						message.channel.send(infos(membre,"**:information_source: Pommade soignante naturelle craftée !**" + ajoutXP(joueurs[i],8,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Pommade soignante naturelle craftée !**" + ajoutXP(joueurs[i],8)))
 					}
 					else if(/^chevreuil$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Viande de chevreuil crue") >= 1 && joueurs[i].intelligence >= 0){
 						joueurs[i].inventaire.push("Viande de chevreuil cuite")
 						supprimerObjet(joueurs[i],"Viande de chevreuil crue",1)
-						message.channel.send(infos(membre,"**:information_source: Viande de chevreuil cuite craftée !**" + ajoutXP(joueurs[i],6,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Viande de chevreuil cuite craftée !**" + ajoutXP(joueurs[i],6)))
 					}
 					else if(/^bouclier$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Bûche") >= 1 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 2 && joueurs[i].intelligence >= 1){
 						joueurs[i].inventaire.push("Bouclier en bois")
 						supprimerObjet(joueurs[i],"Bûche",1)
 						supprimerObjet(joueurs[i],"Corde",1)
 						supprimerObjet(joueurs[i],"Bâton",2)
-						message.channel.send(infos(membre,"**:information_source: Bouclier en bois crafté !**" + ajoutXP(joueurs[i],8,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Bouclier en bois crafté !**" + ajoutXP(joueurs[i],8)))
 					}
 					else if(/^barque$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Bûche") >= 4 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 2 && joueurs[i].intelligence >= 1 && joueurs[i].énergie >= 2){
 						joueurs[i].énergie-=2
 						joueurs[i].inventaire.push("Barque")
 						supprimerObjet(joueurs[i],"Bûche",4)
 						supprimerObjet(joueurs[i],"Corde",2)
-						message.channel.send(infos(membre,"**:information_source: Barque craftée !**" + ajoutXP(joueurs[i],8,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Barque craftée !**" + ajoutXP(joueurs[i],8)))
 					}
 					else if(/^plastique$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Bouteille en plastique") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && joueurs[i].intelligence >= 1){
 						joueurs[i].inventaire.push("Plastique")
 						supprimerObjet(joueurs[i],"Bouteille en plastique",1)
-						message.channel.send(infos(membre,"**:information_source: Plastique crafté !**" + ajoutXP(joueurs[i],6,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Plastique crafté !**" + ajoutXP(joueurs[i],6)))
 					}
 					else if(/^[ée]p[ée]e$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Lingot de fer") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0 && joueurs[i].intelligence >= 2){
 						joueurs[i].inventaire.push("Epée en fer")
 						supprimerObjet(joueurs[i],"Lingot de fer",1)
 						supprimerObjet(joueurs[i],"Bâton",1)
 						supprimerObjet(joueurs[i],"Corde",1)
-						message.channel.send(infos(membre,"**:information_source: Epée en fer craftée !**" + ajoutXP(joueurs[i],18,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Epée en fer craftée !**" + ajoutXP(joueurs[i],18)))
 					}
 					else if(/^circuit$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Lingot d'or'") > 0 && quantitéObjet(joueurs[i].inventaire,"Plastique") > 0 && joueurs[i].intelligence >= 2){
 						joueurs[i].inventaire.push("Circuit imprimé")
 						supprimerObjet(joueurs[i],"Lingot d'or",1)
 						supprimerObjet(joueurs[i],"Plastique",1)
-						message.channel.send(infos(membre,"**:information_source: Circuit imprimé crafté !**" + ajoutXP(joueurs[i],18,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Circuit imprimé crafté !**" + ajoutXP(joueurs[i],18)))
 					}
 					else if(/^sabre$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Circuit imprimé") >= 1 && quantitéObjet(joueurs[i].inventaire,"Lingot de fer") >= 1 && quantitéObjet(joueurs[i].inventaire,"Cristal magique") >= 1 && quantitéObjet(joueurs[i].inventaire,"Pile") >= 1 && joueurs[i].intelligence >= 3){
 						joueurs[i].inventaire.push("Sabre laser")
@@ -1482,7 +1485,7 @@ bot.on("message", async message => {
 						supprimerObjet(joueurs[i],"Circuit imprimé",1)
 						supprimerObjet(joueurs[i],"Pile",1)
 						supprimerObjet(joueurs[i],"Cristal magique",1)
-						message.channel.send(infos(membre,"**:information_source: Sabre laser crafté !**" + ajoutXP(joueurs[i],30,XP_MAX)))
+						message.channel.send(infos(membre,"**:information_source: Sabre laser crafté !**" + ajoutXP(joueurs[i],30)))
 					}
 					else message.channel.send(infos(membre,"**:information_source: Cet objet ne fait pas partie des crafts faisables et/ou que tu connais !**"))
 				}
@@ -1569,63 +1572,63 @@ bot.on("message", async message => {
 						joueurs[i].énergie-=1
 						if(random < 2){
 							joueurs[i].inventaire.push("Carte d'accès NASA")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Carte d'accès NASA**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Carte d'accès NASA**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 4){
 							joueurs[i].inventaire.push("Paire de baskets")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Paire de baskets**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Paire de baskets**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 15){
 							joueurs[i].inventaire.push("Bouteille en plastique")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Bouteille en plastique**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Bouteille en plastique**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 17){
 							joueurs[i].inventaire.push("Rateau stratégique")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Rateau stratégique**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Rateau stratégique**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 20){
 							joueurs[i].inventaire.push("Barre chocolatée")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Barre chocolatée**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Barre chocolatée**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 22){
 							joueurs[i].inventaire.push("Jean")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Jean**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Jean**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 24){
 							joueurs[i].inventaire.push("Casque de motard")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Casque de motard**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Casque de motard**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 27){
 							joueurs[i].inventaire.push("Baguette de pain")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Baguette de pain**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Baguette de pain**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 30){
 							joueurs[i].inventaire.push("Saucisson")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Saucisson**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Saucisson**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 40){
 							joueurs[i].inventaire.push("Verre")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Verre**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Verre**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 42){
 							joueurs[i].inventaire.push("Seringue médicale")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Seringue médicale**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Seringue médicale**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 44){
 							joueurs[i].inventaire.push("Circuit imprimé")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Circuit imprimé**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Circuit imprimé**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 46){
 							joueurs[i].inventaire.push("T-shirt ZEVENT")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 T-shirt ZEVENT**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 T-shirt ZEVENT**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 48){
 							joueurs[i].inventaire.push("Cristal magique")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Cristal magique**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Cristal magique**" + ajoutXP(joueurs[i],2)))
 						}
 						else if(random < 50){
 							joueurs[i].inventaire.push("Pile")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Pile**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Pile**" + ajoutXP(joueurs[i],2)))
 						}
 						else{
 							message.channel.send(infos(membre,"**:information_source: Tu ne trouves malheureusement rien**"))
