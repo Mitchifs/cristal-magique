@@ -196,9 +196,11 @@ const infos = (membre,event) => {
 	}
 	let x = "?"
 	let y = "?"
+	let carte = ""
 	if(quantitéObjet(joueurs[i].inventaire,"Carte") > 0){
 		x = joueurs[i].x
 		y = joueurs[i].y
+		carte+= " | ,carte"
 	}
 
 	let inventaire = ""
@@ -392,6 +394,7 @@ const infos = (membre,event) => {
 	if(joueurs[i].vie < vieMaximum(joueurs[i]) && joueurs[i].énergie >= 10 - joueurs[i].agilité) régénérationVie += " | :two_hearts:"
 	if(joueurs[i].énergie < énergieMaximum(joueurs[i])) régénérationEnergie += " | :sparkles:"
 
+
 	const embed = new Discord.MessageEmbed()
 	.setTitle("Informations :")
 	if(event !== undefined){
@@ -406,7 +409,7 @@ const infos = (membre,event) => {
 	.addField("Equipement :",`*Armure :shield:* : ${armure(joueurs[i])}\n*Arme 1* : ${joueurs[i].arme1} | ${attaque(joueurs[i],1)} :crossed_swords:\n*Arme 2* : ${joueurs[i].arme2} | ${attaque(joueurs[i],2)} :crossed_swords:\n*Tête* : ${joueurs[i].tête}\n*Torse* : ${joueurs[i].torse}\n*Jambes* : ${joueurs[i].jambes}\n*Pieds* : ${joueurs[i].pieds}`,true)
 	.addField("Inventaire :",`\n${inventaire}`,true)
 	.setColor("#abf6a5")
-	.setFooter(`${membre.displayName} | ${joueurs[i].groupe} | ${préfixe}craft | ${préfixe}équiper | ${préfixe}consommer`)
+	.setFooter(`${membre.displayName} | ${joueurs[i].groupe} | ${préfixe}craft | ${préfixe}équiper | ${préfixe}consommer${carte}`)
 	return embed
 }
 
@@ -1636,10 +1639,27 @@ bot.on("message", async message => {
 							joueurs[i].inventaire.push("Pile")
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Pile**" + ajoutXP(joueurs[i],2)))
 						}
+						else if(random < 54){
+							joueurs[i].inventaire.push("Carte")
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Carte**" + ajoutXP(joueurs[i],2)))
+						}
 						else{
 							message.channel.send(infos(membre,"**:information_source: Tu ne trouves malheureusement rien**"))
 						}
 					}
+				}
+
+				else if(/^.carte$/i.test(message.content) && quantitéObjet(joueurs[i].inventaire,"Carte") > 0){
+					let carte = ""
+					for(let x = 0 ; x < 8 ; x++){
+						for(let y = 0 ; y < 8 ; y++){
+							carte += affichageZone(map[x][y])
+							if(y === 7){
+								carte += "\n"
+							}
+						}
+					}
+					message.channel.send(infos(membre,carte))
 				}
 
 				let G1EnVie = 0
