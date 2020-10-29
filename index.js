@@ -1,7 +1,7 @@
 "use strict";
 
-const Discord = require("discord.js")
-const bot = new Discord.Client()
+import { Client, MessageEmbed } from "discord.js";
+const bot = new Client()
 const préfixe = ","
 const anecdote = ["Je vous aime tous :heart:","DEJA VU I'VE JUST BEEN IN THIS PLACE BEFORE","Ouais jsuis d'accord","Non.","En effet..","*HUM*","TG ?","La personne avant moi est la plus bête de la classe ! c:","Coucou :p","SUPPRIME OU JTE BUTE","Mmmmmmmmmmmmmmmmmmmmmmmmmm...","NYOOOOON!!!","Ce que tu viens de dire est complètement faux ! En voici la preuve : https://www.google.com/","Promis je vous ferai pas de mal","Pour qui tu te prends pour dire ça ?!","Tip#1 : Il serait temps de prendre une petite pause après tout ce temps passé devant le pc ne penses-tu pas ? c:","Tip#2 : Si vous avez la flemme, n'ayez pas la flemme c:"]
 let joueurs = [
@@ -380,7 +380,7 @@ const infos = (membre,event) => {
 		actionsPossibles = "Tu ne peux rien faire ! Attends un peu pour récupérer de l'énergie... "
 	}
 
-	const embed = new Discord.MessageEmbed()
+	const embed = new MessageEmbed()
 	.setTitle("Informations :")
 	if(event !== undefined){
 		embed
@@ -464,7 +464,7 @@ bot.on("message", async message => {
 				résultat = "10 pompes" //40%
 				couleur = "#3498db" //bleu
 			}
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Roue pompes")
 			.setDescription("Résultat : **" + résultat + "** !")
 			.setColor(couleur)
@@ -472,7 +472,7 @@ bot.on("message", async message => {
 		}
 	
 		else if(/^.liens$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Liens :")
 			.addField("Boîte Mail","https://partage.insa-rouen.fr/")
 			.addField("Moodle","https://moodle.insa-rouen.fr/")
@@ -494,7 +494,7 @@ bot.on("message", async message => {
 					G2++
 				}
 			}
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Stats :")
 			.setDescription(`**Membres totaux (avec bot)** : ${membresTotaux}\n**Nb de G1** : ${G1}\n**Nb de G2** : ${G2}\n**Date de création du serveur** : ${serveur.createdAt.toLocaleDateString("fr-FR",{timeZone:"Europe/paris",hour12:false})}\n**Heure de création du serveur** : ${serveur.createdAt.toLocaleTimeString("fr-FR",{timeZone:"Europe/Paris",hour12:false})}`)
 			.setColor("#abf6a5")
@@ -696,7 +696,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.help$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Commandes :")
 			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:`)
 			.setColor("#abf6a5")
@@ -704,7 +704,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.wiki$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Wiki :")
 			.setDescription(`Voici les commandes du wiki du jeu de Cristal Magique j'ai nommé __:zap: G1 VS G2 :zap:__ !!! :\n\n**${préfixe}tuto consommables** : Tout sur comment utiliser des consommables\n**${préfixe}tuto zones** : Tout sur les zones\n**${préfixe}tuto crafts** : Tout sur les crafts\n**${préfixe}tuto actions** : Tout sur les actions\n**${préfixe}tuto position** : Tout sur la position\n**${préfixe}tuto stats** : Tout sur les stats\n**${préfixe}tuto etat** : Tout sur les états\n**${préfixe}tuto equipement** : Tout sur l'équipement\n**${préfixe}tuto inventaire** : Tout sur l'inventaire`)
 			.setColor("#abf6a5")
@@ -712,7 +712,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.tuto\s*consommables$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Tuto : Les consommables")
 			.setDescription(`Il t'arrivera souvent de crafter ou de trouver des consommables ! Pour voir les objets de ton inventaire que tu peux consommer **,consommer** (ces actions n'apparaîtrons pas dans le menu d'actions possibles (car faisables tout le temps, ça embrouillerait plus qu'autre chose))`)
 			.setColor("#abf6a5")
@@ -720,7 +720,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.tuto\s*zones$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Tuto : Les zones")
 			.setDescription(`Les zones sont les différents endroits sur lesquels tu peux te déplacer pendant une partie. Voici leur liste ainsi que leur fonction :\n\n**:green_square: Plaine** :\nUne zone qui ne coûte que 1 d'énergie (:zap:) pour être traversée. Elle permet d'y construire sa base\n\n**:eight_spoked_asterisk: Forêt :**\nNécessaire pour y couper du bois afin de craft de nombreux items. En la traversant tu perdras 2 :zap:\n\n**:white_large_square: Montagne :**\nL'endroit qui coûte le plus d'énergie pour être traversé : 3 :zap:. Permet également de récolter de la pierre et on peut y trouver des mines qui elles sont extrêment utiles !\n\n**:blue_square: Lac :**\nInfranchissable sans barque\n\n**:city_dusk: Ville :**\nTrès utile pour trouver de l'équipement et des ingrédients de craft\n\n**:white_square_button: Mine :**\nOn peut y récolter du minerais précieux pour confectionner des choses plus avancées\n\n**:b: Base millitaire :**\nAvec 1 ou 2 "l" ? Jsp mais j'en mets 2 en tout cas. En tout cas sah quel plaisir cet endroit bien que très rare !\n\n**:milky_way: Faille spacio-temporelle :**\n???\n\n**:regional_indicator_n: NASA :**\n???`)
 			.setColor("#abf6a5")
@@ -728,7 +728,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.tuto\s*crafts$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Tuto : Les crafts")
 			.setDescription(`Les crafts sont les manières de fabriquer un objet à partir d'autres objets. En gros bah c'est comme dans Minecraft dans une table de craft !\n\nVu que je suis une personne horrible je vous donne pas la liste des crafts et il faut que vous les découvriez vous-même (si vous avez assez d'intelligence :smiling_imp:) !\n\nPour voir les objets de ton inventaire qui sont craftables : **,crafts** (ces actions n'apparaîtrons pas dans le menu d'actions possibles (car faisables tout le temps, ça embrouillerait plus qu'autre chose))`)
 			.setColor("#abf6a5")
@@ -736,7 +736,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.tuto\s*actions$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Tuto : Les actions")
 			.setDescription(`Les actions sont un must-know pour survivre et tuer tout le groupe adverse ! En effectuant la commande **${préfixe}jouer** tu pourras faire apparaître le superbe menu d'informations avec en première ligne les actions (il peut apparaître automatiquement parfois) !\nLes actions dépendent de la zone où tu es et de ce que tu es (énergie, inventaire,...) !\nPour faire une action, il te suffit d'écrire une commande que la liste des actions possibles te propose !\nSache qu'au fil du temps les actions changeront en fonction de se qu'il se passe en temps réel et malheureusement ton menu d'information ne s'actualise pas automatiquement :/ Donc si ça fait un petit bout de temps que tu n'as pas fait d'actions prends en compte qu'il est possible que de nouvelles actions se soient offertes à toi ou que les anciennes ont disparues ! Un petit **${préfixe}jouer** dans ta situation te permettra de tout remettre à jour comme il faut ! c:\n\n*PS : Essaie pas de cheater je suis trop malin pour laisser des failles dans mes programmes :p*`)
 			.setColor("#abf6a5")
@@ -744,7 +744,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.tuto\s*position$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Tuto : Ta position")
 			.setDescription(`Bonsoir ! Alors comme ça tu ne comprends pas où tu es ni comment nanani et nanana ?\n\nBah c'est tout simple ! Sous l'onglet **Position** du menu d'information tu peux voir tes coordonnées X et Y (ou pas si t'as pas encore de carte) ! Ces coordonnées correspondent à ta position sur la map qui fait du 8x8 soit 64 cases possibles au total !\n\nTon couple de coordonnées correspond également à une certaine zone (**,zones**) !\n\nSi tu dépasses une certaine limite de coordonnées tu apparaitras de l'autre côté de la carte ! Tu peux donc aller à l'infini vers la même direction comme sur la Terre :p\n\nJuste en dessous de tes coordonnées tu trouveras une mini-carte qui te montre sur quelle zone tu es (au centre) et quelles sont les zones qui t'entourent (nord, sud, est et ouest)\nSi tu as suffisament d'énergie, tu l'auras compris, tu peux te déplacer dans l'une de ces zones qui t'entourent et ainsi faire apparaître une nouvelle fois celles qui t'entourent etc...\n\nSi t'es un peu perdu au début c'est normal mais on s'y habitue avec le temps :p\n\nAh oui et les coordonnées en terme d'axes c'est un peu le bazar, du coup je te laisse regarder cette magnifique image pour comprendre c: :`)
 			.setImage("https://i.imgur.com/pg780uZ.png")
@@ -753,7 +753,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.tuto\s*stats$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Tuto : Les stats")
 			.setDescription(`Les stats, quelle fonctionnalité géniale ! Elles sont au nombre de 3 : **force, agilité et intelligence**, laisse moi t'expliquer tout sur elles !\n\nEn faisant certaines actions tu gagneras de l'XP, quand cet XP atteindra un certain seuil, tu passeras 1 niveau (comme dans un RPG !) ce qui te rendra toute ta vie et ton énergie et tu gagneras alors un point de compétence à attribuer dans la force, l'agilité ou l'intelligence ! Voici à quoi servent ces stats :\n\n**Force :**\nChaque point augmente ta vie maximum de 1 !\n\n**Agilité :**\nChaque point augmente ton énergie maximum de 1 !\n\n**Intelligence :**\nPlus tu en as, plus tu peux connaître des crafts plus complexes (donc oui parfois tu peux te dire *"ptn il est relou Manuel c'est logique de craft ça mais il l'a pas créé"* bah en fait c'est juste que t'es pas assez intelligent :p (t'as le seum ?))`)
 			.setColor("#abf6a5")
@@ -761,7 +761,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.tuto\s*[eé]tat$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Tuto : Les états")
 			.setDescription(`Les états correspondent à la vie et l'énergie, laisse moi préciser :\n\n**Energie :zap: :**\nTon énergie est un mélange de faim et de peps, tu peux en récupérer en mangeant quelque chose (trouvable ou craftable) ou naturellement 1 toutes les 30 secondes ! Elle te permet de te déplacer, crafter et te battre ce qui la rend donc très importante ! Sache que les combats contre la team adverse se joueront en partie en fonction de celui qui gère le mieux sont énergie...\n\n**Vie :heart: :**\nLa vie est le plus important, en fait si tu en as plus, bah tu meurs, logique non ? Et impossible de te réssuiciter (enfin je crois ?). Tu en récupères 1 toutes les 30 secondes si ton énergie est supérieure ou égale à 10 et tu peux aussi en récupérer en te soigant avec certains objets. Et évidemment tu en perds si tu te bats ou si tu fais des bétises débiles`)
 			.setColor("#abf6a5")
@@ -769,7 +769,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.tuto\s*[eé]quipement$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Tuto : L'équipement")
 			.setDescription(`Ton équipement est quelque chose de très important ! Déjà, se sont tes armes qui te permettront de te battre (enlever de la vie à quelqu'un) ou de te défendre grâce à l'armure :shield: ! L'armure réduit de façon permanente des dégâts que tu es censé subir donc elle est très utile !\n\nPlus ton équipement est dur à trouver/confectionner, plus il te rendra fort et invincible !\n\nPour voir les objets de ton inventaire qui sont équipables : **,équiper** (ces actions n'apparaîtrons pas dans le menu d'actions possibles (car faisables tout le temps, ça embrouillerait plus qu'autre chose))`)
 			.setColor("#abf6a5")
@@ -777,7 +777,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.tuto\s*inventaire$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 			.setTitle("Tuto : L'inventaire")
 			.setDescription(`J'ai vraiment besoin de détailler ça ? Bah en gros dès que tu trouves des trucs ils vont direct dans ton inventaire (ton inventaire est illimité en terme de place car je suis gentil et j'ai la flemme aussi). Tu peux équiper des objets de ton inventaire ou les utiliser pour confectionner des objets encore plus utiles !`)
 			.setColor("#abf6a5")
