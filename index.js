@@ -1316,7 +1316,7 @@ bot.on("message", async message => {
 						else connus += "*,craft chevreuil* : Crafter une Viande de chevreuil cuite | -1 Viande de chevreuil crue | *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 1){
-						if(quantitéObjet(joueurs[i].inventaire,"Pierre") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0) "***,craft hache* : Crafter une Hache | -1 Pierre, -1 Bâton, -1 Corde**\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Pierre") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0) connus += "***,craft hache* : Crafter une Hache | -1 Pierre, -1 Bâton, -1 Corde**\n"
 						else connus += "*,craft hache* : Crafter une Hache | -1 Pierre, -1 Bâton, -1 Corde\n"
 					}
 					if(joueurs[i].intelligence >= 1){
