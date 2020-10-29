@@ -60,6 +60,7 @@ const attaque = (array,place) => {
 		if(array.arme1 === "Bâton") atk+=2
 		if(array.arme1 === "Rateau stratégique") atk+=2
 		if(array.arme1 === "Epée en fer") atk+=5
+		if(array.arme1 === "Sabre laser") atk+=10
 	}
 	if(place === 2){
 		if(array.arme2 === "Hache") atk+=3
@@ -68,6 +69,7 @@ const attaque = (array,place) => {
 		if(array.arme2 === "Bâton") atk+=2
 		if(array.arme2 === "Rateau stratégique") atk+=2
 		if(array.arme2 === "Epée en fer") atk+=5
+		if(array.arme2 === "Sabre laser") atk+=10
 	}
 	return atk
 }
@@ -235,10 +237,11 @@ const infos = (membre,event) => {
 		"Verre",
 		"Seringue médicale",
 		"Epée en fer",
-		"Circuit électronique",
+		"Circuit imprimé",
 		"T-shirt ZEVENT",
 		"Cristal magique",
-		"Pile"
+		"Pile",
+		"Sabre laser"
 	]
 	joueurs[i].inventaire.sort()
 	for(let j = 0 ; j < objets.length ; j++){
@@ -656,7 +659,7 @@ bot.on("message", async message => {
 						groupe:"G2",
 						x:x,
 						y:y,
-						inventaire:[],
+						inventaire:["Lingot de fer","Cristal magique","Circuit imprimé","Pile"],
 						tête:"rien",
 						torse:"rien",
 						jambes:"rien",
@@ -669,7 +672,7 @@ bot.on("message", async message => {
 						xp:0,
 						force:0,
 						agilité:0,
-						intelligence:0,
+						intelligence:3,
 						points:0
 					})
 					//await membres[i].user.send(infos(membres[i]))
@@ -1152,9 +1155,15 @@ bot.on("message", async message => {
 
 				else if(/^.[ée]quiper$/i.test(message.content)){
 					let équipable = ""
-					if(quantitéObjet(joueurs[i].inventaire,"Epée en fer") > 0){
-						équipable += "*,équiper épée 1* : Equiper l'Epée en fer en Arme 1 | 5 :crossed_swords:\n"
-						équipable += "*,équiper épée 2* : Equiper l'Epée en fer en Arme 2 | 5 :crossed_swords:\n"
+					équipable += "*,équiper poings 1* Enlever son Arme 1 | 1 :crossed_swords:\n"
+					équipable += "*,équiper poings 2* Enlever son Arme 2 | 1 :crossed_swords:\n"
+					if(quantitéObjet(joueurs[i].inventaire,"Rateau stratégique") > 0){
+						équipable += "*,équiper rateau 1* : Equiper le Rateau stratégique en Arme 1 | 2 :crossed_swords:\n"
+						équipable += "*,équiper rateau 2* : Equiper le Rateau stratégique en Arme 2 | 2 :crossed_swords:\n"
+					}
+					if(quantitéObjet(joueurs[i].inventaire,"Bâton") > 0){
+						équipable += "*,équiper baton 1* : Equiper le Bâton en Arme 1 | 2 :crossed_swords:\n"
+						équipable += "*,équiper baton 2* : Equiper le Bâton en Arme 2 | 2 :crossed_swords:\n"
 					}
 					if(quantitéObjet(joueurs[i].inventaire,"Hache") > 0){
 						équipable += "*,équiper hache 1* : Equiper la Hache en Arme 1 | 3 :crossed_swords:\n"
@@ -1164,13 +1173,13 @@ bot.on("message", async message => {
 						équipable += "*,équiper pioche 1* : Equiper la Pioche en Arme 1 | 3 :crossed_swords:\n"
 						équipable += "*,équiper pioche 2* : Equiper la Pioche en Arme 2 | 3 :crossed_swords:\n"
 					}
-					if(quantitéObjet(joueurs[i].inventaire,"Bâton") > 0){
-						équipable += "*,équiper baton 1* : Equiper le Bâton en Arme 1 | 2 :crossed_swords:\n"
-						équipable += "*,équiper baton 2* : Equiper le Bâton en Arme 2 | 2 :crossed_swords:\n"
+					if(quantitéObjet(joueurs[i].inventaire,"Epée en fer") > 0){
+						équipable += "*,équiper épée 1* : Equiper l'Epée en fer en Arme 1 | 5 :crossed_swords:\n"
+						équipable += "*,équiper épée 2* : Equiper l'Epée en fer en Arme 2 | 5 :crossed_swords:\n"
 					}
-					if(quantitéObjet(joueurs[i].inventaire,"Rateau stratégique") > 0){
-						équipable += "*,équiper rateau 1* : Equiper le Rateau stratégique en Arme 1 | 2 :crossed_swords:\n"
-						équipable += "*,équiper rateau 2* : Equiper le Rateau stratégique en Arme 2 | 2 :crossed_swords:\n"
+					if(quantitéObjet(joueurs[i].inventaire,"Sabre laser") > 0){
+						équipable += "*,équiper sabre 1* : Equiper le Sabre laser en Arme 1 | 10 :crossed_swords:\n"
+						équipable += "*,équiper sabre 2* : Equiper le Sabre laser en Arme 2 | 10 :crossed_swords:\n"
 					}
 					if(quantitéObjet(joueurs[i].inventaire,"Bouclier en bois") > 0){
 						équipable += "*,équiper bouclier 1* : Equiper le Bouclier en bois en Arme 1 | 1 :shield:\n"
@@ -1203,7 +1212,20 @@ bot.on("message", async message => {
 					else{
 						place = Number(place[0].trim())
 					}
-					if(/^épée$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Epée en fer") > 0){
+					if(/^poings$/i.test(objet)){
+						if(place === 1){
+							joueurs[i].arme1 = "Poings"
+							message.channel.send(infos(membre,"**:information_source: Poings équipés en Arme 1 !**"))
+						}
+						else if(place === 2){
+							joueurs[i].arme2 = "Poings"
+							message.channel.send(infos(membre,"**:information_source: Poings équipés en Arme 2 !**"))
+						}
+						else{
+							message.channel.send(infos(membre,"**:information_source: Choisis un emplacement valide ! (,equiper X 1 ou ,equiper X 2)**"))
+						}
+					}
+					else if(/^[ée]p[ée]e$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Epée en fer") > 0){
 						if(place === 1){
 							joueurs[i].arme1 = "Epée en fer"
 							message.channel.send(infos(membre,"**:information_source: Epée en fer équipée en Arme 1 !**"))
@@ -1268,6 +1290,19 @@ bot.on("message", async message => {
 							message.channel.send(infos(membre,"**:information_source: Choisis un emplacement valide ! (,equiper X 1 ou ,equiper X 2)**"))
 						}
 					}
+					if(/^sabre$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Sabre laser") > 0){
+						if(place === 1){
+							joueurs[i].arme1 = "Sabre laser"
+							message.channel.send(infos(membre,"**:information_source: Sabre laser équipé en Arme 1 !**"))
+						}
+						else if(place === 2){
+							joueurs[i].arme2 = "Sabre laser"
+							message.channel.send(infos(membre,"**:information_source: Sabre laser équipé en Arme 2 !**"))
+						}
+						else{
+							message.channel.send(infos(membre,"**:information_source: Choisis un emplacement valide ! (,equiper X 1 ou ,equiper X 2)**"))
+						}
+					}
 					else if(/^bouclier$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Bouclier en bois") > 0){
 						if(place === 1){
 							joueurs[i].arme1 = "Bouclier en bois"
@@ -1306,54 +1341,51 @@ bot.on("message", async message => {
 					if(joueurs[i].intelligence >= 0){
 						if(quantitéObjet(joueurs[i].inventaire,"Herbe fibreuse") >= 3) connus += "***,craft corde* : Crafter une Corde | -3 Herbe fibreuse**\n"
 						else connus += "*,craft corde* : Crafter une Corde | -3 Herbe fibreuse\n"
-					}
-					if(joueurs[i].intelligence >= 0){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Bâton") >= 4 && joueurs[i].énergie >= 5) connus += "***,craft feu* : Crafter un Feu | -4 Bâton, -5 :zap:**\n"
 						else connus += "*,craft feu* : Crafter un Feu | -4 Bâton, -5 :zap:\n"
-					}
-					if(joueurs[i].intelligence >= 0){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Viande de chevreuil crue") >= 1) connus += "***,craft chevreuil* : Crafter une Viande de chevreuil cuite | -1 Viande de chevreuil crue | *Feu***\n"
 						else connus += "*,craft chevreuil* : Crafter une Viande de chevreuil cuite | -1 Viande de chevreuil crue | *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 1){
 						if(quantitéObjet(joueurs[i].inventaire,"Pierre") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0) connus += "***,craft hache* : Crafter une Hache | -1 Pierre, -1 Bâton, -1 Corde**\n"
 						else connus += "*,craft hache* : Crafter une Hache | -1 Pierre, -1 Bâton, -1 Corde\n"
-					}
-					if(joueurs[i].intelligence >= 1){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Pierre") > 0 && quantitéObjet(joueurs[i].inventaire,"Bâton") > 0 && quantitéObjet(joueurs[i].inventaire,"Corde") > 0) connus += "***,craft pioche* : Crafter une Pioche | -1 Pierre, -1 Bâton, -1 Corde**\n"
 						else connus += "*,craft pioche* : Crafter une Pioche | -1 Pierre, -1 Bâton, -1 Corde\n"
-					}
-					if(joueurs[i].intelligence >= 1){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Sève") >= 1 && quantitéObjet(joueurs[i].inventaire,"Plante médicinale") >= 1) connus += "***,craft pommade* : Crafter une Pommade soignante naturelle | -1 Sève, -1 Plante médicinale | *Feu***\n"
 						else connus += "*,craft pommade* : Crafter une Pommade soignante naturelle | -1 Sève, -1 Plante médicinale | *Feu*\n"
-					}
-					if(joueurs[i].intelligence >= 1){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Bûche") >= 1 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 2) connus += "***,craft bouclier* : Crafter un Bouclier en bois | -1 Bûche, -2 Bâton, -1 Corde**\n"
 						else connus += "*,craft bouclier* : Crafter un Bouclier en bois | -1 Bûche, -2 Bâton, -1 Corde\n"
-					}
-					if(joueurs[i].intelligence >= 1){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Bûche") >= 4 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 2 && joueurs[i].énergie >= 2) connus += "***,craft barque* : Crafter une Barque | -4 Bûche, -2 Corde, -2 :zap:**\n"
 						else connus += "*,craft barque* : Crafter une Barque | -4 Bûche, -2 Corde, -2 :zap:\n"
-					}
-					if(joueurs[i].intelligence >= 1){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Bouteille en plastique") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu") >= 1) connus += "***,craft plastique* : Crafter un Plastique | -1 Bouteille en plastique | *Feu***\n"
 						else connus += "*,craft plastique* : Crafter un Plastique | -1 Bouteille en plastique | *Feu*\n"
 					}
 					if(joueurs[i].intelligence >= 2){
 						if(quantitéObjet(joueurs[i].inventaire,"Feu") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bûche") >= 2) connus += "***,craft feu de compet* : Crafter un Feu de compétition | -2 Bûche | *Feu***\n"
 						else connus += "*,craft feu de compet* : Crafter un Feu de compétition | -2 Bûche | *Feu*\n"
-					}
-					if(joueurs[i].intelligence >= 2){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Fer brut") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu de compétition") >= 1) connus += "***,craft fer* : Crafter un Lingot de fer | -1 Fer brut | *Feu de compétition***\n"
 						else connus += "*,craft fer* : Crafter un Lingot de fer | -1 Fer brut | *Feu de compétition*\n"
-					}
-					if(joueurs[i].intelligence >= 2){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Or brut") >= 1 && quantitéObjet(joueurs[i].inventaire,"Feu de compétition") >= 1) connus += "***,craft or* : Crafter un Lingot d'or | -1 Or brut | *Feu de compétition***\n"
 						else connus += "*,craft or* : Crafter un Lingot d'or | -1 Or brut | *Feu de compétition*\n"
-					}
-					if(joueurs[i].intelligence >= 2){
+
 						if(quantitéObjet(joueurs[i].inventaire,"Lingot de fer") >= 1 && quantitéObjet(joueurs[i].inventaire,"Bâton") >= 1 && quantitéObjet(joueurs[i].inventaire,"Corde") >= 1) connus += "***,craft épée* : Crafter une Epée en fer | -1 Lingot de fer, -1 Bâton, -1 Corde**\n"
 						else connus += "*,craft épée* : Crafter une Epée en fer | -1 Lingot de fer, -1 Bâton, -1 Corde\n"
+
+						if(quantitéObjet(joueurs[i].inventaire,"Plastique") >= 1 && quantitéObjet(joueurs[i].inventaire,"Lingot d'or") >= 1) connus += "***,craft circuit* : Crafter un Circuit imprimé | -1 Lingot d'or, -1 Plastique**\n"
+						else connus += "*,craft circuit* : Crafter un Circuit imprimé | -1 Lingot d'or, -1 Plastique\n"
+					}
+					if(joueurs[i].intelligence >= 3){
+						if(quantitéObjet(joueurs[i].inventaire,"Circuit imprimé") >= 1 && quantitéObjet(joueurs[i].inventaire,"Lingot de fer") >= 1 && quantitéObjet(joueurs[i].inventaire,"Cristal magique") >= 1 && quantitéObjet(joueurs[i].inventaire,"Pile") >= 1) connus += "***,craft sabre* : Crafter un Sabre laser | -1 Lingot de fer, -1 Circuit imprimé, -1 Pile, -1 Cristal magique**\n"
+						else connus += "*,craft sabre* : Crafter un Sabre laser | -1 Lingot de fer, -1 Circuit imprimé, -1 Pile, -1 Cristal magique\n"
 					}
 
 					message.channel.send(infos(membre,`**:information_source: Crafts connus (faisables en gras) :**\n${connus}`))
@@ -1437,6 +1469,20 @@ bot.on("message", async message => {
 						supprimerObjet(joueurs[i],"Bâton",1)
 						supprimerObjet(joueurs[i],"Corde",1)
 						message.channel.send(infos(membre,"**:information_source: Epée en fer craftée !**" + ajoutXP(joueurs[i],18,XP_MAX)))
+					}
+					else if(/^circuit$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Lingot d'or'") > 0 && quantitéObjet(joueurs[i].inventaire,"Plastique") > 0 && joueurs[i].intelligence >= 2){
+						joueurs[i].inventaire.push("Circuit imprimé")
+						supprimerObjet(joueurs[i],"Lingot d'or",1)
+						supprimerObjet(joueurs[i],"Plastique",1)
+						message.channel.send(infos(membre,"**:information_source: Circuit imprimé crafté !**" + ajoutXP(joueurs[i],18,XP_MAX)))
+					}
+					else if(/^sabre$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Circuit imprimé") >= 1 && quantitéObjet(joueurs[i].inventaire,"Lingot de fer") >= 1 && quantitéObjet(joueurs[i].inventaire,"Cristal magique") >= 1 && quantitéObjet(joueurs[i].inventaire,"Pile") >= 1 && joueurs[i].intelligence >= 3){
+						joueurs[i].inventaire.push("Sabre laser")
+						supprimerObjet(joueurs[i],"Lingot de fer",1)
+						supprimerObjet(joueurs[i],"Circuit imprimé",1)
+						supprimerObjet(joueurs[i],"Pile",1)
+						supprimerObjet(joueurs[i],"Cristal magique",1)
+						message.channel.send(infos(membre,"**:information_source: Sabre laser crafté !**" + ajoutXP(joueurs[i],30,XP_MAX)))
 					}
 					else message.channel.send(infos(membre,"**:information_source: Cet objet ne fait pas partie des crafts faisables et/ou que tu connais !**"))
 				}
@@ -1566,8 +1612,8 @@ bot.on("message", async message => {
 							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Seringue médicale**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
 						else if(random < 44){
-							joueurs[i].inventaire.push("Circuit électronique")
-							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Circuit électronique**" + ajoutXP(joueurs[i],2,XP_MAX)))
+							joueurs[i].inventaire.push("Circuit imprimé")
+							message.channel.send(infos(membre,"**:information_source: Tu trouves 1 Circuit imprimé**" + ajoutXP(joueurs[i],2,XP_MAX)))
 						}
 						else if(random < 46){
 							joueurs[i].inventaire.push("T-shirt ZEVENT")
