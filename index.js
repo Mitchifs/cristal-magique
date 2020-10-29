@@ -53,6 +53,7 @@ const armure = array => {
 
 const attaque = (array,place) => {
 	let atk = 0
+	atk+=array.force
 	if(place === 1){
 		if(array.arme1 === "Hache") atk+=3
 		if(array.arme1 === "Pioche") atk+=3
@@ -86,7 +87,7 @@ const vieMaximum = array => {
 }
 
 const énergieMaximum = array => {
-	let énergieMax = 10 + array.agilité
+	let énergieMax = 10 + array.agilité*2
 	return énergieMax
 }
 
@@ -685,7 +686,7 @@ bot.on("message", async message => {
 			intervalle = bot.setInterval(() => {
 				for(let i = 0 ; i < joueurs.length ; i++){
 					if(joueurs[i].énergie < énergieMaximum(joueurs[i])) joueurs[i].énergie++
-					if(joueurs[i].énergie >= 10 && joueurs[i].vie < vieMaximum(joueurs[i])) joueurs[i].vie++
+					if(joueurs[i].énergie >= 10-joueurs[i].agilité && joueurs[i].vie < vieMaximum(joueurs[i])) joueurs[i].vie++
 				}
 			},30000)
 
@@ -761,7 +762,7 @@ bot.on("message", async message => {
 		else if(/^.tuto\s*stats$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Tuto : Les stats")
-			.setDescription(`Les stats, quelle fonctionnalité géniale ! Elles sont au nombre de 3 : **force, agilité et intelligence**, laisse moi t'expliquer tout sur elles !\n\nEn faisant certaines actions tu gagneras de l'XP, quand cet XP atteindra un certain seuil, tu passeras 1 niveau (comme dans un RPG !) ce qui te rendra toute ta vie et ton énergie et tu gagneras alors un point de compétence à attribuer dans la force, l'agilité ou l'intelligence ! Voici à quoi servent ces stats :\n\n**Force :**\nChaque point augmente ta vie maximum de 1 !\n\n**Agilité :**\nChaque point augmente ton énergie maximum de 1 !\n\n**Intelligence :**\nPlus tu en as, plus tu peux connaître des crafts plus complexes (donc oui parfois tu peux te dire *"ptn il est relou Manuel c'est logique de craft ça mais il l'a pas créé"* bah en fait c'est juste que t'es pas assez intelligent :p (t'as le seum ?))`)
+			.setDescription(`Les stats, quelle fonctionnalité géniale ! Elles sont au nombre de 3 : **force, agilité et intelligence**, laisse moi t'expliquer tout sur elles !\n\nEn faisant certaines actions tu gagneras de l'XP, quand cet XP atteindra un certain seuil, tu passeras 1 niveau (comme dans un RPG !) ce qui te rendra toute ta vie et ton énergie et tu gagneras alors un point de compétence à attribuer dans la force, l'agilité ou l'intelligence ! Voici à quoi servent ces stats :\n\n**Force :**\nChaque point augmente ta vie maximum et ton attaque de 1 !\n\n**Agilité :**\nChaque point augmente ton énergie maximum de 1 et réduit la limite (de base à 10) à partir de laquelle ta vie régénère de 1 !\n\n**Intelligence :**\nPlus tu en as, plus tu peux connaître des crafts plus complexes (donc oui parfois tu peux te dire *"ptn il est relou Manuel c'est logique de craft ça mais il l'a pas créé"* bah en fait c'est juste que t'es pas assez intelligent :p (t'as le seum ?))`)
 			.setColor("#abf6a5")
 			message.channel.send(embed)
 		}
