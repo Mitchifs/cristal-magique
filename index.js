@@ -663,7 +663,7 @@ bot.on("message", async message => {
 						groupe:"G2",
 						x:x,
 						y:y,
-						inventaire:["Lingot de fer","Cristal magique","Circuit imprimé","Pile"],
+						inventaire:[],
 						tête:"rien",
 						torse:"rien",
 						jambes:"rien",
@@ -676,7 +676,7 @@ bot.on("message", async message => {
 						xp:0,
 						force:0,
 						agilité:0,
-						intelligence:3,
+						intelligence:0,
 						points:0
 					})
 					//await membres[i].user.send(infos(membres[i]))
