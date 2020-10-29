@@ -1304,7 +1304,8 @@ bot.on("message", async message => {
 					let connus = ""
 
 					if(joueurs[i].intelligence >= 0){
-						connus += "*,craft corde* : Crafter une Corde | -3 Herbe fibreuse\n"
+						if(quantitéObjet(joueurs[i].inventaire,"Herbe fibreuse") >= 3) connus += "***,craft corde* : Crafter une Corde | -3 Herbe fibreuse**\n"
+						else connus += "*,craft corde* : Crafter une Corde | -3 Herbe fibreuse\n"
 					}
 					if(joueurs[i].intelligence >= 0){
 						connus += "*,craft feu* : Crafter un Feu | -4 Bâton, -5 :zap:\n"
@@ -1391,7 +1392,7 @@ bot.on("message", async message => {
 					if(craftable === ""){
 						craftable+="*rien*"
 					}
-					message.channel.send(infos(membre,`**:information_source: Crafts connus :**\n${connus}**:information_source: Crafts faisables :**\n${craftable}`))
+					message.channel.send(infos(membre,`**:information_source: Crafts connus (faisables en gras) :**\n${connus}`))
 				}
 
 				else if(/^.craft\s+[^\d]+$/i.test(message.content)){
