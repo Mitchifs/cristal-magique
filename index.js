@@ -87,7 +87,7 @@ const vieMaximum = array => {
 }
 
 const énergieMaximum = array => {
-	let énergieMax = 10 + array.agilité*2
+	let énergieMax = 10 + array.agilité
 	return énergieMax
 }
 
@@ -391,7 +391,7 @@ const infos = (membre,event) => {
 
 	let régénérationVie = ""
 	let régénérationEnergie = ""
-	if(joueurs[i].vie < vieMaximum(joueurs[i]) && joueurs[i].énergie >= 10 - joueurs[i].agilité) régénérationVie += " | :two_hearts:"
+	if(joueurs[i].vie < vieMaximum(joueurs[i]) && joueurs[i].énergie >= 8) régénérationVie += " | :two_hearts:"
 	if(joueurs[i].énergie < énergieMaximum(joueurs[i])) régénérationEnergie += " | :sparkles:"
 
 
@@ -693,8 +693,8 @@ bot.on("message", async message => {
 
 			intervalle = bot.setInterval(() => {
 				for(let i = 0 ; i < joueurs.length ; i++){
-					if(joueurs[i].énergie < énergieMaximum(joueurs[i])) joueurs[i].énergie++
-					if(joueurs[i].énergie >= 10-joueurs[i].agilité && joueurs[i].vie < vieMaximum(joueurs[i])) joueurs[i].vie++
+					if(joueurs[i].énergie < énergieMaximum(joueurs[i])) joueurs[i].énergie+=1+joueurs[i].agilité*0.5
+					if(joueurs[i].énergie >= 8 && joueurs[i].vie < vieMaximum(joueurs[i])) joueurs[i].vie++
 				}
 			},30000)
 
@@ -770,7 +770,7 @@ bot.on("message", async message => {
 		else if(/^.tuto\s*stats$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Tuto : Les stats")
-			.setDescription(`Les stats, quelle fonctionnalité géniale ! Elles sont au nombre de 3 : **force, agilité et intelligence**, laisse moi t'expliquer tout sur elles !\n\nEn faisant certaines actions tu gagneras de l'XP, quand cet XP atteindra un certain seuil, tu passeras 1 niveau (comme dans un RPG !) ce qui te rendra toute ta vie et ton énergie et tu gagneras alors un point de compétence à attribuer dans la force, l'agilité ou l'intelligence ! Voici à quoi servent ces stats :\n\n**Force :**\nChaque point augmente ta vie maximum et ton attaque de 1 !\n\n**Agilité :**\nChaque point augmente ton énergie maximum de 2 et réduit de 1 la limite (de base à 10) à partir de laquelle ta vie régénère !\n\n**Intelligence :**\nPlus tu en as, plus tu peux connaître des crafts plus complexes (donc oui parfois tu peux te dire *"ptn il est relou Manuel c'est logique de craft ça mais il l'a pas créé"* bah en fait c'est juste que t'es pas assez intelligent :p (t'as le seum ?))`)
+			.setDescription(`Les stats, quelle fonctionnalité géniale ! Elles sont au nombre de 3 : **force, agilité et intelligence**, laisse moi t'expliquer tout sur elles !\n\nEn faisant certaines actions tu gagneras de l'XP, quand cet XP atteindra un certain seuil, tu passeras 1 niveau (comme dans un RPG !) ce qui te rendra toute ta vie et ton énergie et tu gagneras alors un point de compétence à attribuer dans la force, l'agilité ou l'intelligence ! Voici à quoi servent ces stats :\n\n**Force :**\nChaque point augmente ta vie maximum et ton attaque de 1 !\n\n**Agilité :**\nChaque point augmente ton énergie maximum de 1 et augmente de 0.5 l'énergie que tu reçois toutes les 30 secondes !\n\n**Intelligence :**\nPlus tu en as, plus tu peux connaître des crafts plus complexes (donc oui parfois tu peux te dire *"ptn il est relou Manuel c'est logique de craft ça mais il l'a pas créé"* bah en fait c'est juste que t'es pas assez intelligent :p (t'as le seum ?))`)
 			.setColor("#abf6a5")
 			message.channel.send(embed)
 		}
@@ -778,7 +778,7 @@ bot.on("message", async message => {
 		else if(/^.tuto\s*[eé]tat$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Tuto : Les états")
-			.setDescription(`Les états correspondent à la vie et l'énergie, laisse moi préciser :\n\n**Energie :zap: :**\nTon énergie est un mélange de faim et de peps, tu peux en récupérer en mangeant quelque chose (trouvable ou craftable) ou naturellement 1 toutes les 30 secondes ! Elle te permet de te déplacer, crafter et te battre ce qui la rend donc très importante ! Sache que les combats contre la team adverse se joueront en partie en fonction de celui qui gère le mieux sont énergie...\n\n**Vie :heart: :**\nLa vie est le plus important, en fait si tu en as plus, bah tu meurs, logique non ? Et impossible de te réssuiciter (enfin je crois ?). Tu en récupères 1 toutes les 30 secondes si ton énergie est supérieure ou égale à 10 et tu peux aussi en récupérer en te soigant avec certains objets. Et évidemment tu en perds si tu te bats ou si tu fais des bétises débiles`)
+			.setDescription(`Les états correspondent à la vie et l'énergie, laisse moi préciser :\n\n**Energie :zap: :**\nTon énergie est un mélange de faim et de peps, tu peux en récupérer en mangeant quelque chose (trouvable ou craftable) ou naturellement 1 toutes les 30 secondes ! Elle te permet de te déplacer, crafter et te battre ce qui la rend donc très importante ! Sache que les combats contre la team adverse se joueront en partie en fonction de celui qui gère le mieux sont énergie...\n\n**Vie :heart: :**\nLa vie est le plus important, en fait si tu en as plus, bah tu meurs, logique non ? Et impossible de te réssuiciter (enfin je crois ?). Tu en récupères 1 toutes les 30 secondes si ton énergie est supérieure ou égale à 8 et tu peux aussi en récupérer en te soignant avec certains objets. Et évidemment tu en perds si tu te bats ou si tu fais des bétises débiles`)
 			.setColor("#abf6a5")
 			message.channel.send(embed)
 		}
