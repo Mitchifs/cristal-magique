@@ -389,9 +389,9 @@ const infos = (membre,event) => {
 
 	let régénérationVie = ""
 	let régénérationEnergie = ""
-	if(joueurs[i].vie <= vieMaximum(joueurs[i]) && joueurs[i].énergie >= 10 - joueurs[i].agilité) régénérationVie += " | :two_hearts:"
-	if(joueurs[i].énergie <= énergieMaximum(joueurs[i])) régénérationEnergie += " | :sparkles:"
-	
+	if(joueurs[i].vie < vieMaximum(joueurs[i]) && joueurs[i].énergie >= 10 - joueurs[i].agilité) régénérationVie += " | :two_hearts:"
+	if(joueurs[i].énergie < énergieMaximum(joueurs[i])) régénérationEnergie += " | :sparkles:"
+
 	const embed = new Discord.MessageEmbed()
 	.setTitle("Informations :")
 	if(event !== undefined){
