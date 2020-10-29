@@ -387,6 +387,11 @@ const infos = (membre,event) => {
 		actionsPossibles = "Tu ne peux rien faire ! Attends un peu pour récupérer de l'énergie... "
 	}
 
+	let régénérationVie = ""
+	let régénérationEnergie = ""
+	if(joueurs[i].vie <= vieMaximum(joueurs[i]) && joueurs[i].énergie >= 10 - joueurs[i].agilité) régénérationVie += " | :two_hearts:"
+	if(joueurs[i].énergie <= énergieMaximum(joueurs[i])) régénérationEnergie += " | :sparkles:"
+	
 	const embed = new Discord.MessageEmbed()
 	.setTitle("Informations :")
 	if(event !== undefined){
@@ -397,7 +402,7 @@ const infos = (membre,event) => {
 	.addField("Actions possibles :",actionsPossibles)
 	.addField("Position :",`*X* : ${x}\n*Y* : ${y}\n:black_large_square:${affichageZone(map[haut][joueurs[i].y])}:black_large_square:\n${affichageZone(map[joueurs[i].x][gauche])}${affichageZone(map[joueurs[i].x][joueurs[i].y])}${affichageZone(map[joueurs[i].x][droite])}\n:black_large_square:${affichageZone(map[bas][joueurs[i].y])}:black_large_square:`,true)
 	.addField("Stats :",`*Force* : ${joueurs[i].force}\n*Agilité* : ${joueurs[i].agilité}\n*Intell.* : ${joueurs[i].intelligence}\n*Points* : ${joueurs[i].points}`,true)
-	.addField("Etat :",`*Vie :heart:* : ${joueurs[i].vie}/${vieMaximum(joueurs[i])}\n*Energie :zap:* : ${joueurs[i].énergie}/${énergieMaximum(joueurs[i])} | :two_hearts: ≥ ${10-joueurs[i].agilité}\n*Niveau* : ${joueurs[i].niveau}\n*XP* : ${joueurs[i].xp}/${XP_MAX}`,true)
+	.addField("Etat :",`*Vie :heart:* : ${joueurs[i].vie}/${vieMaximum(joueurs[i])}${régénérationVie}\n*Energie :zap:* : ${joueurs[i].énergie}/${énergieMaximum(joueurs[i])}${régénérationEnergie}\n*Niveau* : ${joueurs[i].niveau}\n*XP* : ${joueurs[i].xp}/${XP_MAX}`,true)
 	.addField("Equipement :",`*Armure :shield:* : ${armure(joueurs[i])}\n*Arme 1* : ${joueurs[i].arme1} | ${attaque(joueurs[i],1)} :crossed_swords:\n*Arme 2* : ${joueurs[i].arme2} | ${attaque(joueurs[i],2)} :crossed_swords:\n*Tête* : ${joueurs[i].tête}\n*Torse* : ${joueurs[i].torse}\n*Jambes* : ${joueurs[i].jambes}\n*Pieds* : ${joueurs[i].pieds}`,true)
 	.addField("Inventaire :",`\n${inventaire}`,true)
 	.setColor("#abf6a5")
