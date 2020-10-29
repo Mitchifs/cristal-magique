@@ -1159,8 +1159,8 @@ bot.on("message", async message => {
 
 				else if(/^.[ée]quiper$/i.test(message.content)){
 					let équipable = ""
-					équipable += "*,équiper poings 1* Enlever son Arme 1 | 1 :crossed_swords:\n"
-					équipable += "*,équiper poings 2* Enlever son Arme 2 | 1 :crossed_swords:\n"
+					équipable += "*,équiper poings 1* : Enlever son Arme 1 | 1 :crossed_swords:\n"
+					équipable += "*,équiper poings 2* : Enlever son Arme 2 | 1 :crossed_swords:\n"
 					if(quantitéObjet(joueurs[i].inventaire,"Rateau stratégique") > 0){
 						équipable += "*,équiper rateau 1* : Equiper le Rateau stratégique en Arme 1 | 2 :crossed_swords:\n"
 						équipable += "*,équiper rateau 2* : Equiper le Rateau stratégique en Arme 2 | 2 :crossed_swords:\n"
@@ -1294,7 +1294,7 @@ bot.on("message", async message => {
 							message.channel.send(infos(membre,"**:information_source: Choisis un emplacement valide ! (,equiper X 1 ou ,equiper X 2)**"))
 						}
 					}
-					if(/^sabre$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Sabre laser") > 0){
+					else if(/^sabre$/i.test(objet) && quantitéObjet(joueurs[i].inventaire,"Sabre laser") > 0){
 						if(place === 1){
 							joueurs[i].arme1 = "Sabre laser"
 							message.channel.send(infos(membre,"**:information_source: Sabre laser équipé en Arme 1 !**"))
