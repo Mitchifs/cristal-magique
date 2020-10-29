@@ -698,16 +698,7 @@ bot.on("message", async message => {
 				}
 			},30000)
 
-			let carte = ""
-			for(let x = 0 ; x < 8 ; x++){
-				for(let y = 0 ; y < 8 ; y++){
-					carte += affichageZone(map[x][y])
-					if(y === 7){
-						carte += "\n"
-					}
-				}
-			}
-			message.channel.send(carte + "\n**:information_source: PARTIE LANCEE**")
+			message.channel.send("**:information_source: PARTIE LANCEE**")
 		}
 
 		else if(/^.help$/i.test(message.content)){
