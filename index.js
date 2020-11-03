@@ -533,9 +533,9 @@ bot.on("message", async message => {
 			if(membres.some(m => m.displayName === personne)){
 				const membre = membres.find(m => m.displayName === personne)
 				const membreMessage = membres.find(m => m.user.id === message.author.id)
-				if(membreMessage.displayName !== victime){
+				if(membreMessage.id !== victime){
 					membre.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
-					victime = personne
+					victime = membre.id
 					message.channel.send(`${personne} est maintenant la nouvelle victime !`)
 				}
 				else{
@@ -1726,14 +1726,8 @@ bot.on("messageReactionAdd", async (messageReaction, user) => {
 })
 
 bot.on("guildMemberUpdate", async (ancien,nouveau) => {
-	console.log("test")
-	console.log(victime)
-	console.log(ancien.nickname)
-	console.log(nouveau.nickname)
-	if(ancien.nickname === victime){
-		console.log("test1")
+	if(ancien.id === victime){
 		if(nouveau.nickname !== ancien.nickname){
-			console.log("test2")
 			nouveau.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
 		}
 	}
