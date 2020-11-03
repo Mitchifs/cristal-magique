@@ -533,10 +533,14 @@ bot.on("message", async message => {
 			if(membres.some(m => m.displayName === personne)){
 				const membre = membres.find(m => m.displayName === personne)
 				const membreMessage = membres.find(m => m.user.id === message.author.id)
-				if(membreMessage.displayName !== victime)
-				membre.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
-				victime = personne
-				message.channel.send(`${personne} est maintenant la nouvelle victime !`)
+				if(membreMessage.displayName !== victime){
+					membre.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
+					victime = personne
+					message.channel.send(`${personne} est maintenant la nouvelle victime !`)
+				}
+				else{
+					message.channel.send("Bien tenté jeune padawan :p")
+				}
 			}
 			else{
 				message.channel.send("Cette personne n'existe pas ;-;")
