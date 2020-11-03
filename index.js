@@ -31,6 +31,17 @@ let map = [[],[],[],[],[],[],[],[]]
 let partieLancee = false
 let NOMBRE_FAILLES = 0
 let intervalle
+const pseudos = [
+	"Chacal",
+	"Coprolithe",
+	"Gros dégueulasse",
+	"BEURK",
+	"caca",
+	"Je pue",
+	"Je suis nul",
+	"Moi = MERDE"
+]
+let victime
 
 const plusOuMoins = nombre => {
 	if(Math.floor(Math.random()*2) === 1){
@@ -514,6 +525,22 @@ bot.on("message", async message => {
 			.setDescription(`**Membres totaux (avec bot)** : ${membresTotaux}\n**Nb de G1** : ${G1}\n**Nb de G2** : ${G2}\n**Date de création du serveur** : ${serveur.createdAt.toLocaleDateString("fr-FR",{timeZone:"Europe/paris",hour12:false})}\n**Heure de création du serveur** : ${serveur.createdAt.toLocaleTimeString("fr-FR",{timeZone:"Europe/Paris",hour12:false})}`)
 			.setColor("#abf6a5")
 			message.channel.send(embed)
+		}
+
+		else if(/^.victimiser\s.+$/i.test(message.content)){
+			let personne = message.content.match(/(?<=^.victimiser\s).+$/i)[0]
+			const membres = await serveur.members.fetch()
+			if(membres.some(m => m.displayName === personne)){
+				const membre = membres.find(m => m.displayName === personne)
+				const membreMessage = membres.find(m => m.user.id === message.author.id)
+				if(membreMessage.displayName !== victime)
+				membre.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
+				victime = personne
+				message.channel.send(`${personne} est maintenant la nouvelle victime !`)
+			}
+			else{
+				message.channel.send("Cette personne n'existe pas ;-;")
+			}
 		}
 
 		else if(/^.lancer\s*une\s*partie$/i.test(message.content) && !partieLancee && message.author.id === "333621078050078730"){
@@ -1689,8 +1716,17 @@ bot.on("message", async message => {
 		message.channel.send(anecdote[Math.floor(Math.random()*anecdote.length)])
 	}
 })
+
 bot.on("messageReactionAdd", async (messageReaction, user) => {
 	if(user.bot) return
+})
+
+bot.on("guildMemberUpdate", async (ancien,nouveau) => {
+	if(ancien.nickname === victime){
+		if(nouveau.nickname !== ancien.nickname){
+			nouveau.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
+		}
+	}
 })
 
 bot.login("NzIwNjMzOTQzMTg3MTI4NDUy.XuI0qA.d1WHhX_bCIWD43SrfiiA9VXU_E0")//process.env.TOKEN
