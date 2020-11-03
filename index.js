@@ -1726,8 +1726,11 @@ bot.on("messageReactionAdd", async (messageReaction, user) => {
 })
 
 bot.on("guildMemberUpdate", async (ancien,nouveau) => {
+	console.log("test")
 	if(ancien.nickname === victime){
+		console.log("test1")
 		if(nouveau.nickname !== ancien.nickname){
+			console.log("test2")
 			nouveau.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
 		}
 	}
