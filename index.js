@@ -1727,6 +1727,9 @@ bot.on("messageReactionAdd", async (messageReaction, user) => {
 
 bot.on("guildMemberUpdate", async (ancien,nouveau) => {
 	console.log("test")
+	console.log(victime)
+	console.log(ancien.nickname)
+	console.log(nouveau.nickname)
 	if(ancien.nickname === victime){
 		console.log("test1")
 		if(nouveau.nickname !== ancien.nickname){
