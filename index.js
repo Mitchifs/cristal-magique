@@ -42,6 +42,7 @@ const pseudos = [
 	"Moi = MERDE"
 ]
 let victime
+let changé = false
 
 const plusOuMoins = nombre => {
 	if(Math.floor(Math.random()*2) === 1){
@@ -1726,11 +1727,15 @@ bot.on("messageReactionAdd", async (messageReaction, user) => {
 })
 
 bot.on("guildMemberUpdate", async (ancien,nouveau) => {
-	if(ancien.id === victime){
+	if(ancien.id === victime && !changé){
 		if(nouveau.nickname !== ancien.nickname){
 			nouveau.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
+			changé = true
 		}
+	}
+	else{
+		changé = false
 	}
 })
 
-bot.login("NzIwNjMzOTQzMTg3MTI4NDUy.XuI0qA.d1WHhX_bCIWD43SrfiiA9VXU_E0")//process.env.TOKEN
+bot.login(process.env.TOKEN)//process.env.TOKEN
