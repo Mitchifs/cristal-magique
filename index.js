@@ -536,8 +536,8 @@ bot.on("message", async message => {
 				const membreMessage = membres.find(m => m.user.id === message.author.id)
 				if(membreMessage.id !== victime){
 					membre.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
-					changé = true
 					.catch(console.error)
+					changé = true
 					victime = membre.id
 					message.channel.send(`${personne} est maintenant la nouvelle victime !`)
 				}
