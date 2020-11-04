@@ -39,7 +39,17 @@ const pseudos = [
 	"caca",
 	"Je pue",
 	"Je suis nul",
-	"Moi = MERDE"
+	"Moi = MERDE",
+	"Esclave",
+	"crotte de chien",
+	"Vomi",
+	"Impuissant",
+	"Patée pour chat",
+	"Litière",
+	"Oeuf pourri",
+	"Poisson pourri",
+	"nG#Dgl_ffè56ufée^",
+	"Gribouillis",
 ]
 let victime
 let changé = false
