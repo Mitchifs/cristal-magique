@@ -53,6 +53,8 @@ const pseudos = [
 ]
 let victime
 let changé = false
+let pfc = false
+let choseBot
 
 const plusOuMoins = nombre => {
 	if(Math.floor(Math.random()*2) === 1){
@@ -479,6 +481,41 @@ bot.on("ready", async () => {
 bot.on("message", async message => {
 	if(message.author.bot) return
 	const serveur = bot.guilds.cache.get("767810173690576936")
+	if(pfc){
+		if(/cise*aux*/i.test(message.content)){
+			if(choseBot === "ciseaux"){
+				message.channel.send("Egalité !")
+			}
+			if(choseBot === "pierre"){
+				message.channel.send("Perdu !")
+			}
+			if(choseBot === "feuille"){
+				message.channel.send("Bravo t'as gagné !")
+			}
+		}
+		if(/pier*re/i.test(message.content)){
+			if(choseBot === "pierre"){
+				message.channel.send("Egalité !")
+			}
+			if(choseBot === "feuille"){
+				message.channel.send("J'ai gagné t'es nul")
+			}
+			if(choseBot === "ciseaux"){
+				message.channel.send("Respect t'es trop fort")
+			}
+		}
+		if(/feui*l*le/i.test(message.content)){
+			if(choseBot === "feuille"){
+				message.channel.send("Egalité !")
+			}
+			if(choseBot === "pierre"){
+				message.channel.send("Bravo " + message.author.username)
+			}
+			if(choseBot === "ciseaux"){
+				message.channel.send("J'ai gangé, j'ai gagné nananananère")
+			}
+		}
+	}
 	if(message.content.startsWith(préfixe)){
 
 		if(/^.roue\s*pompes$/i.test(message.content)){
@@ -748,7 +785,7 @@ bot.on("message", async message => {
 		else if(/^.help$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Commandes :")
-			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place`)
+			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes`)
 			.setColor("#abf6a5")
 			message.channel.send(embed)
 		}
@@ -775,6 +812,29 @@ bot.on("message", async message => {
 			.setDescription(`Voici les commandes du wiki du jeu de Cristal Magique j'ai nommé __:zap: G1 VS G2 :zap:__ !!! :\n\n**${préfixe}tuto consommables** : Tout sur comment utiliser des consommables\n**${préfixe}tuto zones** : Tout sur les zones\n**${préfixe}tuto crafts** : Tout sur les crafts\n**${préfixe}tuto actions** : Tout sur les actions\n**${préfixe}tuto position** : Tout sur la position\n**${préfixe}tuto stats** : Tout sur les stats\n**${préfixe}tuto etat** : Tout sur les états\n**${préfixe}tuto equipement** : Tout sur l'équipement\n**${préfixe}tuto inventaire** : Tout sur l'inventaire`)
 			.setColor("#abf6a5")
 			message.channel.send(embed)
+		}
+
+		else if(/^.pfc$/i.test(message.content)){ 
+			await message.channel.send("SHI")
+			bot.setTimeout(async () => {
+				pfc = true
+				await message.channel.send("FU")
+				bot.setTimeout(async () => {
+					await message.channel.send("MI")
+					const choixAléatoire = Math.random()*3
+					if(choixAléatoire < 1){
+						choseBot = "Pierre"
+					}
+					else if(choixAléatoire < 2){
+						choseBot = "Ciseaux"
+					}
+					else if(choixAléatoire < 3){
+						choseBot = "Feuille"
+					}
+					await message.channel.send(chose)
+					pfc = false
+				},1000)
+			},1000)
 		}
 
 		else if(/^.tuto\s*consommables$/i.test(message.content)){
