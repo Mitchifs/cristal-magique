@@ -753,6 +753,21 @@ bot.on("message", async message => {
 			message.channel.send(embed)
 		}
 
+		else if(/^.dinosaure$/i.test(message.content)){
+			let msg = await message.channel.send(":sauropod:")
+			const toutesles2secondes = bot.setInterval(() => {
+				if(msg.content === ":sauropod2:"){
+					msg = await msg.edit(":sauropod:")
+				}
+				else{
+					msg = await msg.edit(":sauropod2:")
+				}
+			},2000)
+			bot.setTimeout(() => {
+				bot.clearInterval(toutesles2secondes)
+			},10000)
+		}
+
 		else if(/^.wiki$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Wiki :")
