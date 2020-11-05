@@ -765,7 +765,7 @@ bot.on("message", async message => {
 		else if(/^.help$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Commandes :")
-			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes\n**${préfixe}pfc** : Lancer un pierre feuille ciseaux avec notr cher Cristal magique`)
+			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes\n**${préfixe}pfc** : Lancer un pierre feuille ciseaux avec notre cher Cristal magique`)
 			.setColor("#abf6a5")
 			message.channel.send(embed)
 		}
