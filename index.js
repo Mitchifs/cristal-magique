@@ -54,8 +54,8 @@ const pseudos = [
 let victime
 let changé = false
 let pfc = false
-let choseBot
-let choseJoueur
+let choseBot = "rien"
+let choseJoueur = "rien"
 
 const plusOuMoins = nombre => {
 	if(Math.floor(Math.random()*2) === 1){
@@ -486,11 +486,14 @@ bot.on("message", async message => {
 		if(/cise*aux*/i.test(message.content)){
 			choseJoueur = "ciseaux"
 		}
-		if(/pier*re/i.test(message.content)){
+		else if(/pier*re/i.test(message.content)){
 			choseJoueur = "pierre"
 		}
-		if(/feui*l*le/i.test(message.content)){
+		else if(/feui*l*le/i.test(message.content)){
 			choseJoueur = "feuille"
+		}
+		else{
+			choseJoueur = "rien"
 		}
 	}
 	if(message.content.startsWith(préfixe)){
