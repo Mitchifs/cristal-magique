@@ -55,6 +55,7 @@ let victime
 let changé = false
 let pfc = false
 let choseBot
+let choseJoueur
 
 const plusOuMoins = nombre => {
 	if(Math.floor(Math.random()*2) === 1){
@@ -483,37 +484,13 @@ bot.on("message", async message => {
 	const serveur = bot.guilds.cache.get("767810173690576936")
 	if(pfc){
 		if(/cise*aux*/i.test(message.content)){
-			if(choseBot === "ciseaux"){
-				message.channel.send("Egalité !")
-			}
-			if(choseBot === "pierre"){
-				message.channel.send("Perdu !")
-			}
-			if(choseBot === "feuille"){
-				message.channel.send("Bravo t'as gagné !")
-			}
+			choseJoueur = "ciseaux"
 		}
 		if(/pier*re/i.test(message.content)){
-			if(choseBot === "pierre"){
-				message.channel.send("Egalité !")
-			}
-			if(choseBot === "feuille"){
-				message.channel.send("J'ai gagné t'es nul")
-			}
-			if(choseBot === "ciseaux"){
-				message.channel.send("Respect t'es trop fort")
-			}
+			choseJoueur = "pierre"
 		}
 		if(/feui*l*le/i.test(message.content)){
-			if(choseBot === "feuille"){
-				message.channel.send("Egalité !")
-			}
-			if(choseBot === "pierre"){
-				message.channel.send("Bravo " + message.author.username)
-			}
-			if(choseBot === "ciseaux"){
-				message.channel.send("J'ai gangé, j'ai gagné nananananère")
-			}
+			choseJoueur = "feuille"
 		}
 	}
 	if(message.content.startsWith(préfixe)){
@@ -817,10 +794,10 @@ bot.on("message", async message => {
 		else if(/^.pfc$/i.test(message.content)){ 
 			await message.channel.send("SHI")
 			bot.setTimeout(async () => {
-				pfc = true
 				await message.channel.send("FU")
 				bot.setTimeout(async () => {
 					await message.channel.send("MI")
+					pfc = true
 					const choixAléatoire = Math.random()*3
 					if(choixAléatoire < 1){
 						choseBot = "Pierre"
@@ -832,9 +809,45 @@ bot.on("message", async message => {
 						choseBot = "Feuille"
 					}
 					bot.setTimeout(async () => {
-						await message.channel.send(choseBot)
 						pfc = false
-					},1000)
+						await message.channel.send(choseBot)
+						if(choseJoueur === "ciseaux"){
+							if(choseBot === "ciseaux"){
+								message.channel.send("Egalité !")
+							}
+							if(choseBot === "pierre"){
+								message.channel.send("Perdu !")
+							}
+							if(choseBot === "feuille"){
+								message.channel.send("Bravo t'as gagné !")
+							}
+						}
+						else if(choseJoueur === "pierre"){
+							if(choseBot === "pierre"){
+								message.channel.send("Egalité !")
+							}
+							if(choseBot === "ciseaux"){
+								message.channel.send("Bravo tu as gagné !")
+							}
+							if(choseBot === "feuille"){
+								message.channel.send("Perdu !")
+							}
+						}
+						else if(choseJoueur === "feuille"){
+							if(choseBot === "feuille"){
+								message.channel.send("Egalité !")
+							}
+							if(choseBot === "ciseaux"){
+								message.channel.send("Perdu !")
+							}
+							if(choseBot === "pierre"){
+								message.channel.send("Bravo t'as gagné !")
+							}
+						}
+						else{
+							message.channel.send("Hé oh essaie pas de tricher et jte rappelle que le puits existe pas !")
+						}
+					},2000)
 				},1000)
 			},1000)
 		}
