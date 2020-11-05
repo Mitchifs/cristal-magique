@@ -757,13 +757,13 @@ bot.on("message", async message => {
 			const emoji = serveur.emojis.cache.find(e =>  e.name === "sauropod2")
 			let msg = await message.channel.send(":sauropod:")
 			const toutesles2secondes = bot.setInterval(async () => {
-				if(msg.content === ":sauropod2:"){
+				if(msg.content === String(emoji)){
 					msg = await msg.edit(":sauropod:")
 				}
 				else{
 					msg = await msg.edit(String(emoji))
 				}
-			},2000)
+			},1000)
 			bot.setTimeout(() => {
 				bot.clearInterval(toutesles2secondes)
 			},10000)
