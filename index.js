@@ -831,7 +831,7 @@ bot.on("message", async message => {
 					else if(choixAléatoire < 3){
 						choseBot = "Feuille"
 					}
-					await message.channel.send(chose)
+					await message.channel.send(choseBot)
 					pfc = false
 				},1000)
 			},1000)
