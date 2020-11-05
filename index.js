@@ -755,7 +755,7 @@ bot.on("message", async message => {
 
 		else if(/^.dinosaure$/i.test(message.content)){
 			let msg = await message.channel.send(":sauropod:")
-			const toutesles2secondes = bot.setInterval(() => {
+			const toutesles2secondes = bot.setInterval(async () => {
 				if(msg.content === ":sauropod2:"){
 					msg = await msg.edit(":sauropod:")
 				}
