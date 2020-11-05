@@ -800,13 +800,13 @@ bot.on("message", async message => {
 					pfc = true
 					const choixAléatoire = Math.random()*3
 					if(choixAléatoire < 1){
-						choseBot = "Pierre"
+						choseBot = "pierre"
 					}
 					else if(choixAléatoire < 2){
-						choseBot = "Ciseaux"
+						choseBot = "ciseaux"
 					}
 					else if(choixAléatoire < 3){
-						choseBot = "Feuille"
+						choseBot = "feuille"
 					}
 					bot.setTimeout(async () => {
 						pfc = false
