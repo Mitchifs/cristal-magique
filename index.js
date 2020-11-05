@@ -754,13 +754,14 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.dinosaure$/i.test(message.content)){
+			const emoji = serveur.emojis.cache.find(e =>  e.name === "sauropod2")
 			let msg = await message.channel.send(":sauropod:")
 			const toutesles2secondes = bot.setInterval(async () => {
 				if(msg.content === ":sauropod2:"){
 					msg = await msg.edit(":sauropod:")
 				}
 				else{
-					msg = await msg.edit(":sauropod2:")
+					msg = await msg.edit(String(emoji))
 				}
 			},2000)
 			bot.setTimeout(() => {
