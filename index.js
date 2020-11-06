@@ -850,6 +850,8 @@ bot.on("message", async message => {
 						else{
 							message.channel.send("Hé oh essaie pas de tricher et jte rappelle que le puits existe pas !")
 						}
+						choseBot = "rien"
+						choseJoueur = "rien"
 					},2000)
 				},1000)
 			},1000)
@@ -966,7 +968,6 @@ bot.on("message", async message => {
 					bas = 0
 				}
 
-				const XP_MAX = 5*2**joueurs[i].niveau //10 -> 20 -> 40 -> 80
 
 				if(/^.nord$/.test(message.content)){
 					if(map[haut][joueurs[i].y] === "Lac"){
