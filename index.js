@@ -857,6 +857,38 @@ bot.on("message", async message => {
 			},1000)
 		}
 
+		else if(/^.sondage.+$/i.test(message.content)){
+			let arguments = message.content.match(/(?<=^.sondage).+$/i)[0]
+			arguments = arguments.split(";")
+			if(arguments.length < 3){
+				message.channel.send(`Il faut au moins 2 réponses`)
+				return
+			}
+			const question = arguments[0].trim()
+			let réponses = []
+			let emojis = []
+			for(let i = 1 ; i < arguments.length ; i++){
+				réponses[i-1] = arguments[i].split(",")[0].trim()
+				emojis[i-1] = arguments[i].split(",")[1].trim()
+				if(emojis[i-1] === undefined){
+					message.channel.send(`Le format de la commande n'est pas respecté`)
+					return
+				}
+			}
+			let description = ""
+			for(let i = 0 ; i < réponses.length ; i++){
+				description += emojis[i] + " : " + réponses[i] + "\n"
+			}
+			const embed = new Discord.MessageEmbed()
+			.setTitle(question)
+			.setDescription(description)
+			.setColor("#abf6a5")
+			const msg = await message.channel.send(embed)
+			for(let i = 0 ; i < emojis.length ; i++){
+				await msg.react(emojis[i])
+			}
+		}
+
 		else if(/^.tuto\s*consommables$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Tuto : Les consommables")
