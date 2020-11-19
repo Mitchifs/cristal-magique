@@ -986,11 +986,11 @@ bot.on("message", async message => {
 						réponsesJustes++
 					}
 					else{
-						await message.channel.send("Mauvaise réponse :c")
+						await message.channel.send(`Mauvaise réponse :c\nLa bonne réponse était ${résultat}`)
 						calculsRestants--
 					}
 				}catch(e){
-					await message.channel.send("Trop tard !")
+					await message.channel.send(`Trop tard !\nLa bonne réponse était ${résultat}`)
 					calculsRestants--
 				}
 			}
