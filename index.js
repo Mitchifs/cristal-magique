@@ -962,6 +962,9 @@ bot.on("message", async message => {
 				for(let i = 0 ; i < quantitéNombres-1 ; i++){
 					opérations.push(opérationsPossibles[Math.floor(Math.random()*opérationsPossibles.length)])
 				}
+				console.log(quantitéNombres)
+				console.log(nombres)
+				console.log(opérations)
 				let messageCalcul = `Calcul ${nombreDeCalculs-(calculsRestants-1)}/${nombreDeCalculs} :\n\``
 				let résultat = 0
 				for(let i = 0 ; i < quantitéNombres; i++){
