@@ -970,7 +970,7 @@ bot.on("message", async message => {
 				for(let i = 0 ; i < quantitéNombres; i++){
 					messageCalcul += `${nombres[i]}`
 					if(i === quantitéNombres-1){
-						résultat = Number(messageCalcul)
+						résultat = eval(messageCalcul)
 						messageCalcul += ` = ? (${temps}s)`
 					}
 					else{
