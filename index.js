@@ -858,8 +858,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.sondage.+$/i.test(message.content)){
-			let arguments = message.content.match(/(?<=^.sondage).+$/i)[0]
-			arguments = arguments.split(";")
+			const arguments = message.content.match(/(?<=^.sondage).+$/i)[0].split(";")
 			if(arguments.length < 3){
 				message.channel.send(`Il faut au moins 2 réponses`)
 				return
