@@ -887,6 +887,122 @@ bot.on("message", async message => {
 			}
 		}
 
+		else if(/^.calcul mental.+$/i.test(message.content)){
+			const arguments = message.content.match(/(?<=^.calcul mental).+$/i)[0].split(";")
+			if(arguments[0].trim() === "random"){
+
+			}
+			else if(arguments.length < 6){
+				message.channel.send("Il faut au moins 6 arguments : *nbDeCalculs, tempsPourChaqueCalcul, opérateurs, nbOpérationsMin, nbOpérationsMax, puissanceDe10Max*")
+				return
+			}
+			const nombreDeCalculs = Number(arguments[0].trim())
+			if(nombreDeCalculs === NaN){
+				message.channel.send("Le nombre de calculs choisi n'est pas un nombre")
+				return
+			}
+			if(nombreDeCalculs < 1 || nombreDeCalculs > 50){
+				message.channel.send("Le nombre de calculs choisi n'est pas compris entre 1 et 50")
+				return
+			}
+			const temps = Number(arguments[1].trim())
+			if(temps === NaN){
+				message.channel.send("Le temps choisi n'est pas un nombre")
+				return
+			}
+			if(temps < 1 || temps > 60){
+				message.channel.send("Le temps choisi n'est pas compris entre 1 et 60 secondes")
+				return
+			}
+			const opérateurs = arguments[2].trim()
+			let opérationsPossibles = []
+			if(/+/.test(opérateurs)) opérationsPossibles.push("+")
+			if(/-/.test(opérateurs)) opérationsPossibles.push("-")
+			if(/[*]/.test(opérateurs)) opérationsPossibles.push("*")
+			if(/[/]/.test(opérateurs)) opérationsPossibles.push("/")
+			if(/!/.test(opérateurs)) opérationsPossibles.push("!")
+			if(/%/.test(opérateurs)) opérationsPossibles.push("%")
+
+			const nbOpérationsMin = Number(arguments[3].trim())
+			const nbOpérationsMax = Number(arguments[4].trim())
+			if(nbOpérationsMin === NaN){
+				message.channel.send("Le nombre d'opérations min choisi n'est pas un nombre")
+				return
+			}
+			if(nbOpérationsMin < 1 || nbOpérationsMax > 50){
+				message.channel.send("Le nombre d'opérations min choisi n'est pas compris entre 1 et 50")
+				return
+			}
+			if(nbOpérationsMax === NaN){
+				message.channel.send("Le nombre d'opérations max choisi n'est pas un nombre")
+				return
+			}
+			if(nbOpérationsMax < 1 || nbOpérationsMax > 50){
+				message.channel.send("Le nombre d'opérations max choisi n'est pas compris entre 1 et 50")
+				return
+			}
+			if(nbOpérationsMax < nbOpérationsMin){
+				message.channel.send("Le nombre d'opérations max est inférieur au nombre d'opérations min")
+				return
+			}
+			const puissanceDe10Max = Number(arguments[5].trim())
+			if(puissanceDe10Min === NaN){
+				message.channel.send("La puissance de 10 min n'est pas un nombre")
+				return
+			}
+			if(puissanceDe10Max === NaN){
+				message.channel.send("La puissance de 10 max n'est pas un nombre")
+				return
+			}
+			let réponsesJustes = 0
+			let calculsRestants = nombreDeCalculs
+			const nyon = bot.setInterval( () => {
+				if(calculsRestants === 0){
+					message.channel.send(`Entraînement fini ! : ${réponsesJustes}/${nombreDeCalculs} réponses correctes !`)
+					bot.clearInterval(nyon)
+					return
+				}
+				const quantitéNombres = Math.floor(Math.random()*(nbOpérationsMax-nbOpérationsMin))+nbOpérationsMax
+				let nombres = []
+				let opérations = []
+				for(let i = 0 ; i < quantitéNombres ; i++){
+					nombres.push(Math.floor(Math.random()*puissanceDe10Max*10))
+				}
+				for(let i = 0 ; i < quantitéNombres-1 ; i++){
+					opérations.push(opérationsPossibles[Math.floor(Math.random()*opérationsPossibles.length)])
+				}
+				let messageCalcul = ""
+				let résultat = 0
+				for(let i = 0 ; i < quantitéNombres; i++){
+					messageCalcul+=`${nombres[i]}`
+					if(i < quantitéNombres){
+						messageCalcul+= ` ${opérations[i]}`
+					}
+					else{
+						résultat = Number(messageCalcul)
+						messageCalcul+= ` = ? (${temps}s)`
+					}
+				}
+				await message.channel.send(messageCalcul)
+				message.channel.awaitMessages(m => m.author === message.author,{maxProcessed:1, time: temps*1000, errors: ["time"]})
+				.then(collecté => {
+					if(Number(collecté.first().content) === résultat){
+						message.channel.send("Bonne réponse ! (attends la fin du temps)")
+						calculsRestants--
+						réponsesJustes++
+					}
+					else{
+						message.channel.send("Mauvaise réponse :c")
+						calculsRestants--
+					}
+				})
+				.catch(() =>{
+					message.channel.send("Trop tard ! (attends la fin du temps)")
+					calculsRestants--
+				})
+			},temps*1000)
+		}
+
 		else if(/^.tuto\s*consommables$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Tuto : Les consommables")
