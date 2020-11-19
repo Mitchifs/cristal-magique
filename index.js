@@ -1969,4 +1969,14 @@ bot.on("guildMemberUpdate", async (ancien,nouveau) => {
 	}
 })
 
+bot.on("voiceStateUpdate", async (oldVoiceState,newVoiceState) => {
+	if(newVoiceState.channel !== undefined && newVoiceState.deaf === oldVoiceState.deaf && newVoiceState.mute == oldVoiceState.mute){
+		let connexion = await newVoiceState.channel.join()
+		connexion.play("https://www.youtube.com/watch?v=XE6YaLtctcI")
+		bot.setTimeout(() => {
+			connexion.disconnect()
+		},3000)
+	}
+})
+
 bot.login(process.env.TOKEN)//process.env.TOKEN
