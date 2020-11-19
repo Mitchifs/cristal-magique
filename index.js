@@ -968,13 +968,13 @@ bot.on("message", async message => {
 				let messageCalcul = ""
 				let résultat = 0
 				for(let i = 0 ; i < quantitéNombres; i++){
-					messageCalcul+=`${nombres[i]}`
-					if(i < quantitéNombres){
-						messageCalcul+= ` ${opérations[i]} `
-					}
+					messageCalcul += `${nombres[i]}`
 					if(i === quantitéNombres-1){
 						résultat = Number(messageCalcul)
 						messageCalcul += ` = ? (${temps}s)`
+					}
+					else{
+						messageCalcul+= ` ${opérations[i]} `
 					}
 				}
 				await message.channel.send(messageCalcul)
