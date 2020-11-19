@@ -865,12 +865,13 @@ bot.on("message", async message => {
 			let réponses = []
 			let emojis = []
 			for(let i = 1 ; i < arguments.length ; i++){
-				réponses[i-1] = arguments[i].split(",")[0].trim()
-				emojis[i-1] = arguments[i].split(",")[1].trim()
-				if(emojis[i-1] === undefined){
+				const args = arguments[i].split(",")
+				if(args.length < 2){
 					message.channel.send(`Le format de la commande n'est pas respecté !`)
 					return
 				}
+				réponses[i-1] = args[0].trim()
+				emojis[i-1] = args[1].trim()
 			}
 			let description = ""
 			for(let i = 0 ; i < réponses.length ; i++){
