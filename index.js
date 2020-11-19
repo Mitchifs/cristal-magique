@@ -956,7 +956,7 @@ bot.on("message", async message => {
 			while(!fini){
 				if(calculsRestants === 0){
 					message.channel.send(`Entraînement fini ! : ${réponsesJustes}/${nombreDeCalculs} réponses correctes !`)
-					bot.clearInterval(nyon)
+					fini = true
 					return
 				}
 				const quantitéNombres = Math.floor(Math.random()*(nbOpérationsMax-nbOpérationsMin))+nbOpérationsMax
@@ -981,22 +981,21 @@ bot.on("message", async message => {
 					}
 				}
 				await message.channel.send(messageCalcul)
-				message.channel.awaitMessages(m => m.author === message.author,{maxProcessed:1, time: temps*1000, errors: ["time"]})
-				.then(collecté => {
+				try{
+					let collecté = await message.channel.awaitMessages(m => m.author === message.author,{maxProcessed:1, time: temps*1000, errors: ["time"]})
 					if(Number(collecté.first().content) === résultat){
-						message.channel.send("Bonne réponse ! (attends la fin du temps)")
+						await message.channel.send("Bonne réponse !")
 						calculsRestants--
 						réponsesJustes++
 					}
 					else{
-						message.channel.send("Mauvaise réponse :c")
+						await message.channel.send("Mauvaise réponse :c")
 						calculsRestants--
 					}
-				})
-				.catch(() =>{
-					message.channel.send("Trop tard !")
+				}catch(e){
+					await message.channel.send("Trop tard !")
 					calculsRestants--
-				})
+				}
 			}
 		}
 
