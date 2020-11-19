@@ -763,7 +763,7 @@ bot.on("message", async message => {
 		else if(/^.help$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Commandes :")
-			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes\n**${préfixe}pfc** : Lancer un pierre feuille ciseaux avec notre cher Cristal magique\n**${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*** : Lancer un sondage stratégique !`)
+			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes\n**${préfixe}pfc** : Lancer un pierre feuille ciseaux avec notre cher Cristal magique\n**${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*** : Lancer un sondage stratégique !\n**${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul(s)* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*** : S'entraîner au calcul mental`)
 			.setColor("#abf6a5")
 			message.channel.send(embed)
 		}
@@ -892,8 +892,8 @@ bot.on("message", async message => {
 			if(arguments[0].trim() === "random"){
 
 			}
-			else if(arguments.length < 6){
-				message.channel.send("Il faut au moins 6 arguments : *nbDeCalculs, tempsPourChaqueCalcul, opérateurs, nbOpérationsMin, nbOpérationsMax, puissanceDe10Max*")
+			else if(arguments.length < 5){
+				message.channel.send("Il faut au moins 5 arguments : *nbDeCalculs, tempsPourChaqueCalcul, opérateurs, nbOpérationsMax, puissanceDe10Max*")
 				return
 			}
 			const nombreDeCalculs = Number(arguments[0].trim())
@@ -920,19 +920,9 @@ bot.on("message", async message => {
 			if(/-/.test(opérateurs)) opérationsPossibles.push("-")
 			if(/[*]/.test(opérateurs)) opérationsPossibles.push("*")
 			if(/[/]/.test(opérateurs)) opérationsPossibles.push("/")
-			if(/!/.test(opérateurs)) opérationsPossibles.push("!")
 			if(/%/.test(opérateurs)) opérationsPossibles.push("%")
 
-			const nbOpérationsMin = Number(arguments[3].trim())
-			const nbOpérationsMax = Number(arguments[4].trim())
-			if(nbOpérationsMin === NaN){
-				message.channel.send("Le nombre d'opérations min choisi n'est pas un nombre")
-				return
-			}
-			if(nbOpérationsMin < 1 || nbOpérationsMax > 50){
-				message.channel.send("Le nombre d'opérations min choisi n'est pas compris entre 1 et 50")
-				return
-			}
+			const nbOpérationsMax = Number(arguments[3].trim())
 			if(nbOpérationsMax === NaN){
 				message.channel.send("Le nombre d'opérations max choisi n'est pas un nombre")
 				return
@@ -941,11 +931,7 @@ bot.on("message", async message => {
 				message.channel.send("Le nombre d'opérations max choisi n'est pas compris entre 1 et 50")
 				return
 			}
-			if(nbOpérationsMax < nbOpérationsMin){
-				message.channel.send("Le nombre d'opérations max est inférieur au nombre d'opérations min")
-				return
-			}
-			const puissanceDe10Max = Number(arguments[5].trim())
+			const puissanceDe10Max = Number(arguments[4].trim())
 			if(puissanceDe10Max === NaN){
 				message.channel.send("La puissance de 10 max n'est pas un nombre")
 				return
@@ -953,7 +939,7 @@ bot.on("message", async message => {
 			let réponsesJustes = 0
 			let calculsRestants = nombreDeCalculs
 			while(calculsRestants > 0){
-				const quantitéNombres = Math.floor(Math.random()*(nbOpérationsMax-nbOpérationsMin))+nbOpérationsMin+1
+				const quantitéNombres = Math.floor(Math.random()*nbOpérationsMax)+2
 				let nombres = []
 				let opérations = []
 				for(let i = 0 ; i < quantitéNombres ; i++){
