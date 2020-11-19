@@ -965,13 +965,13 @@ bot.on("message", async message => {
 					opérations.push(opérationsPossibles[Math.floor(Math.random()*opérationsPossibles.length)])
 				}
 				console.log(opérations)
-				let messageCalcul = ""
+				let messageCalcul = `*Calcul ${nombreDeCalculs-(calculsRestants-1)}/${nombreDeCalculs} :*\n\``
 				let résultat = 0
 				for(let i = 0 ; i < quantitéNombres; i++){
 					messageCalcul += `${nombres[i]}`
 					if(i === quantitéNombres-1){
 						résultat = eval(messageCalcul)
-						messageCalcul += ` = ? (${temps}s)`
+						messageCalcul += ` = ?\` (${temps}s)`
 					}
 					else{
 						messageCalcul+= ` ${opérations[i]} `
