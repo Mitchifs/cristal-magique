@@ -956,7 +956,7 @@ bot.on("message", async message => {
 			}
 			let réponsesJustes = 0
 			let calculsRestants = nombreDeCalculs
-			const nyon = bot.setInterval( () => {
+			const nyon = bot.setInterval(async () => {
 				if(calculsRestants === 0){
 					message.channel.send(`Entraînement fini ! : ${réponsesJustes}/${nombreDeCalculs} réponses correctes !`)
 					bot.clearInterval(nyon)
