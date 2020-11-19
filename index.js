@@ -952,13 +952,7 @@ bot.on("message", async message => {
 			}
 			let réponsesJustes = 0
 			let calculsRestants = nombreDeCalculs
-			let fini = false
-			while(!fini){
-				if(calculsRestants === 0){
-					message.channel.send(`Entraînement fini ! : ${réponsesJustes}/${nombreDeCalculs} réponses correctes !`)
-					fini = true
-					return
-				}
+			while(calculsRestants > 0){
 				const quantitéNombres = Math.floor(Math.random()*(nbOpérationsMax-nbOpérationsMin))+nbOpérationsMax
 				let nombres = []
 				let opérations = []
@@ -997,6 +991,7 @@ bot.on("message", async message => {
 					calculsRestants--
 				}
 			}
+			message.channel.send(`Entraînement fini ! : ${réponsesJustes}/${nombreDeCalculs} réponses correctes !`)
 		}
 
 		else if(/^.tuto\s*consommables$/i.test(message.content)){
