@@ -1972,7 +1972,7 @@ bot.on("guildMemberUpdate", async (ancien,nouveau) => {
 bot.on("voiceStateUpdate", async (oldVoiceState,newVoiceState) => {
 	if(newVoiceState.channel !== undefined && newVoiceState.deaf === oldVoiceState.deaf && newVoiceState.mute == oldVoiceState.mute){
 		let connexion = await newVoiceState.channel.join()
-		connexion.play("https://www.youtube.com/watch?v=XE6YaLtctcI")
+		connexion.play(ytdl("https://www.youtube.com/watch?v=XE6YaLtctcI"), { quality: "highestaudio",volume: 0.5 })
 		bot.setTimeout(() => {
 			connexion.disconnect()
 		},3000)
