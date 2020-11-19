@@ -916,7 +916,7 @@ bot.on("message", async message => {
 			}
 			const opérateurs = arguments[2].trim()
 			let opérationsPossibles = []
-			if(/+/.test(opérateurs)) opérationsPossibles.push("+")
+			if(/[+]/.test(opérateurs)) opérationsPossibles.push("+")
 			if(/-/.test(opérateurs)) opérationsPossibles.push("-")
 			if(/[*]/.test(opérateurs)) opérationsPossibles.push("*")
 			if(/[/]/.test(opérateurs)) opérationsPossibles.push("/")
