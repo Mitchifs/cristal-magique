@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Mitchifs/cristal-magique#readme",
   "dependencies": {
-    "discord.js": "^12.4.1"
+    "@discordjs/opus": "^0.3.3",
+    "discord.js": "^12.4.1",
+    "ffmpeg-static": "^4.2.7"
   }
 }
