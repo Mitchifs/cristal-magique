@@ -954,14 +954,17 @@ bot.on("message", async message => {
 			let calculsRestants = nombreDeCalculs
 			while(calculsRestants > 0){
 				const quantitéNombres = Math.floor(Math.random()*(nbOpérationsMax-nbOpérationsMin))+nbOpérationsMax
+				console.log(quantitéNombres)
 				let nombres = []
 				let opérations = []
 				for(let i = 0 ; i < quantitéNombres ; i++){
 					nombres.push(Math.floor(Math.random()*puissanceDe10Max*10))
 				}
+				console.log(nombres)
 				for(let i = 0 ; i < quantitéNombres-1 ; i++){
 					opérations.push(opérationsPossibles[Math.floor(Math.random()*opérationsPossibles.length)])
 				}
+				console.log(opérations)
 				let messageCalcul = ""
 				let résultat = 0
 				for(let i = 0 ; i < quantitéNombres; i++){
