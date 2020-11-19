@@ -860,7 +860,7 @@ bot.on("message", async message => {
 		else if(/^.sondage.+$/i.test(message.content)){
 			const arguments = message.content.match(/(?<=^.sondage).+$/i)[0].split(";")
 			if(arguments.length < 3){
-				message.channel.send(`Il faut au moins 2 réponses`)
+				message.channel.send(`Il faut au moins 2 réponses !`)
 				return
 			}
 			const question = arguments[0].trim()
@@ -870,7 +870,7 @@ bot.on("message", async message => {
 				réponses[i-1] = arguments[i].split(",")[0].trim()
 				emojis[i-1] = arguments[i].split(",")[1].trim()
 				if(emojis[i-1] === undefined){
-					message.channel.send(`Le format de la commande n'est pas respecté`)
+					message.channel.send(`Le format de la commande n'est pas respecté !`)
 					return
 				}
 			}
