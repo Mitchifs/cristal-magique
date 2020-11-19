@@ -943,7 +943,7 @@ bot.on("message", async message => {
 				let nombres = []
 				let opérations = []
 				for(let i = 0 ; i < quantitéNombres ; i++){
-					nombres.push(Math.floor(Math.random()*puissanceDe10Max*10))
+					nombres.push(Math.floor(Math.random()*10**puissanceDe10Max))
 				}
 				for(let i = 0 ; i < quantitéNombres-1 ; i++){
 					opérations.push(opérationsPossibles[Math.floor(Math.random()*opérationsPossibles.length)])
