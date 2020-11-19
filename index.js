@@ -1973,7 +1973,7 @@ bot.on("guildMemberUpdate", async (ancien,nouveau) => {
 bot.on("voiceStateUpdate", async (oldVoiceState,newVoiceState) => {
 	if(newVoiceState.channel !== undefined && newVoiceState.deaf === oldVoiceState.deaf && newVoiceState.mute == oldVoiceState.mute){
 		let connexion = await newVoiceState.channel.join()
-		connexion.play("ah.mp3")
+		connexion.play("/app/ah.mp3")
 		bot.setTimeout(() => {
 			connexion.disconnect()
 		},3000)
