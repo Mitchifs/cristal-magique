@@ -953,7 +953,7 @@ bot.on("message", async message => {
 			let réponsesJustes = 0
 			let calculsRestants = nombreDeCalculs
 			while(calculsRestants > 0){
-				const quantitéNombres = Math.floor(Math.random()*(nbOpérationsMax-nbOpérationsMin))+nbOpérationsMax
+				const quantitéNombres = Math.floor(Math.random()*(nbOpérationsMax-nbOpérationsMin))+nbOpérationsMax+1
 				console.log(quantitéNombres)
 				let nombres = []
 				let opérations = []
