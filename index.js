@@ -952,7 +952,8 @@ bot.on("message", async message => {
 			}
 			let réponsesJustes = 0
 			let calculsRestants = nombreDeCalculs
-			const nyon = bot.setInterval(async () => {
+			let fini = false
+			while(!fini){
 				if(calculsRestants === 0){
 					message.channel.send(`Entraînement fini ! : ${réponsesJustes}/${nombreDeCalculs} réponses correctes !`)
 					bot.clearInterval(nyon)
@@ -993,10 +994,10 @@ bot.on("message", async message => {
 					}
 				})
 				.catch(() =>{
-					message.channel.send("Trop tard ! (attends la fin du temps)")
+					message.channel.send("Trop tard !")
 					calculsRestants--
 				})
-			},temps*1000)
+			}
 		}
 
 		else if(/^.tuto\s*consommables$/i.test(message.content)){
