@@ -962,7 +962,7 @@ bot.on("message", async message => {
 				}
 				await message.channel.send(messageCalcul)
 				try{
-					let collecté = await message.channel.awaitMessages(m => m.author === message.author,{maxProcessed:1, time: temps*1000, errors: ["time"]})
+					let collecté = await message.channel.awaitMessages(m => m.author === message.author,{max:1, time: temps*1000, errors: ["time"]})
 					if(Number(collecté.first().content) === résultat){
 						await message.channel.send("Bonne réponse !")
 						calculsRestants--
