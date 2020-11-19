@@ -1,4 +1,6 @@
 const Discord = require("discord.js")
+const ytdl = require("ytdl-core-discord")
+
 const bot = new Discord.Client()
 const préfixe = ","
 const anecdote = ["Je vous aime tous :heart:","DEJA VU I'VE JUST BEEN IN THIS PLACE BEFORE","Ouais jsuis d'accord","Non.","En effet..","*HUM*","TG ?","La personne avant moi est la plus bête de la classe ! c:","Coucou :p","SUPPRIME OU JTE BUTE","Mmmmmmmmmmmmmmmmmmmmmmmmmm...","NYOOOOON!!!","Ce que tu viens de dire est complètement faux ! En voici la preuve : https://www.google.com/","Promis je vous ferai pas de mal","Pour qui tu te prends pour dire ça ?!","Tip#1 : Il serait temps de prendre une petite pause après tout ce temps passé devant le pc ne penses-tu pas ? c:","Tip#2 : Si vous avez la flemme, n'ayez pas la flemme c:"]
