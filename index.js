@@ -946,10 +946,6 @@ bot.on("message", async message => {
 				return
 			}
 			const puissanceDe10Max = Number(arguments[5].trim())
-			if(puissanceDe10Min === NaN){
-				message.channel.send("La puissance de 10 min n'est pas un nombre")
-				return
-			}
 			if(puissanceDe10Max === NaN){
 				message.channel.send("La puissance de 10 max n'est pas un nombre")
 				return
