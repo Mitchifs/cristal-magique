@@ -1951,25 +1951,23 @@ bot.on("message", async message => {
 	if(Math.floor(Math.random()*20)+1 === 1 && !partieLancee){
 		message.channel.send(anecdote[Math.floor(Math.random()*anecdote.length)])
 	}
-	if(/mais/i.test(message.content) || /ou/i.test(message.content) || /et/i.test(message.content) || /donc/i.test(message.content) || /or/i.test(message.content) || /ni/i.test(message.content) || /car/i.test(message.content) || /à/i.test(message.content) || /dans/i.test(message.content) || /par/i.test(message.content) || /pour/i.test(message.content) || /en/i.test(message.content) || /vers/i.test(message.content) || /avec/i.test(message.content) || /de/i.test(message.content) || /sans/i.test(message.content) || /sous/i.test(message.content)){
-		if(Math.random() < 0.5){
-			let membre = await serveur.members.fetch(message.author.id)
-			if(!serveur.channels.cache.some(c => c.id === "768382676243054593" && c.type === "voice")) return
-			let Travail = serveur.channels.cache.get("768382676243054593")
-			if(!serveur.channels.cache.some(c => c.id === "768382131407552522" && c.type === "voice")) return
-			let cpasketukroi = serveur.channels.cache.get("768382131407552522")
-			if(!serveur.channels.cache.some(c => c.id === "773882316987695124" && c.type === "voice")) return
-			let watashinosekai = serveur.channels.cache.get("773882316987695124")
+	if(Math.random() < 0.2){//1 chance sur 5
+		let membre = await serveur.members.fetch(message.author.id)
+		if(!serveur.channels.cache.some(c => c.id === "768382676243054593" && c.type === "voice")) return
+		let Travail = serveur.channels.cache.get("768382676243054593")
+		if(!serveur.channels.cache.some(c => c.id === "768382131407552522" && c.type === "voice")) return
+		let cpasketukroi = serveur.channels.cache.get("768382131407552522")
+		if(!serveur.channels.cache.some(c => c.id === "773882316987695124" && c.type === "voice")) return
+		let watashinosekai = serveur.channels.cache.get("773882316987695124")
 
-			if(Travail.members.some(m => m.id === membre.id)){
-				membre.voice.kick()
-			}
-			if(cpasketukroi.members.some(m => m.id === membre.id)){
-				membre.voice.kick()
-			}
-			if(watashinosekai.members.some(m => m.id === membre.id)){
-				membre.voice.kick()
-			}
+		if(Travail.members.some(m => m.id === membre.id)){
+			membre.voice.kick()
+		}
+		if(cpasketukroi.members.some(m => m.id === membre.id)){
+			membre.voice.kick()
+		}
+		if(watashinosekai.members.some(m => m.id === membre.id)){
+			membre.voice.kick()
 		}
 	}
 })
