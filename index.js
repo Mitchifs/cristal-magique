@@ -1948,7 +1948,7 @@ bot.on("message", async message => {
 		}
 	}
 	
-	if(Math.floor(Math.random()*20)+1 === 1 && !partieLancee){
+	if(Math.floor(Math.random()*20)+1 === 1 && !partieLancee){//1 chance sur 20
 		message.channel.send(anecdote[Math.floor(Math.random()*anecdote.length)])
 	}
 	if(Math.random() < 0.2){//1 chance sur 5
