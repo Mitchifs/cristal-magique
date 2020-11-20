@@ -1960,14 +1960,9 @@ bot.on("message", async message => {
 		if(!serveur.channels.cache.some(c => c.id === "773882316987695124" && c.type === "voice")) return
 		let watashinosekai = serveur.channels.cache.get("773882316987695124")
 
-		if(Travail.members.some(m => m.id === membre.id)){
+		if(Travail.members.some(m => m.id === membre.id) || cpasketukroi.members.some(m => m.id === membre.id) || watashinosekai.members.some(m => m.id === membre.id)){
 			membre.voice.kick()
-		}
-		if(cpasketukroi.members.some(m => m.id === membre.id)){
-			membre.voice.kick()
-		}
-		if(watashinosekai.members.some(m => m.id === membre.id)){
-			membre.voice.kick()
+			membre.user.send("Si t'es en vocal pourquoi tu parles dans un salon écrit chacal ?")
 		}
 	}
 })
