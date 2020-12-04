@@ -1994,10 +1994,6 @@ bot.on("message", async message => {
 	}
 })
 
-bot.on("messageReactionAdd", async (messageReaction, user) => {
-	if(user.bot) return
-})
-
 bot.on("guildMemberUpdate", async (ancien,nouveau) => {
 	if(ancien.id === victime && !changé){
 		if(nouveau.nickname !== ancien.nickname){
