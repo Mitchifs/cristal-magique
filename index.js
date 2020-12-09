@@ -791,7 +791,7 @@ bot.on("message", async message => {
 		else if(/^.help$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Commandes :")
-			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes\n**${préfixe}pfc** : Lancer un pierre feuille ciseaux avec notre cher Cristal magique\n**${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*** : Lancer un sondage stratégique !\n**${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul(s)* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*** : S'entraîner au calcul mental\n**.tts *msg*** : Parler en tts`)
+			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes\n**${préfixe}pfc** : Lancer un pierre feuille ciseaux avec notre cher Cristal magique\n**${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*** : Lancer un sondage stratégique !\n**${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul(s)* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*** : S'entraîner au calcul mental\n**${préfixe}tts *msg*** : Parler en tts`)
 			.setColor("#abf6a5")
 			message.channel.send(embed)
 		}
@@ -1010,7 +1010,9 @@ bot.on("message", async message => {
 
 		else if(/^.tts.+$/i.test(message.content)){
 			const msg = message.content.match(/(?<=.tts).+/)[0].trim()
-			message.channel.send(`/tts message:${msg}`)
+			message.channel.send(msg,{
+				tts:true
+			})
 		}
 
 		else if(/^.tuto\s*consommables$/i.test(message.content)){
