@@ -1008,6 +1008,11 @@ bot.on("message", async message => {
 			message.channel.send(`Entraînement fini ! : ${réponsesJustes}/${nombreDeCalculs} réponses correctes !`)
 		}
 
+		else if(/^.tts.+$/i.test(message.content)){
+			const msg = message.content.match(/(?<=.tts).+/)[0].trim()
+			message.channel.send(`/tts message:${msg}`)
+		}
+
 		else if(/^.tuto\s*consommables$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Tuto : Les consommables")
