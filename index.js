@@ -2007,8 +2007,10 @@ bot.on("message", async message => {
 			nouveauMessage = nouveauMessage.slice(0,endroit) + nouveauMessage.slice(endroit+1,nouveauMessage.length-1)
 			suppressions--
 		}
-		message.delete()
-		.catch(console.error())
+		if(message.channel.type !== "dm"){
+			message.delete()
+			.catch(console.error())
+		}
 		message.channel.send(`*Ziyad :* ${nouveauMessage}`)
 		.catch(console.error())
 	}
