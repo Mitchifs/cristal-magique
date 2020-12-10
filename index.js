@@ -2009,10 +2009,8 @@ bot.on("message", async message => {
 		}
 		if(message.channel.type !== "dm"){
 			message.delete()
-			.catch(console.error())
 		}
 		message.channel.send(`*Ziyad :* ${nouveauMessage}`)
-		.catch(console.error())
 	}
 })
 
