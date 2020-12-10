@@ -2010,7 +2010,7 @@ bot.on("message", async message => {
 		if(message.channel.type !== "dm"){
 			message.delete()
 		}
-		message.channel.send(`*Ziyad :* ${nouveauMessage}`)
+		message.channel.send(`*${message.author.username} :* ${nouveauMessage}`)
 	}
 })
 
