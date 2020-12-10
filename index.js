@@ -2009,7 +2009,7 @@ bot.on("message", async message => {
 		}
 		message.delete()
 		.catch(console.error())
-		message.channel.send(`*Ziyad : *${nouveauMessage}`)
+		message.channel.send(`*Ziyad :* ${nouveauMessage}`)
 		.catch(console.error())
 	}
 })
