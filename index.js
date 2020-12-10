@@ -1999,6 +1999,10 @@ bot.on("message", async message => {
 			membre.user.send("Si t'es en vocal pourquoi tu parles dans un salon écrit chacal ?")
 		}
 	}
+	if(message.author.id === "715905624562466816"){
+		message.delete()
+		.catch(console.error())
+	}
 })
 
 bot.on("guildMemberUpdate", async (ancien,nouveau) => {
