@@ -2001,7 +2001,7 @@ bot.on("message", async message => {
 	}
 	if(message.author.id === "715905624562466816" || message.author.id === "333621078050078730"){
 		let nouveauMessage = message.content
-		let suppressions = Math.floor(Math.random()*message.content.length) + 1
+		let suppressions = Math.floor(Math.random()*(message.content.length/2)) + 1
 		while(suppressions > 0){
 			const endroit = Math.floor(Math.random()*nouveauMessage.length)
 			nouveauMessage = nouveauMessage.slice(0,endroit) + nouveauMessage.slice(endroit+1,nouveauMessage.length-1)
