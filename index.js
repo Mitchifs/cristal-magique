@@ -1999,8 +1999,17 @@ bot.on("message", async message => {
 			membre.user.send("Si t'es en vocal pourquoi tu parles dans un salon écrit chacal ?")
 		}
 	}
-	if(message.author.id === "715905624562466816"){
+	if(message.author.id === "715905624562466816" || message.author.id === "333621078050078730"){
+		let nouveauMessage = message.content
+		const suppressions = Math.floor(Math.random()*message.content.length) + 1
+		while(suppressions > 0){
+			const endroit = Math.floor(Math.random()*nouveauMessage.length)
+			nouveauMessage = nouveauMessage.slice(0,endroit) + nouveauMessage.slice(endroit,nouveauMessage.length-1)
+			suppressions--
+		}
 		message.delete()
+		.catch(console.error())
+		message.channel.send(`*Ziyad : *${nouveauMessage}`)
 		.catch(console.error())
 	}
 })
