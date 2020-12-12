@@ -528,8 +528,17 @@ bot.on("message", async message => {
 		if(/^.help$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Commandes :")
-			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes\n**${préfixe}pfc** : Lancer un pierre feuille ciseaux avec notre cher Cristal magique\n**${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*** : Lancer un sondage stratégique !\n**${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul(s)* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*** : S'entraîner au calcul mental\n**${préfixe}tts *msg*** : Parler en tts`)
-			.setColor("#abf6a5")
+			.addField(`${préfixe}roue pompes`,"Lance la roue des pompes")
+			.addField(`${préfixe}liens`,"Liens utiles de l'INSA")
+			.addField(`${préfixe}stats`,"Statistiques du serveur")
+			.addField(`${préfixe}wiki`,"Wiki de :zap:__G1 VS G2__ :zap:")
+			.addField(`${préfixe}victimiser *surnom_serveur*`,"Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place")
+			.addField(`${préfixe}dinosaure`,"Fait danser un dinosaure pendant 10 secondes")
+			.addField(`${préfixe}pfc`,"Lance un pierre feuille ciseaux avec notre cher Cristal magique")
+			.addField(`${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*`,"Lance un sondage stratégique")
+			.addField(`${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul(s)* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*`,"Entraînement au calcul mental")
+			.addField(`${préfixe}tts *message*`,"Transforme ton message classique en message tts")
+			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
 			message.channel.send(embed)
 		}
 
