@@ -524,7 +524,15 @@ bot.on("message", async message => {
 	}
 	if(message.content.startsWith(préfixe)){
 
-		if(/^.roue\s*pompes$/i.test(message.content)){
+		if(/^.help$/i.test(message.content)){
+			const embed = new Discord.MessageEmbed()
+			.setTitle("Commandes :")
+			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes\n**${préfixe}pfc** : Lancer un pierre feuille ciseaux avec notre cher Cristal magique\n**${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*** : Lancer un sondage stratégique !\n**${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul(s)* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*** : S'entraîner au calcul mental\n**${préfixe}tts *msg*** : Parler en tts`)
+			.setColor("#abf6a5")
+			message.channel.send(embed)
+		}
+
+		else if(/^.roue\s*pompes$/i.test(message.content)){
 			const x = Math.floor(Math.random()*100)
 			let résultat = ""
 			let couleur = ""
@@ -786,14 +794,6 @@ bot.on("message", async message => {
 			},30000)
 
 			message.channel.send("**:information_source: PARTIE LANCEE**")
-		}
-
-		else if(/^.help$/i.test(message.content)){
-			const embed = new Discord.MessageEmbed()
-			.setTitle("Commandes :")
-			.setDescription(`**${préfixe}roue pompes** : Lancer la roue des pompes\n**${préfixe}liens** : Lien utiles de l'INSA\n**${préfixe}stats** : Statistiques du serveur\n**${préfixe}Lancer une partie** : Lancer une partie de :zap:__G1 VS G2__ :zap:\n**${préfixe}Annuler la partie** : Annuler la partie de :zap:__G1 VS G2__ :zap: en cours\n**${préfixe}wiki** : Wiki de :zap:__G1 VS G2__ :zap:\n**${préfixe}victimiser *surnom_serveur*** : Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place\n**${préfixe}dinosaure** : Permet de faire danser un dinosaure pendant 10 secondes\n**${préfixe}pfc** : Lancer un pierre feuille ciseaux avec notre cher Cristal magique\n**${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*** : Lancer un sondage stratégique !\n**${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul(s)* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*** : S'entraîner au calcul mental\n**${préfixe}tts *msg*** : Parler en tts`)
-			.setColor("#abf6a5")
-			message.channel.send(embed)
 		}
 
 		else if(/^.dinosaure$/i.test(message.content)){
