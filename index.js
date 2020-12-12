@@ -616,7 +616,7 @@ bot.on("message", async message => {
 						victime = membreVisé.id
 						message.channel.send(`${membreVisé.displayName} est maintenant la nouvelle victime !`)
 					}
-					catch(e){
+					catch{
 						message.channel.send("Tu m'en demandes trop là...")
 					}
 				}
@@ -2030,7 +2030,7 @@ bot.on("message", async message => {
 		}
 		message.channel.send(`*${message.author.username} :* ${nouveauMessage}`)
 	}
-	if(/<.+>/.test(message.content)){
+	if(/^<.+>$/.test(message.content)){
 		console.log(message.content)
 	}
 })
