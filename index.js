@@ -536,7 +536,7 @@ bot.on("message", async message => {
 			.addField(`${préfixe}dinosaure`,"Fait danser un dinosaure pendant 10 secondes")
 			.addField(`${préfixe}pfc`,"Lance un pierre feuille ciseaux avec notre cher Cristal magique")
 			.addField(`${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*`,"Lance un sondage stratégique")
-			.addField(`${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul(s)* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*`,"Entraînement au calcul mental")
+			.addField(`${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*`,"Entraînement au calcul mental")
 			.addField(`${préfixe}tts *message*`,"Transforme ton message classique en message tts")
 			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
 			message.channel.send(embed)
@@ -925,7 +925,7 @@ bot.on("message", async message => {
 			const embed = new Discord.MessageEmbed()
 			.setTitle(question)
 			.setDescription(description)
-			.setColor("#abf6a5")
+			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
 			const msg = await message.channel.send(embed)
 			for(let i = 0 ; i < emojis.length ; i++){
 				await msg.react(emojis[i])
