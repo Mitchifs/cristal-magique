@@ -532,7 +532,7 @@ bot.on("message", async message => {
 			.addField(`${préfixe}liens`,"Liens utiles de l'INSA")
 			.addField(`${préfixe}stats`,"Statistiques du serveur")
 			.addField(`${préfixe}wiki`,"Wiki de :zap:__G1 VS G2__ :zap:")
-			.addField(`${préfixe}victimiser *surnom_serveur*`,"Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place")
+			.addField(`${préfixe}victimiser *mention*`,"Attribue un pseudo dégueulasse non modifiable à la personne ciblée qui ne pourra pas désigner qqun à sa place")
 			.addField(`${préfixe}dinosaure`,"Fait danser un dinosaure pendant 10 secondes")
 			.addField(`${préfixe}pfc`,"Lance un pierre feuille ciseaux avec notre cher Cristal magique")
 			.addField(`${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*`,"Lance un sondage stratégique")
@@ -575,7 +575,7 @@ bot.on("message", async message => {
 			.addField("Boîte Mail","https://partage.insa-rouen.fr/")
 			.addField("Moodle","https://moodle.insa-rouen.fr/")
 			.addField("ENT","https://ent.normandie-univ.fr/")
-			.setColor("#abf6a5")
+			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
 			message.channel.send(embed)
 		}
 
@@ -595,22 +595,26 @@ bot.on("message", async message => {
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Stats :")
 			.setDescription(`**Membres totaux (avec bot)** : ${membresTotaux}\n**Nb de G1** : ${G1}\n**Nb de G2** : ${G2}\n**Date de création du serveur** : ${serveur.createdAt.toLocaleDateString("fr-FR",{timeZone:"Europe/paris",hour12:false})}\n**Heure de création du serveur** : ${serveur.createdAt.toLocaleTimeString("fr-FR",{timeZone:"Europe/Paris",hour12:false})}`)
-			.setColor("#abf6a5")
+			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
 			message.channel.send(embed)
 		}
 
-		else if(/^.victimiser\s.+$/i.test(message.content)){
-			let personne = message.content.match(/(?<=^.victimiser\s).+$/i)[0]
+		else if(/^.victimiser\s*<@\d+>$/i.test(message.content)){
+			let id = message.content.match(/(?<=^.victimiser\s*<@)\d+(?=>$)/i)[0]
 			const membres = await serveur.members.fetch()
-			if(membres.some(m => m.displayName === personne)){
-				const membre = membres.find(m => m.displayName === personne)
+			if(membres.some(m => m.id === id)){
+				const membreVisé = membres.find(m => m.id === id)
 				const membreMessage = membres.find(m => m.user.id === message.author.id)
 				if(membreMessage.id !== victime){
-					membre.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
+					membreVisé.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
 					.catch(console.error)
 					changé = true
-					victime = membre.id
-					message.channel.send(`${personne} est maintenant la nouvelle victime !`)
+					if(membres.some(m => m.id === victime)){
+						const membreVictime = membres.get(victime)
+						membreVictime.setNickname(membreVictime.user.username)
+					}
+					victime = membreVisé.id
+					message.channel.send(`${membreVisé.displayName} est maintenant la nouvelle victime !`)
 				}
 				else{
 					message.channel.send("Bien tenté jeune padawan :p")
