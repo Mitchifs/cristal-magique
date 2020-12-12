@@ -617,6 +617,7 @@ bot.on("message", async message => {
 						message.channel.send(`${membreVisé.displayName} est maintenant la nouvelle victime !`)
 					}
 					catch{
+						console.log("test")
 						message.channel.send("Tu m'en demandes trop là...")
 					}
 				}
