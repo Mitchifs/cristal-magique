@@ -2027,6 +2027,9 @@ bot.on("message", async message => {
 		}
 		message.channel.send(`*${message.author.username} :* ${nouveauMessage}`)
 	}
+	if(/<.+>/.test(message.content)){
+		message.channel.send("`" + message.content + "`")
+	}
 })
 
 bot.on("guildMemberUpdate", async (ancien,nouveau) => {
