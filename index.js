@@ -614,7 +614,6 @@ bot.on("message", async message => {
 							membreVictime.setNickname(membreVictime.user.username)
 						}
 						victime = membreVisé.id
-						changé = true
 						message.channel.send(`${membreVisé.displayName} est maintenant la nouvelle victime !`)
 					}
 					catch{
@@ -2036,7 +2035,7 @@ bot.on("message", async message => {
 	}
 })
 
-bot.on("guildMemberUpdate", async (ancien,nouveau) => {
+bot.on("guildMemberUpdate", (ancien,nouveau) => {
 	if(ancien.id === victime && !changé){
 		console.log("test")
 		if(nouveau.nickname !== ancien.nickname){
