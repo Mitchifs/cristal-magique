@@ -2035,9 +2035,6 @@ bot.on("message", async message => {
 })
 
 bot.on("guildMemberUpdate", async (ancien,nouveau) => {
-	console.log(changé)
-	console.log(victime)
-	console.log(ancien.id === victime)
 	if(ancien.id === victime && !changé){
 		console.log("détecté")
 		if(nouveau.nickname !== ancien.nickname){
