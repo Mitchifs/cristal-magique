@@ -599,9 +599,9 @@ bot.on("message", async message => {
 			message.channel.send(embed)
 		}
 
-		else if(/^.victimiser\s*<@\d+>$/i.test(message.content)){
+		else if(/^.victimiser\s*<@!\d+>$/i.test(message.content)){
 			console.log("test")
-			let id = message.content.match(/(?<=^.victimiser\s*<@)\d+(?=>$)/i)[0]
+			let id = message.content.match(/(?<=^.victimiser\s*<@!)\d+(?=>$)/i)[0]
 			const membres = await serveur.members.fetch()
 			if(membres.some(m => m.id === id)){
 				const membreVisé = membres.find(m => m.id === id)
@@ -2028,7 +2028,7 @@ bot.on("message", async message => {
 		message.channel.send(`*${message.author.username} :* ${nouveauMessage}`)
 	}
 	if(/<.+>/.test(message.content)){
-		message.channel.send("`" + message.content + "`")
+		console.log(message.content)
 	}
 })
 
