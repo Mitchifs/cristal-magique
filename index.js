@@ -607,10 +607,7 @@ bot.on("message", async message => {
 				const membreMessage = membres.find(m => m.user.id === message.author.id)
 				if(membreMessage.id !== victime){
 					try{
-						membreVisé.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
-						.catch((e) => {
-							throw
-						})
+						await membreVisé.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
 						changé = true
 						if(membres.some(m => m.id === victime)){
 							const membreVictime = membres.get(victime)
