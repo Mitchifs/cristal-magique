@@ -608,6 +608,9 @@ bot.on("message", async message => {
 				if(membreMessage.id !== victime){
 					try{
 						membreVisé.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
+						.catch((e) => {
+							throw
+						})
 						changé = true
 						if(membres.some(m => m.id === victime)){
 							const membreVictime = membres.get(victime)
@@ -617,7 +620,6 @@ bot.on("message", async message => {
 						message.channel.send(`${membreVisé.displayName} est maintenant la nouvelle victime !`)
 					}
 					catch{
-						console.log("test")
 						message.channel.send("Tu m'en demandes trop là...")
 					}
 				}
