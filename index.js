@@ -2037,6 +2037,7 @@ bot.on("message", async message => {
 
 bot.on("guildMemberUpdate", async (ancien,nouveau) => {
 	if(ancien.id === victime && !changé){
+		console.log("test")
 		if(nouveau.nickname !== ancien.nickname){
 			nouveau.setNickname(ancien.nickname)
 			.catch(console.error)
