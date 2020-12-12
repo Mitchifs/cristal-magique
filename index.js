@@ -600,22 +600,25 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.victimiser\s*<@!\d+>$/i.test(message.content)){
-			console.log("test")
 			let id = message.content.match(/(?<=^.victimiser\s*<@!)\d+(?=>$)/i)[0]
 			const membres = await serveur.members.fetch()
 			if(membres.some(m => m.id === id)){
 				const membreVisé = membres.find(m => m.id === id)
 				const membreMessage = membres.find(m => m.user.id === message.author.id)
 				if(membreMessage.id !== victime){
-					membreVisé.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
-					.catch(console.error)
-					changé = true
-					if(membres.some(m => m.id === victime)){
-						const membreVictime = membres.get(victime)
-						membreVictime.setNickname(membreVictime.user.username)
+					try{
+						membreVisé.setNickname(pseudos[Math.floor(Math.random()*pseudos.length)])
+						changé = true
+						if(membres.some(m => m.id === victime)){
+							const membreVictime = membres.get(victime)
+							membreVictime.setNickname(membreVictime.user.username)
+						}
+						victime = membreVisé.id
+						message.channel.send(`${membreVisé.displayName} est maintenant la nouvelle victime !`)
 					}
-					victime = membreVisé.id
-					message.channel.send(`${membreVisé.displayName} est maintenant la nouvelle victime !`)
+					catch(e){
+						message.channel.send("Tu m'en demandes trop là...")
+					}
 				}
 				else{
 					message.channel.send("Bien tenté jeune padawan :p")
