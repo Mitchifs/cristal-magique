@@ -614,6 +614,7 @@ bot.on("message", async message => {
 							membreVictime.setNickname(membreVictime.user.username)
 						}
 						victime = membreVisé.id
+						changé = true
 						message.channel.send(`${membreVisé.displayName} est maintenant la nouvelle victime !`)
 					}
 					catch{
