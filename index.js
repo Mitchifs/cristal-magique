@@ -600,6 +600,7 @@ bot.on("message", async message => {
 		}
 
 		else if(/^.victimiser\s*<@\d+>$/i.test(message.content)){
+			console.log("test")
 			let id = message.content.match(/(?<=^.victimiser\s*<@)\d+(?=>$)/i)[0]
 			const membres = await serveur.members.fetch()
 			if(membres.some(m => m.id === id)){
