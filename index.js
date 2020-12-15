@@ -1039,8 +1039,16 @@ bot.on("message", async message => {
 
 		else if(/^.cr[ée]dits$/i.test(message.content)){
 			const embed = new Discord.MessageEmbed()
-			.setTitle("Crédits :")
-			.setDescription(`**Cristal magique** :\n*Créateur : Mitchifs\nDéveloppeur : Mitchifs\nSource d'idées : INSA Groupe G\nCode source libre de droit : https://github.com/Mitchifs/cristal-magique/*`)
+			.setTitle("Cristal magique...")
+			.setDescription("*...un bot créé par Mitchifs*")
+			.addField("Conception","Développeur : Mitchifs\nCode source libre de droit : https://github.com/Mitchifs/cristal-magique/")
+			.addField("Remerciements","Paul MEHAUD\nyanis-dlmr\nAdrien Maire\nLou-Anne\nMargaux🦊\nmarine\nnavette-spatiale\nZiyad\sMa mère, mon père, mes grands-parents, mes cous..")
+			.addField("Mot de fin","*Pas d'idée...*")
+			.setImage("https://image.noelshack.com/fichiers/2020/51/2/1608039983-boule-de-cristal.jpg")
+			.setTimestamp()
+			.setFooter("\"Merci pour votre soutien c:\"",bot.users.cache.get("333621078050078730").avatarURL({
+				format:"png",
+			}))
 			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
 			message.channel.send(embed)
 		}
