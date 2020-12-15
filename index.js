@@ -582,6 +582,7 @@ bot.on("message", async message => {
 		else if(/^.stats$/i.test(message.content)){
 			let G1 = 0;
 			let G2 = 0;
+			let G3 = 0;
 			const membresTotaux = serveur.memberCount
 			const membres = (await serveur.members.fetch()).array()
 			for(let i = 0 ; i < membres.length ; i++){
@@ -591,10 +592,13 @@ bot.on("message", async message => {
 				if(membres[i].roles.cache.some(role => role.name === "G2")){
 					G2++
 				}
+				if(membres[i].roles.cache.some(role => role.name === "G3")){
+					G3++
+				}
 			}
 			const embed = new Discord.MessageEmbed()
 			.setTitle("Stats :")
-			.setDescription(`**Membres totaux (avec bot)** : ${membresTotaux}\n**Nb de G1** : ${G1}\n**Nb de G2** : ${G2}\n**Date de création du serveur** : ${serveur.createdAt.toLocaleDateString("fr-FR",{timeZone:"Europe/paris",hour12:false})}\n**Heure de création du serveur** : ${serveur.createdAt.toLocaleTimeString("fr-FR",{timeZone:"Europe/Paris",hour12:false})}`)
+			.setDescription(`**Membres totaux (avec bot)** : ${membresTotaux}\n**Nb de G1** : ${G1}\n**Nb de G2** : ${G2}\n**Nb de G3** : ${G3}\n**Date de création du serveur** : ${serveur.createdAt.toLocaleDateString("fr-FR",{timeZone:"Europe/paris",hour12:false})}\n**Heure de création du serveur** : ${serveur.createdAt.toLocaleTimeString("fr-FR",{timeZone:"Europe/Paris",hour12:false})}`)
 			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
 			message.channel.send(embed)
 		}
