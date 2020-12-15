@@ -1042,11 +1042,11 @@ bot.on("message", async message => {
 			.setTitle("Cristal magique...")
 			.setDescription("*...un bot créé par Mitchifs*")
 			.addField("Conception","Développeur : Mitchifs\nCode source libre de droit : https://github.com/Mitchifs/cristal-magique/")
-			.addField("Remerciements","Paul MEHAUD\nyanis-dlmr\nAdrien Maire\nLou-Anne\nMargaux🦊\nmarine\nnavette-spatiale\nZiyad\nMa mère, mon père, mes grands-parents, mes cous..")
+			.addField("Remerciements","Paul MEHAUD\nyanis-dlmr\nAdrien Maire\nLou-Anne\nMargaux🦊\nmarine\nnavette-spatiale\nZiyad\nMa mère, mon père, mes grands-parents, mes cousins, *etc..*")
 			.addField("Mot de fin","*Pas d'idée...*")
 			.setImage("https://image.noelshack.com/fichiers/2020/51/2/1608039983-boule-de-cristal.jpg")
 			.setTimestamp()
-			.setFooter("*\"Merci pour votre soutien c:\"*",bot.users.cache.get("333621078050078730").avatarURL({
+			.setFooter("Merci pour votre soutien c:",bot.users.cache.get("333621078050078730").avatarURL({
 				format:"png",
 			}))
 			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
