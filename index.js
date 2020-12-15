@@ -538,6 +538,7 @@ bot.on("message", async message => {
 			.addField(`${préfixe}sondage *question* ; *réponse1*, *emoji1* ; *réponse2*, *emoji2* ; *réponseX*, *emojiX* *...*`,"Lance un sondage stratégique")
 			.addField(`${préfixe}calcul mental *nbDeCalculs* ; *tempsPourChaqueCalcul* ; *opérateurs* ; *nbOpérationsMax* ; *puissanceDe10Max*`,"Entraînement au calcul mental")
 			.addField(`${préfixe}tts *message*`,"Transforme ton message classique en message tts")
+			.addField(`${préfixe}crédits`,"Crédits de Cristal Magique")
 			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
 			message.channel.send(embed)
 		}
@@ -1034,6 +1035,14 @@ bot.on("message", async message => {
 			message.channel.send(msg,{
 				tts:true
 			})
+		}
+
+		else if(/^.cr[ée]dits$/i.test(message.content)){
+			const embed = new Discord.MessageEmbed()
+			.setTitle("Crédits :")
+			.setDescription(`**Cristal magique** :\n*Créateur : Mitchifs\nDéveloppeur : Mitchifs\nSource d'idées : INSA Groupe G\nCode source libre de droit : https://github.com/Mitchifs/cristal-magique/*`)
+			.setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
+			message.channel.send(embed)
 		}
 
 		else if(/^.tuto\s*consommables$/i.test(message.content)){
