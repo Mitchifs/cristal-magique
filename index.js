@@ -2037,7 +2037,7 @@ bot.on("message", async message => {
 			membre.user.send("Si t'es en vocal pourquoi tu parles dans un salon écrit chacal ?")
 		}
 	}
-	if(message.author.id === victime){
+	if(message.author.id === "bruh"){
 		let nouveauMessage = message.content
 		let suppressions = Math.floor(Math.random()*(message.content.length/2)) + 1
 		while(suppressions > 0){
