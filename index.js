@@ -475,33 +475,7 @@ bot.on("ready", async () => {
 		status:"online"
 	})
 	.catch(console.error)
-	bot.generateInvite({
-		permissions:[
-		"MANAGE_GUILD",
-		"MANAGE_ROLES",
-		"MANAGE_CHANNELS",
-		"KICK_MEMBERS",
-		"BAN_MEMBERS",
-		"CREATE_INSTANT_INVITE",
-		"CHANGE_NICKNAME",
-		"MANAGE_NICKNAMES",
-		"MANAGE_EMOJIS",
-		"SEND_MESSAGES",
-		"MANAGE_MESSAGES",
-		"EMBED_LINKS",
-		"ATTACH_FILES",
-		"READ_MESSAGE_HISTORY",
-		"MENTION_EVERYONE",
-		"USE_EXTERNAL_EMOJIS",
-		"ADD_REACTIONS",
-		"CONNECT",
-		"SPEAK",
-		"MUTE_MEMBERS",
-		"DEAFEN_MEMBERS",
-		"MOVE_MEMBERS",
-		"USE_VAD"
-	]
-})
+	bot.generateInvite({permissions:["ADMINISTRATOR"]})
 	.then(lien => console.log(lien))
 	.catch(console.error)
 })
