@@ -482,7 +482,7 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
 	if(message.author.bot) return
-	const serveur = bot.guilds.cache.get("767810173690576936")
+	const serveur = bot.guilds.cache.get("798631994710949939")//767810173690576936
 	if(pfc){
 		if(/cise*aux*/i.test(message.content)){
 			choseJoueur = "ciseaux"
@@ -1965,7 +1965,7 @@ bot.on("message", async message => {
 
 				let G1EnVie = 0
 				let G2EnVie = 0
-				let botChannel = serveur.channels.cache.get("768447286996762685")
+				let botChannel = serveur.channels.cache.get("798633664136609883") //768447286996762685
 				joueurs.forEach(joueur => {
 					if(joueur.groupe === "G1") G1EnVie++
 					if(joueur.groupe === "G2") G2EnVie++
@@ -1997,20 +1997,6 @@ bot.on("message", async message => {
 	
 	if(Math.floor(Math.random()*20)+1 === 1 && !partieLancee){//1 chance sur 20	
 		message.channel.send(anecdote[Math.floor(Math.random()*anecdote.length)])
-	}
-	if(Math.random() < 0.2){//1 chance sur 5
-		let membre = await serveur.members.fetch(message.author.id)
-		if(!serveur.channels.cache.some(c => c.id === "768382676243054593" && c.type === "voice")) return
-		let Travail = serveur.channels.cache.get("768382676243054593")
-		if(!serveur.channels.cache.some(c => c.id === "768382131407552522" && c.type === "voice")) return
-		let cpasketukroi = serveur.channels.cache.get("768382131407552522")
-		if(!serveur.channels.cache.some(c => c.id === "773882316987695124" && c.type === "voice")) return
-		let watashinosekai = serveur.channels.cache.get("773882316987695124")
-
-		if(Travail.members.some(m => m.id === membre.id) || cpasketukroi.members.some(m => m.id === membre.id) || watashinosekai.members.some(m => m.id === membre.id)){
-			membre.voice.kick()
-			membre.user.send("Si t'es en vocal pourquoi tu parles dans un salon écrit chacal ?")
-		}
 	}
 	if(message.author.id === "bruh"){
 		let nouveauMessage = message.content
