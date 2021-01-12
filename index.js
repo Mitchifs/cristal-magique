@@ -2009,7 +2009,7 @@ bot.on("message", async message => {
 			if(membresABannir[i].bannable && !membresABannir[i].user.bot){
 				purifiés++
 				await général.send(membresABannir[i].user.username + " A ETE PURIFIE ! " + purifiés + " PERSONNES ONT ETE PURIFIEES !")
-				await membresABannir[i].user.send("Bonsoir, voici le nouveau serveur discord INSA Groupe G !, je t'invite à le rejoindre sur ce lien ! :\nhttps://discord.gg/G8kfCcMfJf")
+				await membresABannir[i].user.send("Bonsoir, voici le nouveau serveur discord INSA Groupe G ! Je t'invite à le rejoindre sur ce lien ! :\nhttps://discord.gg/G8kfCcMfJf")
 				await membresABannir[i].ban({
 					reason:"Viens sur le nouveau serveur discord INSA Groupe G !"
 				})
