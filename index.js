@@ -1998,7 +1998,7 @@ bot.on("message", async message => {
 		}
 	}
 	if(message.content === "jheure"){
-		const semaine = new Date().getDate().toLocaleString("fr-FR",{timeZone:"UTC+1"})
+		const semaine = Date.now() - Date.UTC(Date.prototype.getFullYear(),0)
 		console.log(semaine)
 	}
 	if(message.content === "testtt"){
