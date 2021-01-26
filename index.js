@@ -1998,7 +1998,9 @@ bot.on("message", async message => {
 		}
 	}
 	if(message.content === "jheure"){
-		const semaine = Date.now() - Date.UTC(Date.prototype.getFullYear(),0)
+		const debutAnnee = new Date(new Date().getFullYear(),0,1,0,0,0,0).valueOf()
+		const dateActuelle = new Date().valueOf()
+		const semaine = (dateActuelle-debutAnnee)/(1000*60*60*24*7)
 		console.log(semaine)
 	}
 	if(message.content === "testtt"){
