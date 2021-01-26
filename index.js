@@ -466,6 +466,7 @@ const infos = (membre,event) => {
 }
 
 bot.on("ready", async () => {
+	const serveur = bot.guilds.cache.get("798631994710949939")
 	console.log("C'est parti !")
 	bot.user.setPresence({
 		activity:{
