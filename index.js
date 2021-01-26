@@ -478,6 +478,9 @@ bot.on("ready", async () => {
 	bot.generateInvite({permissions:["ADMINISTRATOR"]})
 	.then(lien => console.log(lien))
 	.catch(console.error)
+	bot.setInterval(() => {
+		
+	},5*60*1000)
 })
 
 bot.on("message", async message => {
@@ -1994,7 +1997,10 @@ bot.on("message", async message => {
 			}
 		}
 	}
-	
+	if(message.content === "jheure"){
+		const semaine = Date.now().toLocaleString('fr-FR', { timeZone: 'UTC+1' })
+		console.log(semaine)
+	}
 	if(message.content === "testtt"){
 		bot.users.cache.get("333621078050078730").send("Bonsoir, voici le nouveau serveur discord INSA Groupe G !, je t'invite à le rejoindre sur ce lien ! :\nhttps://discord.gg/G8kfCcMfJf")
 	}
