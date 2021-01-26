@@ -2000,7 +2000,17 @@ bot.on("message", async message => {
 	if(message.content === "jheure"){
 		const debutAnnee = new Date(new Date().getFullYear(),0,1,0,0,0,0).valueOf()
 		const dateActuelle = new Date().valueOf()
-		const semaine = Math.floor((dateActuelle-debutAnnee)/(1000*60*60*24*7)+1)
+		const nouvelleSemaine = Math.floor((dateActuelle-debutAnnee)/(1000*60*60*24*7)+1)
+		const channelSemaine = serveur.channels.cache.find(c => /^SEMAINE \d+$/.test(c.name))
+		const ancienneSemaine = channelSemaine.name.match(/(?<=^SEMAINE )\d+$/)[0]
+		await channelSemaine.setName(channelSemaine.name.replace(ancienneSemaine,nouvelleSemaine))
+		const channelPresentiel = serveur.channels.cache.find(c => c.name === "G2 présentiel aprem" || c.name === "G2 présentiel matin")
+		if(Math.floor(nouvelleSemaine/2) === nouvelleSemaine/2){
+			channelPresentiel.setName("G2 présentiel aprem")
+		}
+		else{
+			channelPresentiel.setName("G2 présentiel matin")
+		}
 		console.log(semaine)
 	}
 	if(message.content === "testtt"){
