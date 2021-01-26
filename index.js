@@ -478,7 +478,7 @@ bot.on("ready", async () => {
 	bot.generateInvite({permissions:["ADMINISTRATOR"]})
 	.then(lien => console.log(lien))
 	.catch(console.error)
-	bot.setInterval(() => {
+	bot.setInterval(async () => {
 		const debutAnnee = new Date(new Date().getFullYear(),0,1,0,0,0,0).valueOf()
 		const dateActuelle = new Date().valueOf()
 		const nouvelleSemaine = Math.floor((dateActuelle-debutAnnee)/(1000*60*60*24*7)+1)
