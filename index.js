@@ -480,14 +480,14 @@ bot.on("ready", async () => {
 	.then(lien => console.log(lien))
 	.catch(console.error)
 	bot.setInterval(async () => {
-		const debutAnnee = new Date(new Date().getFullYear(),0,1,0,0,0,0).valueOf()
-		const dateActuelle = new Date().valueOf()
+		const debutAnnee = Number(new Date(new Date().getFullYear(),0,1,0,0,0,0).valueOf().toLocaleString("fr-FR",{timeZone:"Europe/Paris",hour12:false}))
+		const dateActuelle = Number(new Date().valueOf().toLocaleString("fr-FR",{timeZone:"Europe/Paris",hour12:false}))
 		const nouvelleSemaine = Math.floor((dateActuelle-debutAnnee)/(1000*60*60*24*7)+1)
 		const channelSemaine = serveur.channels.cache.find(c => /^SEMAINE \d+$/.test(c.name))
 		const ancienneSemaine = channelSemaine.name.match(/(?<=^SEMAINE )\d+$/)[0]
 		await channelSemaine.setName(channelSemaine.name.replace(ancienneSemaine,nouvelleSemaine))
 		const channelPresentiel = serveur.channels.cache.find(c => c.name === "G2 présentiel aprem" || c.name === "G2 présentiel matin")
-		if(Math.floor(nouvelleSemaine/2) === nouvelleSemaine/2){
+		if(nouvelleSemaine%2 === 0){
 			await channelPresentiel.setName("G2 présentiel aprem")
 		}
 		else{
