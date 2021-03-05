@@ -500,11 +500,16 @@ bot.on("message", async message => {
 	if(message.author.bot) return
 	if(message.content === "test"){
 		const décallageServeur = (new Date()).getTimezoneOffset()*60*1000
+		console.log(décallageServeur)
 		const décallageFrance = -60*60*1000
 		const annee = (new Date()).setUTCFullYear()
+		console.log(annee)
 		const millisecondesDebutAnnee = (new Date(annee,0)).getTime() + décallageFrance
+		console.log(millisecondesDebutAnnee)
 		const millisecondesPassees = (new Date()).getTime() - décallageServeur + décallageFrance
+		console.log(millisecondesPassees)
 		const millisecondesDepuisDebutAnnee = millisecondesPassees - millisecondesDebutAnnee
+		console.log(millisecondesDepuisDebutAnnee)
 		const semaine = 1 + millisecondesDepuisDebutAnnee/(1000*60*60*24*7)
 		console.log(semaine)
 	}
