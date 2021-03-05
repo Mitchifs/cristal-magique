@@ -480,9 +480,30 @@ bot.on("ready", async () => {
 	.then(lien => console.log(lien))
 	.catch(console.error)
 	bot.setInterval(async () => {
-		const debutAnnee = new Date(new Date().getFullYear(),0,1,0,0,0,0).valueOf()
-		const dateActuelle = new Date().valueOf()
-		const nouvelleSemaine = Math.floor((dateActuelle-debutAnnee)/(1000*60*60*24*7)+1)
+		const anneeMoisJour = (new Date()).toLocaleDateString("fr-FR",{timeZone:"Europe/Paris",hour12:false}).split("/")
+		const Q = Number(anneeMoisJour[0]) //jour du mois
+		const k = Number(anneeMoisJour[1]) //mois
+		const m = Number(anneeMoisJour[2]) //année
+		const S = Math.floor(m/100)
+		const A = m - 100*S //= m%100
+		let bissextile
+		if(m%4 === 0 || (m%100 === 0 && m%400 === 0)){
+			bissextile = true
+		}
+		else{
+			bissextile = false
+		}
+		let N //Numéro du jour dans l'année
+		let J //Premier janvier
+		if(bissextile){
+			N = Q + Math.floor(30.6*k - 32.3) + 1
+			J =  ( 5*S + Math.floor(S/4) + A + Math.floor(A/4) + 6 ) % 7
+		}
+		else{
+			N = Q + Math.floor(30.6*k - 32.3)
+			J =  ( 5*S + Math.floor(S/4) + A + Math.floor(A/4)) % 7
+		}
+		const nouvelleSemaine =  Math.floor(( J + N + 5 )/ 7) - Math.floor( J/5 )
 		const channelSemaine = serveur.channels.cache.find(c => /^SEMAINE \d+$/.test(c.name))
 		const ancienneSemaine = channelSemaine.name.match(/(?<=^SEMAINE )\d+$/)[0]
 		await channelSemaine.setName(channelSemaine.name.replace(ancienneSemaine,nouvelleSemaine))
