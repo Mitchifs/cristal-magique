@@ -502,7 +502,7 @@ bot.on("message", async message => {
 		const décallageServeur = (new Date()).getTimezoneOffset()*60*1000
 		console.log(décallageServeur)
 		const décallageFrance = -60*60*1000
-		const annee = (new Date()).setUTCFullYear()
+		const annee = (new Date()).getUTCFullYear()
 		console.log(annee)
 		const millisecondesDebutAnnee = (new Date(annee,0)).getTime() + décallageFrance
 		console.log(millisecondesDebutAnnee)
