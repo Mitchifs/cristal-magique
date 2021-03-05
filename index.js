@@ -480,8 +480,8 @@ bot.on("ready", async () => {
 	.then(lien => console.log(lien))
 	.catch(console.error)
 	bot.setInterval(async () => {
-		const debutAnnee = Number(new Date(new Date().getFullYear(),0,1,0,0,0,0).valueOf().toLocaleString("fr-FR",{timeZone:"Europe/Paris",hour12:false}))
-		const dateActuelle = Number(new Date().valueOf().toLocaleString("fr-FR",{timeZone:"Europe/Paris",hour12:false}))
+		const debutAnnee = new Date(new Date().getFullYear(),0,1,0,0,0,0).valueOf()
+		const dateActuelle = new Date().valueOf()
 		const nouvelleSemaine = Math.floor((dateActuelle-debutAnnee)/(1000*60*60*24*7)+1)
 		const channelSemaine = serveur.channels.cache.find(c => /^SEMAINE \d+$/.test(c.name))
 		const ancienneSemaine = channelSemaine.name.match(/(?<=^SEMAINE )\d+$/)[0]
