@@ -498,6 +498,16 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
 	if(message.author.bot) return
+	if(message.content === "test"){
+		const décallageServeur = (new Date()).getTimezoneOffset()*60*1000
+		const décallageFrance = -60*60*1000
+		const annee = (new Date()).setUTCFullYear()
+		const millisecondesDebutAnnee = (new Date(annee,0)).getTime() + décallageFrance
+		const millisecondesPassees = (new Date()).getTime() - décallageServeur + décallageFrance
+		const millisecondesDepuisDebutAnnee = millisecondesPassees - millisecondesDebutAnnee
+		const semaine = 1 + millisecondesDepuisDebutAnnee/(1000*60*60*24*7)
+		console.log(semaine)
+	}
 	const serveur = bot.guilds.cache.get("798631994710949939")//767810173690576936
 	if(pfc){
 		if(/cise*aux*/i.test(message.content)){
