@@ -499,7 +499,8 @@ bot.on("ready", async () => {
 bot.on("message", async message => {
 	if(message.author.bot) return
 	if(message.content === "test"){
-		const anneeMoisJour = (new Date()).toLocaleDateString("fr-FR",{timeZone:"Europe/Paris",hour12:false}).split("-")
+		const anneeMoisJour = (new Date()).toLocaleDateString("fr-FR",{timeZone:"Europe/Paris",hour12:false})
+		console.log(anneeMoisJour)
 		const Q = Number(anneeMoisJour[2]) //jour du mois
 		const k = Number(anneeMoisJour[1]) //mois
 		const m = Number(anneeMoisJour[0]) //année
