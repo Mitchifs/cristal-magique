@@ -499,21 +499,33 @@ bot.on("ready", async () => {
 bot.on("message", async message => {
 	if(message.author.bot) return
 	if(message.content === "test"){
-		const décallageServeur = (new Date()).getTimezoneOffset()*60*1000
-		console.log(décallageServeur)
-		const décallageFrance = -60*60*1000
-		const annee = (new Date()).getUTCFullYear()
-		console.log(annee)
-		const millisecondesDebutAnnee = (new Date(annee,0)).getTime() + décallageFrance
-		console.log(millisecondesDebutAnnee)
-		const millisecondesPassees = (new Date()).getTime() - décallageServeur + décallageFrance
-		console.log(millisecondesPassees)
-		const millisecondesDepuisDebutAnnee = millisecondesPassees - millisecondesDebutAnnee
-		console.log(millisecondesDepuisDebutAnnee)
-		const semaine = 1 + millisecondesDepuisDebutAnnee/(1000*60*60*24*7)
-		console.log(semaine)
-	}
-	const serveur = bot.guilds.cache.get("798631994710949939")//767810173690576936
+		const anneeMoisJour = (new Date()).toLocaleDateString("fr-FR",{timeZone:"Europe/Paris",hour12:false}).split("-")
+		const Q = Number(anneeMoisJour[2]) //jour du mois
+		const k = Number(anneeMoisJour[1]) //mois
+		const m = Number(anneeMoisJour[0]) //année
+		const S = Math.floor(m/100)
+		const A = m - 100*S //= m%100
+		let bissextile
+		if(m%4 === 0 || (m%100 === 0 && m%400 === 0)){
+			bissextile = true
+		}
+		else{
+			bissextile = false
+		}
+		let N //Numéro du jour dans l'année
+		let J //Premier janvier
+		if(bissextile){
+			N = Q + Math.floor(30.6*k - 32.3) + 1
+			J =  ( 5*S + Math.floor(S/4) + A + Math.floor(A/4) + 6 ) % 7
+		}
+		else{
+			N = Q + Math.floor(30.6*k - 32.3)
+			J =  ( 5*S + Math.floor(S/4) + A + Math.floor(A/4)) % 7
+		}
+		const W =  Math.floor(( J + N + 5 )/ 7) - Math.floor( J/5 )
+		console.log(W)
+		}
+		const serveur = bot.guilds.cache.get("798631994710949939")//767810173690576936
 	if(pfc){
 		if(/cise*aux*/i.test(message.content)){
 			choseJoueur = "ciseaux"
