@@ -2138,7 +2138,7 @@ bot.on("typingStart", async (channel,user) => {
 				"xptdrlol",
 			]
 			const mot = mots[Math.floor(Math.random()*mots.length)]
-			user.send(`Utilise "${mot}" ou sinon tu seras banni.`)
+			user.send(`Utilise "${mot}" dans ton prochain message ou sinon tu seras banni.`)
 		}
 	}
 })
