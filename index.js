@@ -2100,7 +2100,7 @@ bot.on("message", async message => {
 	if(/^<.+>$/.test(message.content)){
 		console.log(message.content)
 		console.log("J'aime les chameaux drôles".includes("chameau"))
-		console.log("J'aime les chameaux drôles".includes("chameau"))
+		console.log("J'aime les chameaux drôles".includes("chemeau"))
 	}
 	if(message.author.id === "548078380210454529"){
 		if(mot !== "aucun"){
