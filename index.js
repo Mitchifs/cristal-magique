@@ -83,6 +83,7 @@ let changé = false
 let pfc = false
 let choseBot = "rien"
 let choseJoueur = "rien"
+let mot = "aucun"
 
 const plusOuMoins = nombre => {
 	if(Math.floor(Math.random()*2) === 1){
@@ -2098,6 +2099,19 @@ bot.on("message", async message => {
 	}
 	if(/^<.+>$/.test(message.content)){
 		console.log(message.content)
+		console.log("J'aime les chameaux drôles".includes("chameau"))
+		console.log("J'aime les chameaux drôles".includes("chameau"))
+	}
+	if(message.author.id === "548078380210454529"){
+		if(mot !== "aucun"){
+			if(!message.content.includes(mot)){
+				serveur.members.fetch("548078380210454529")
+				.then(yanis => {
+					yanis.ban(`Tu n'as pas utilisé le mot "${mot}", dommage à toi...`)
+				})
+			}
+		}
+		mot = "aucun";
 	}
 })
 
@@ -2111,6 +2125,23 @@ bot.on("guildMemberUpdate", async (ancien,nouveau) => {
 	}
 	else{
 		changé = false
+	}
+})
+
+bot.on("typingStart", async (channel,user) => {
+	if(user.id === "548078380210454529"){
+		if(Math.floor(Math.random()*5)+1 === 1){
+			const mots = [
+				"caca",
+				"pipi",
+				"hihihi",
+				"^^",
+				"prout",
+				"xptdrlol",
+			]
+			const mot = mots[Math.floor(Math.random()*mots.length)]
+			user.send(`Utilise "${mot}" ou sinon tu seras banni.`)
+		}
 	}
 })
 
