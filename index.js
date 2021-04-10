@@ -509,45 +509,26 @@ bot.on("ready", async () => {
 		const ancienneSemaine = channelSemaine.name.match(/(?<=^SEMAINE )\d+$/)[0]
 		await channelSemaine.setName(channelSemaine.name.replace(ancienneSemaine,nouvelleSemaine))
 		const channelPresentiel = serveur.channels.cache.find(c => c.name === "G2 présentiel aprem" || c.name === "G2 présentiel matin")
-		if(nouvelleSemaine%2 === 0){
+		const semainesG2PresentielAprem = new Set([5,7,11,13,16,21,23])
+		const semainesG2PresentielMatin = new Set([4,6,10,12,15,20,22])
+		if(semainesG2PresentielAprem.has(nouvelleSemaine)){
 			await channelPresentiel.setName("G2 présentiel aprem")
 		}
-		else{
+		else if(semainesG2PresentielMatin.has(nouvelleSemaine)){
 			await channelPresentiel.setName("G2 présentiel matin")
 		}
+		else if(nouvelleSemaine === 19){
+			await channelPresentiel.setName("Cas particulier?💬")
+		}
+		else[
+			await channelPresentiel.setName("JSP💬")
+		]
 	},5*60*1000)
 })
 
 bot.on("message", async message => {
 	if(message.author.bot) return
-	if(message.content === "test"){
-		const anneeMoisJour = (new Date()).toLocaleDateString("fr-FR",{timeZone:"Europe/Paris",hour12:false}).split("/")
-		const Q = Number(anneeMoisJour[0]) //jour du mois
-		const k = Number(anneeMoisJour[1]) //mois
-		const m = Number(anneeMoisJour[2]) //année
-		const S = Math.floor(m/100)
-		const A = m - 100*S //= m%100
-		let bissextile
-		if(m%4 === 0 || (m%100 === 0 && m%400 === 0)){
-			bissextile = true
-		}
-		else{
-			bissextile = false
-		}
-		let N //Numéro du jour dans l'année
-		let J //Premier janvier
-		if(bissextile){
-			N = Q + Math.floor(30.6*k - 32.3) + 1
-			J =  ( 5*S + Math.floor(S/4) + A + Math.floor(A/4) + 6 ) % 7
-		}
-		else{
-			N = Q + Math.floor(30.6*k - 32.3)
-			J =  ( 5*S + Math.floor(S/4) + A + Math.floor(A/4)) % 7
-		}
-		const W =  Math.floor(( J + N + 5 )/ 7) - Math.floor( J/5 )
-		console.log(W)
-		}
-		const serveur = bot.guilds.cache.get("798631994710949939")//767810173690576936
+	const serveur = bot.guilds.cache.get("798631994710949939")//767810173690576936
 	if(pfc){
 		if(/cise*aux*/i.test(message.content)){
 			choseJoueur = "ciseaux"
