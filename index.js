@@ -638,7 +638,7 @@ bot.on("message", async message => {
 							membreVictime.setNickname(membreVictime.user.username)
 						}
 						victime = membreVisé.id
-						message.channel.send(`${membreVisé.displayName} est maintenant la nouvelle victime !`)
+						message.channel.send(`${membreVisé.user.username} est maintenant la nouvelle victime !`)
 					}
 					catch{
 						message.channel.send("Tu m'en demandes trop là...")
