@@ -509,8 +509,8 @@ bot.on("ready", async () => {
 		const ancienneSemaine = channelSemaine.name.match(/(?<=^SEMAINE )\d+$/)[0]
 		await channelSemaine.setName(channelSemaine.name.replace(ancienneSemaine,nouvelleSemaine))
 		const channelPresentiel = serveur.channels.cache.get('803531419590459442')
-		const semainesG2PresentielAprem = new Set([5,7,11,13,16,21,23])
-		const semainesG2PresentielMatin = new Set([4,6,10,12,15,20,22])
+		const semainesG2PresentielMatin = new Set([5,7,11,13,16,21,23])
+		const semainesG2PresentielAprem = new Set([4,6,10,12,15,20,22])
 		if(semainesG2PresentielAprem.has(nouvelleSemaine)){
 			await channelPresentiel.setName("G2 présentiel aprem")
 		}
