@@ -65,7 +65,7 @@ const anecdote = [
 	":point_up: La personne au dessus de moi est ITALIENNE",
 	":point_up: La personne au dessus de moi est HORRIBLE",
 	":point_up: La personne au dessus de moi est DROLE (ou pas)",
-	":point_up: La personne au dessus de moi est... je trouve pas t'es pas original deso",
+	":point_up: La personne au dessus de moi est... je trouve pas t'es pas original deso"
 ]
 let joueurs = [
 	{
